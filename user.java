@@ -12,7 +12,7 @@ public class user extends person{
     private Date lastLogin;
 	// long logInTime, totalPlayTime;
 	// int PIN; 
-	public user(String username, String password, String dob, String states, String city, String ZIP){
+	public user(String username, String password){
 		this.username = username;
         this.password = password;
         this.playtime = 0;

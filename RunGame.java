@@ -36,7 +36,7 @@ public class RunGame{
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
 			//method to register user
-			user newUser = new user(username,pass, FN, LN, dob, state);
+			user newUser = new user(username,pass);
 			Utility.writeUserFile(USER_FILE, newUser);
 
 			break;
@@ -46,11 +46,11 @@ public class RunGame{
 			System.out.print("please enter your password:\n>");
 			String password = input.nextLine();
 
-			User user = Utility.readUserFile(USER_FILE);
+			user user = Utility.readUserFile(USER_FILE);
         	if (user == null || !user.getPassword().equals(password)) {
             System.out.println("Invalid username or password");
         	}
-        	User currentUser = user;
+        	user currentUser = user;
 
 			break;
 		case"new game":
