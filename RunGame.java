@@ -1,7 +1,10 @@
 import java.util.Scanner;
 public class RunGame{
 
-	public static void main(String[]args){
+	private static final String USER_FILE = "users.txt";
+	private static final String LOG_FILE = "game.log";
+
+	public static void main(String[]args) throws Exception{
 	//read the users file 
 
 	/** these are just a variable to the options menu and the scanner */
@@ -11,7 +14,7 @@ public class RunGame{
 	do{
 	System.out.println("Welcome to the dungeon");
 	System.out.print("Choose an option:\n");
-	System.out.print("\nRegister\nlogin\nnew game\nexit\n\n> ");
+	System.out.print("\nregister\nlogin\nnew game\nexit\n\n> ");
 	option = input.nextLine();
 	//the switch for picking an option
 	switch(option){
@@ -33,13 +36,22 @@ public class RunGame{
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
 			//method to register user
-			user newUser = new user(FN, LN, username, pass, dob, state, city, ZIP);
+			user newUser = new user(username,pass, FN, LN, dob, state);
+			Utility.writeUserFile(USER_FILE, newUser);
+
 			break;
 		case"login":
-			System.out.print("please enter your username\n>");
-			String username = input.nextLine();
-			System.out.print("please enter your password\n>");
-			
+			System.out.print("please enter your username:\n>");
+			String userName = input.nextLine();
+			System.out.print("please enter your password:\n>");
+			String password = input.nextLine();
+
+			User user = Utility.readUserFile(USER_FILE);
+        	if (user == null || !user.getPassword().equals(password)) {
+            System.out.println("Invalid username or password");
+        	}
+        	User currentUser = user;
+
 			break;
 		case"new game":
 			System.out.println("creating new game...");
