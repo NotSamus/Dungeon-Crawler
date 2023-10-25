@@ -1,27 +1,58 @@
 /*
- * Team 7 : Alejandro Rodriguez, Don Ritchie, Isaac Borjon, Jesus Lopez
+ * Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
  *
  * */
+
+import java.sql.Date;
+
 public class user extends person{
-	String firstName, lastName, userName, passWord, dob, state,city, zip;
+	private static String username;
+    private static String password;
+    private int playtime;
+    private Date lastLogin;
 	// long logInTime, totalPlayTime;
 	// int PIN; 
-	public user(String FN, String LN, String username, String password, String DOBs, String states, String citys, String ZIPs){
-		this.firstName = FN;
-		this.lastName=LN;
-		this.userName=username;
-		this.passWord = password;
-		this.dob= DOBs;
-		this.state = states;
-		this.city = citys;
-		this.zip = ZIPs;
-
+	public user(String username, String password, String dob, String states, String city, String ZIP){
+		this.username = username;
+        this.password = password;
+        this.playtime = 0;
+        this.lastLogin = new Date(playtime);
 	}
 
 	
 	//getters
+	public static String getUsername() {
+        return username;
+    }
 
+    public static String getPassword() {
+        return password;
+    }
 
-	//general info
+    public int getPlaytime() {
+        return playtime;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void updatePlaytime() {
+        playtime++;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    //general info
+
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", playtime=" + playtime +
+                ", lastLogin=" + lastLogin +
+                '}';
+    }
 		
 }
