@@ -1,10 +1,11 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class RunGame{
 
 	private static final String USER_FILE = "users.txt";
 	private static final String LOG_FILE = "game.log";
 
-	public static void main(String[]args) throws Exception{
+	public static void main(String[]args) throws FileNotFoundException{
 	//read the users file 
 
 	/** these are just a variable to the options menu and the scanner */
@@ -37,7 +38,7 @@ public class RunGame{
 			String ZIP = input.nextLine();
 			//method to register user
 			user newUser = new user(username,pass, FN, LN, dob, state);
-			Utility.writeUserFile(USER_FILE, newUser);
+			// Utility.writeUserFile(USER_FILE, newUser);
 
 			break;
 		case"login":
@@ -46,11 +47,11 @@ public class RunGame{
 			System.out.print("please enter your password:\n>");
 			String password = input.nextLine();
 
-			User user = Utility.readUserFile(USER_FILE);
-        	if (user == null || !user.getPassword().equals(password)) {
-            System.out.println("Invalid username or password");
-        	}
-        	User currentUser = user;
+			// User user = Utility.readUserFile(USER_FILE);
+        	// if (user == null || !user.getPassword().equals(password)) {
+            // System.out.println("Invalid username or password");
+        	// }
+        	// User currentUser = user;
 
 			break;
 		case"new game":
@@ -61,9 +62,40 @@ public class RunGame{
 		System.exit(0);
 	}
 	}while(!(option.equals("login")||option.equals("new game")));
-	
-	
+	// load map
 
+	String map[][] = Utility.load_map();
+	map = Utility.Random_spawn(map);
+	Utility.printMatrix(map);
+	System.out.print("\n>");
+
+	String terminalinput = input.nextLine();
+	while(!terminalinput.equals("exit")){
+		switch(terminalinput){
+			case "w":
+				map = Utility.move_up(map);
+				Utility.printMatrix(map);
+				break;
+			case"a":
+				map = Utility.move_left(map);
+				Utility.printMatrix(map);
+				break;
+			case"s":
+				map = Utility.move_down(map);
+				Utility.printMatrix(map);
+				break;
+
+			case"d":
+				map = Utility.move_right(map);
+				Utility.printMatrix(map);
+				break;
+			
+
+		}
+		System.out.print("\n>");
+		terminalinput = input.nextLine();
+
+	}
 	/*
 	 *Here the game should be implemented
 	 * */
