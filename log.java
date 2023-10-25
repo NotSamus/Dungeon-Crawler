@@ -4,14 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Calendar;
-
-
-
-
 public class log{
     
-public static void loger(String x) throws IOException{
-    
+public static void loger(String x) throws IOException{ 
     File file = new File("log.txt");
     FileWriter fileWriter = new FileWriter(file);
     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -24,9 +19,6 @@ public static void loger(String x) throws IOException{
     bufferedWriter.close();
     fileWriter.close();
 }
-    
-    
-
     public static boolean write_on_log(String a){
         return true;
     }
