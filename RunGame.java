@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.time.*;
 import java.util.Scanner;
 public class RunGame{
 
@@ -37,7 +38,7 @@ public class RunGame{
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
 			//method to register user
-			user newUser = new user(username,pass, FN, LN, dob, state);
+			Utility.createuser(username, pass, dob, state, city, ZIP);
 			// Utility.writeUserFile(USER_FILE, newUser);
 
 			break;
@@ -62,6 +63,12 @@ public class RunGame{
 		System.exit(0);
 	}
 	}while(!(option.equals("login")||option.equals("new game")));
+
+
+
+
+	long time_start = System.nanoTime();
+
 	// load map
 
 	String map[][] = Utility.load_map();
@@ -89,16 +96,13 @@ public class RunGame{
 				map = Utility.move_right(map);
 				Utility.printMatrix(map);
 				break;
-			
-
 		}
 		System.out.print("\n>");
 		terminalinput = input.nextLine();
-
 	}
-	/*
-	 *Here the game should be implemented
-	 * */
+	
+	long time_stop = System.nanoTime();
+	Utility.update_playtime(Utility.getuser(FN),Utility.count_playtime(time_start, time_stop));	
 
 }
 
