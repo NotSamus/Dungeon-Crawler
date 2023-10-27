@@ -39,6 +39,7 @@ public class RunGame{
 			String ZIP = input.nextLine();
 			//method to register user
 			Utility.createuser(state, "0", username, FN, "0", pin, LN, "0",city, ZIP, dob);
+			System.out.println("User Created");
 			// Utility.writeUserFile(USER_FILE, newUser);
 
 			break;
@@ -47,10 +48,7 @@ public class RunGame{
 			String userName = input.nextLine();
 			System.out.print("please enter your pin:\n>");
 			pin = input.nextLine();
-
-			break;
-		case"new game":
-			System.out.println("creating new game...");
+			
 			break;
 	}
 	if(option.equals("exit")){
@@ -62,7 +60,6 @@ public class RunGame{
 
 
 	long time_start = System.nanoTime();
-
 	// load map
 
 	String map[][] = Utility.load_map();

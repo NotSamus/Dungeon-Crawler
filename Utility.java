@@ -1,38 +1,9 @@
 import java.io.*;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Utility {
 
     private static int[] current_position = new int[2];//map
-    // private static final String USER_FILE = "users.txt";//user
- 
-    // public static user readUserFile(String userFile) throws Exception{
-    //     BufferedReader reader = new BufferedReader(new FileReader(USER_FILE));
-    //     String line = reader.readLine();
-    //     reader.close();
-
-    //     if (line == null) {
-    //         return null;
-    //     }
-
-    //     String[] parts = line.split(",");
-    //     String username = parts[0];
-    //     String password = parts[1];
-
-    //     return new user(username, password);
-    // }
-
-    // public static void writeUserFile(String userFile, user newUser) throws Exception {
-    //     BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE));
-    //     writer.write(user.getUsername() + "," + user.getPassword());
-    //     writer.close();
-    // }
-
-
-
-
 
 /**
  * this method will load the map, and will return a 2 dimensional array
@@ -202,16 +173,9 @@ public static String[][] load_map()throws FileNotFoundException{
     public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,String pin, String LN, String  totalPlayTime, String city,String ZIP, String dob){
         user newUser = new user(state, lastsignin, username, fn, loginttime, pin, LN, totalPlayTime, city, ZIP, dob);
         add_totheQueue(newUser);
+
     }
-    public static void add_totheQueue(user newUser){
-        users_list.enqueue(newUser);
-    }
-    public static void getuser(String name){
-        /**
-         * implement a search in the queue
-         */
-    }
-    //this is for reference
+     //this is for reference
     //state, LastSignIn, Username, FN, LogInTime, PIN, LN, TotalPlaytime, City, ZIP, dob
     public static void tokentheUser()throws FileNotFoundException{
         Scanner file = new Scanner(new File("Users.csv"));
@@ -223,7 +187,30 @@ public static String[][] load_map()throws FileNotFoundException{
         }
     }
 
-
+    public static void add_totheQueue(user newUser){
+        users_list.enqueue(newUser);
+    }
+    public static void getuser(String name){
+        /**
+         * implement a search in the queue
+         */
+    }
+   
+    public static user searchuser(String username, QueueLinked userCopy){
+        while(users_list!=null){
+            if(userCopy.peek().getUsername().equals(username))return userCopy.dequeue();
+        }
+        return null;
+    }
+    
+    public static Boolean userlogin(String userName, int PIN){
+		if(userName.equals(use.userName) && PIN == user.PIN){
+			return true;
+		}
+		else{
+		return false;
+		}
+	}
 
 
 
