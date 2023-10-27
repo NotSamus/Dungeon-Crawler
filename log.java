@@ -15,7 +15,7 @@ public static void loger(String x) throws IOException{
    // System.out.println(date.toString());
     //System.out.println(date.getHours());
     //Sistem.out.println(" "+date.toString()+" "+date.getHours()+" "+string+"\n");
-    bufferedWriter.write(x+" "+Calendar.HOUR_OF_DAY+" "+date.toString()+ " "+"\n");
+    bufferedWriter.write(x+" "+date.toString()+ " "+"\n");
     bufferedWriter.close();
     fileWriter.close();
 }
