@@ -167,7 +167,7 @@ public static String[][] load_map()throws FileNotFoundException{
      * @param a
      */
     private static void check_exit(String a[][]){
-        if(a[(current_position[0])+1][current_position[1]].equals("e")){
+        if(a[(current_position[0])][current_position[1]].equals("e")){
             congrats_message();
             
         }
