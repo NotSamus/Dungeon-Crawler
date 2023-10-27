@@ -7,7 +7,7 @@ public class Utility {
 
     private static int[] current_position = new int[2];//map
     private static final String USER_FILE = "users.txt";//user
-
+ 
     // public static user readUserFile(String userFile) throws Exception{
     //     BufferedReader reader = new BufferedReader(new FileReader(USER_FILE));
     //     String line = reader.readLine();
@@ -210,8 +210,8 @@ public static String[][] load_map()throws FileNotFoundException{
      * we decided to use a queue for the data structure
      */
     public static Queue<user> users = new LinkedList<user>();
-    public static void createuser(String username, String password, String dob, String states, String city, String ZIP){
-        user newUser = new user(username, password, dob, states, city, ZIP);
+    public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,String  PIN, String LN, String  totalPlayTime, String city,String ZIP, String dob){
+        user newUser = new user(state, lastsignin, username, fn, loginttime, PIN, LN, totalPlayTime, city, ZIP, dob)
         add_totheQueue(newUser);
     }
     public static void add_totheQueue(user newUser){
@@ -221,6 +221,18 @@ public static String[][] load_map()throws FileNotFoundException{
         /**
          * finish this
          */
+    }
+    //this is for reference
+    //state, LastSignIn, Username, FN, LogInTime, PIN, LN, TotalPlaytime, City, ZIP, dob
+    public static String[] tokentheUser()throws FileNotFoundException{
+        Scanner file = new Scanner(new File("Users.csv"));
+        
+        while(file.hasNextLine()){
+        String holder = file.nextLine();
+        String [] a = holder.split(",");
+        createuser(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10]);
+        }
+        return a;
     }
 
 
