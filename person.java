@@ -1,5 +1,6 @@
 public abstract class person{
-	String state, firstName,lastName, city, ZIP, dob;
+	String state, firstName,lastName, city, dob;
+	int ZIP;
 	
 	
 
