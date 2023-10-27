@@ -167,11 +167,7 @@ public static String[][] load_map()throws FileNotFoundException{
      * @param a
      */
     private static void check_exit(String a[][]){
-        if(a[(current_position[0])+1][current_position[1]].equals("e")){
-            a[(current_position[0])][current_position[1]] = "0";
-            a[(current_position[0])+1][current_position[1]] = "$";
-            current_position[0] = current_position[0]+1;
-            current_position[1] = current_position[1];
+        if(a[(current_position[0])][(current_position[1])].equals("e")){
             congrats_message();
             
         }
@@ -210,8 +206,8 @@ public static String[][] load_map()throws FileNotFoundException{
      * we decided to use a queue for the data structure
      */
     public static Queue<user> users = new LinkedList<user>();
-    public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,String  PIN, String LN, String  totalPlayTime, String city,String ZIP, String dob){
-        user newUser = new user(state, lastsignin, username, fn, loginttime, PIN, LN, totalPlayTime, city, ZIP, dob)
+    public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,int PIN, String LN, String  totalPlayTime, String city,String ZIP, String dob){
+        user newUser = new user(state, lastsignin, username, fn, loginttime, PIN, LN, totalPlayTime, city, ZIP, dob);
         add_totheQueue(newUser);
     }
     public static void add_totheQueue(user newUser){
@@ -230,7 +226,7 @@ public static String[][] load_map()throws FileNotFoundException{
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
-        createuser(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10]);
+        createuser(a[0],a[1],a[2],a[3],a[4],Integer.parseInt(a[5]),a[6],a[7],a[8],a[9],a[10]);
         }
         return a;
     }

@@ -7,7 +7,7 @@ import java.sql.Date;
 
 public class user extends person{
 	private  String username;
-    private  String PIN;
+    protected  int pin;
     private int playtime;
     private Date lastLogin;
 	// long logInTime, totalPlayTime;
@@ -22,7 +22,7 @@ public class user extends person{
      * @param city
      * @param ZIP
      */
-	public user(String state, String lastsignin,String username, String fn, String logintime, String PIN, String LN, String totalplayT, String city, String ZIP, String dob ){
+	public user(String state, String lastsignin,String username, String fn, String logintime, int pin, String LN, String totalplayT, String city, String ZIP, String dob ){
 		
 	}
 
