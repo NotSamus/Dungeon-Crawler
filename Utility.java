@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Utility {
 
     private static int[] current_position = new int[2];//map
-    private static final String USER_FILE = "users.txt";//user
+    // private static final String USER_FILE = "users.txt";//user
  
     // public static user readUserFile(String userFile) throws Exception{
     //     BufferedReader reader = new BufferedReader(new FileReader(USER_FILE));
@@ -94,7 +94,7 @@ public static String[][] load_map()throws FileNotFoundException{
      * @return the array of 2 dimensions
      */
     public static String[][] move_down(String a[][]){
-        if(a[(current_position[0])+1][current_position[1]].equals("0")){
+        if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])+1][current_position[1]] = "$";
             current_position[0] = current_position[0]+1;
@@ -111,7 +111,7 @@ public static String[][] load_map()throws FileNotFoundException{
      * @return the array of 2 dimensions
      */
     public static String[][] move_up(String a[][]){
-        if(a[(current_position[0])-1][current_position[1]].equals("0")){
+        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])-1][current_position[1]] = "$";
             current_position[0] = current_position[0]-1;
@@ -124,7 +124,7 @@ public static String[][] load_map()throws FileNotFoundException{
 
 
     public static String[][] move_right(String a[][]){
-        if(a[(current_position[0])][current_position[1]+1].equals("0")){
+        if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]+1] = "$";
             current_position[0] = current_position[0];
@@ -134,7 +134,7 @@ public static String[][] load_map()throws FileNotFoundException{
         return a;
     }
     public static String[][] move_left(String a[][]){
-        if(a[(current_position[0])][current_position[1]-1].equals("0")){
+        if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]-1] = "$";
             current_position[0] = current_position[0];
@@ -168,16 +168,15 @@ public static String[][] load_map()throws FileNotFoundException{
      */
     private static void check_exit(String a[][]){
         if(a[(current_position[0])][current_position[1]].equals("e")){
-            congrats_message();
+            System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
             
         }
         
     }
     /**
-     * this method updates the play time of the user, we use the userDummy
-     * to hold the data of out user
-     * @param start
-     * @param end
+     * the userDummy will create a copy of the user and the time will be used to update the playtime
+     * @param userDummy
+     * @param time
      */
     public static void update_playtime(user userDummy,int time){
         userDummy.updatePlaytime(time);
@@ -193,42 +192,35 @@ public static String[][] load_map()throws FileNotFoundException{
         return (int)(end-start)/1000000000;
         
     }
-    /**
-     * this is a simple congrats message C: 
-     */
-    private static void congrats_message(){
-        System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
-    }
     
 
     //data structure for the user
     /**
      * we decided to use a queue for the data structure
      */
-    public static Queue<user> users = new LinkedList<user>();
-    public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,int pin, String LN, String  totalPlayTime, String city,int ZIP, String dob){
+    public static QueueLinked users_list = new QueueLinked();
+    public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,String pin, String LN, String  totalPlayTime, String city,String ZIP, String dob){
         user newUser = new user(state, lastsignin, username, fn, loginttime, pin, LN, totalPlayTime, city, ZIP, dob);
         add_totheQueue(newUser);
     }
     public static void add_totheQueue(user newUser){
-        users.add(newUser);
+        users_list.enqueue(newUser);
     }
     public static void getuser(String name){
         /**
-         * finish this
+         * implement a search in the queue
          */
     }
     //this is for reference
     //state, LastSignIn, Username, FN, LogInTime, PIN, LN, TotalPlaytime, City, ZIP, dob
-    public static String[] tokentheUser()throws FileNotFoundException{
+    public static void tokentheUser()throws FileNotFoundException{
         Scanner file = new Scanner(new File("Users.csv"));
         
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
-        createuser(a[0],a[1],a[2],a[3],a[4],Integer.parseInt(a[5]),a[6],a[7],a[8],Integer.parseInt(a[9]),a[10]);
+        createuser(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10]);
         }
-        return a;
     }
 
 

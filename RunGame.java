@@ -27,8 +27,8 @@ public class RunGame{
 			String LN = input.nextLine();
 			System.out.print("please enter your username\n>");
 			String username = input.nextLine();
-			System.out.print("please enter a password for your account\n>" );
-			String pass = input.nextLine();
+			System.out.print("please enter a pin for your account\n>" );
+			String pin = input.nextLine();
 			System.out.print("please enter you date of birth\n>");
 			String dob = input.nextLine();
 			System.out.print("please enter the state\n>");
@@ -38,21 +38,15 @@ public class RunGame{
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
 			//method to register user
-			Utility.createuser(username, pass, dob, state, city, ZIP);
+			Utility.createuser(state, "0", username, FN, "0", pin, LN, "0",city, ZIP, dob);
 			// Utility.writeUserFile(USER_FILE, newUser);
 
 			break;
 		case"login":
 			System.out.print("please enter your username:\n>");
 			String userName = input.nextLine();
-			System.out.print("please enter your password:\n>");
-			String password = input.nextLine();
-
-			// User user = Utility.readUserFile(USER_FILE);
-        	// if (user == null || !user.getPassword().equals(password)) {
-            // System.out.println("Invalid username or password");
-        	// }
-        	// User currentUser = user;
+			System.out.print("please enter your pin:\n>");
+			pin = input.nextLine();
 
 			break;
 		case"new game":
@@ -102,7 +96,7 @@ public class RunGame{
 	}
 	
 	long time_stop = System.nanoTime();
-	Utility.update_playtime(Utility.getuser(FN),Utility.count_playtime(time_start, time_stop));	
+	// Utility.update_playtime(Utility.getuser(),Utility.count_playtime(time_start, time_stop));	
 
 }
 

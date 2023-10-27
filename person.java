@@ -7,18 +7,12 @@ public abstract class person{
 	private String city;
 	private int ZIP;
 	private Date dateOfBirth;
-	private int PIN;
 
-	public person(String firstName, String lastName, String city, int ZIP, int PIN, Date dateOfBirth) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.city = city;
-		this.ZIP = ZIP;
-		this.PIN = PIN;
-		this.dateOfBirth = dateOfBirth;
-	  }
-
-	  public String getFirstName() {
+	/**
+	 * this is the method get fisrt name
+	 * @return
+	 */
+	 public String getFirstName() {
 		return firstName;
 	  }
 	  
@@ -63,7 +57,6 @@ public abstract class person{
 			", lastName='" + lastName + '\'' +
 			", city='" + city + '\'' +
 			", zipCode=" + ZIP +
-			", pin=" + PIN +
 			", dateOfBirth=" + dateOfBirth +
 			'}';
 	  }

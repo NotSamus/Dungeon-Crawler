@@ -6,50 +6,118 @@
 import java.sql.Date;
 
 public class user extends person{
-	private  String username;
-    private  int pin;
-    private int playtime;
+    private String state;
+    private String lastsignin;
+    private String username;
+    private String first_name;
+    private int logintime;
+    private int pin;
+    private String Last_Name;
+    private int totalplayT;
+    private String city;
+    private int ZIP;
+    private String dob;
     private Date lastLogin;
 	// long logInTime, totalPlayTime;
 	// int PIN; 
     
     /**
-     * this is a constructor for the user object
+     * This is the constructor for the object user
+     * @param state
+     * @param lastsignin
      * @param username
-     * @param password
-     * @param dob
-     * @param states
+     * @param fn
+     * @param logintime
+     * @param pin
+     * @param LN
+     * @param totalplayT
      * @param city
      * @param ZIP
+     * @param dob
      */
-	public user(String state, String lastsignin,String username, String fn, String logintime, int pin, String LN, String totalplayT, String city, int ZIP, String dob ){
-		
+
+	public user(String state, String lastsignin,String username, String fn, String logintime, String pins, String LN, String totalplayT, String city, String ZIP, String dob ){
+		this.state = state;
+        this.lastsignin = lastsignin;
+        this.username = username;
+        this.first_name = fn;
+        this.logintime = Integer.parseInt(logintime);
+        this.pin = Integer.parseInt(pins);
+        this.Last_Name = LN;
+        this.totalplayT = Integer.parseInt(totalplayT);
+        this.city = city;
+        this.ZIP = Integer.parseInt(ZIP);
+        this.dob = dob;
 	}
 
 	
 	//getters
 
+    public int getPin(){
+        return pin;
+    }
     /**
      * This Method gathers the username of our user
      * @return username
      */
-	public static String getUsername() {
+	public String getUsername() {
         return username;
     }
-    /**
-     * This Method gets the password
-     * @return password
-     */
-    public static String getPassword() {
-        return password;
+
+    @Override
+    public String getFirstName() {
+        // TODO Auto-generated method stub
+        return super.getFirstName();
     }
+
+    @Override
+    public String getLastName() {
+        // TODO Auto-generated method stub
+        return super.getLastName();
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        // TODO Auto-generated method stub
+        super.setLastName(lastName);
+    }
+    @Override
+    public String getCity() {
+        // TODO Auto-generated method stub
+        return super.getCity();
+    }
+
+    @Override
+    public void setCity(String city) {
+        // TODO Auto-generated method stub
+        super.setCity(city);
+    }
+
+    @Override
+    public int getZIP() {
+        // TODO Auto-generated method stub
+        return super.getZIP();
+    }
+    @Override
+    public void setZIP(int ZIP) {
+        // TODO Auto-generated method stub
+        super.setZIP(ZIP);
+    }
+    @Override
+    public Date getDateOfBirth() {
+        // TODO Auto-generated method stub
+        return super.getDateOfBirth();
+    }
+
     /**
      * gets the playtime
      * @return playtime
      */
     public int getPlaytime() {
-        return playtime;
+        return totalplayT;
     }
+
+
     /**
      * gets the date of the last login
      * @return lastlogin
@@ -63,7 +131,7 @@ public class user extends person{
      */
 
     public void updatePlaytime(int time) {
-        this.playtime = playtime + time;
+        this.totalplayT = totalplayT + time;
     }
     /**
      * this method sets the last login of the user
@@ -74,12 +142,15 @@ public class user extends person{
     }
 
     @Override
+    public void setDateOfBirth(Date dateOfBirth) {
+        // TODO Auto-generated method stub
+        super.setDateOfBirth(dateOfBirth);
+    }
+    
+    @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", playtime=" + playtime +
-                ", lastLogin=" + lastLogin +
-                '}';
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 		
 }
