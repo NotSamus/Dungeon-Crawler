@@ -5,7 +5,7 @@ public abstract class person{
 	private String firstName;
 	private String lastName;
 	private String city;
-	private int ZIP;
+	private String ZIP;
 	private Date dateOfBirth;
 
 	/**
@@ -37,10 +37,10 @@ public abstract class person{
 	  }
 	  
 	  public int getZIP() {
-		return ZIP;
+		return Integer.parseInt(ZIP);
 	  }
 	  
-	  public void setZIP(int ZIP) {
+	  public void setZIP(String ZIP) {
 		this.ZIP = ZIP;
 	  }
 	  

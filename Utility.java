@@ -170,45 +170,79 @@ public static String[][] load_map()throws FileNotFoundException{
      * we decided to use a queue for the data structure
      */
     public static QueueLinked users_list = new QueueLinked();
+    /**
+     * This method will create users and add it to the queue
+     * @param state
+     * @param lastsignin
+     * @param username
+     * @param fn
+     * @param loginttime
+     * @param pin
+     * @param LN
+     * @param totalPlayTime
+     * @param city
+     * @param ZIP
+     * @param dob
+     */
     public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,String pin, String LN, String  totalPlayTime, String city,String ZIP, String dob){
         user newUser = new user(state, lastsignin, username, fn, loginttime, pin, LN, totalPlayTime, city, ZIP, dob);
         add_totheQueue(newUser);
 
     }
-     //this is for reference
-    //state, LastSignIn, Username, FN, LogInTime, PIN, LN, TotalPlaytime, City, ZIP, dob
+    public static void load_users()throws FileNotFoundException{
+        tokentheUser();
+    }
+    /**
+     * This Method is to create the tokens for the user, it will call the function create user
+     * as a reference, the token is displayed by the next order
+     * state, LastSignIn, Username, FN, LogInTime, PIN, LN, TotalPlaytime, City, ZIP, dob
+     * @throws FileNotFoundException
+     */
     public static void tokentheUser()throws FileNotFoundException{
         Scanner file = new Scanner(new File("Users.csv"));
-        
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
         createuser(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10]);
+        System.out.flush();
         }
     }
-
+    /**
+     * This method will add to the queue for new, calling the custom queue
+     * @param newUser
+     */
     public static void add_totheQueue(user newUser){
         users_list.enqueue(newUser);
-    }
-    public static void getuser(String name){
-        /**
-         * implement a search in the queue
-         */
-    }
-   
+    } 
+    /**
+     * This method will search user in the whole linked list
+     * @param username
+     * @param userCopy
+     * @return returns the user if found, if not, it will return null
+     */
     public static user searchuser(String username, QueueLinked userCopy){
         while(users_list!=null){
             if(userCopy.peek().getUsername().equals(username))return userCopy.dequeue();
         }
         return null;
     }
-    
-    public static Boolean userlogin(String userName, int PIN){
-		if(userName.equals(use.userName) && PIN == user.PIN){
+    public static Boolean userlogin(String username, String PIN){
+        return userlogin(username,PIN,users_list);
+    }
+    /**
+     * Login checker of the user
+     * @param userName
+     * @param PIN
+     * @param userCopy
+     * @return returns true if the username and the PIN are correct or exist
+     */
+    private static Boolean userlogin(String userName, String PIN,QueueLinked userCopy){
+		user dummy = searchuser(userName, userCopy);
+        if(dummy.getUsername().equals(userName) && dummy.getPin().equals(PIN)){
 			return true;
 		}
 		else{
-		return false;
+		    return false;
 		}
 	}
 

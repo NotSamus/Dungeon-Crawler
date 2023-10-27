@@ -10,12 +10,12 @@ public class user extends person{
     private String lastsignin;
     private String username;
     private String first_name;
-    private int logintime;
-    private int pin;
+    private String logintime;
+    private String pin;
     private String Last_Name;
-    private int totalplayT;
+    private String totalplayT;
     private String city;
-    private int ZIP;
+    private String ZIP;
     private String dob;
     private Date lastLogin;
 	// long logInTime, totalPlayTime;
@@ -41,19 +41,19 @@ public class user extends person{
         this.lastsignin = lastsignin;
         this.username = username;
         this.first_name = fn;
-        this.logintime = Integer.parseInt(logintime);
-        this.pin = Integer.parseInt(pins);
+        this.logintime = logintime;
+        this.pin = pins;
         this.Last_Name = LN;
-        this.totalplayT = Integer.parseInt(totalplayT);
+        this.totalplayT =totalplayT;
         this.city = city;
-        this.ZIP = Integer.parseInt(ZIP);
+        this.ZIP = ZIP;
         this.dob = dob;
 	}
 
 	
 	//getters
 
-    public int getPin(){
+    public String getPin(){
         return pin;
     }
     /**
@@ -99,7 +99,7 @@ public class user extends person{
         return super.getZIP();
     }
     @Override
-    public void setZIP(int ZIP) {
+    public void setZIP(String ZIP) {
         // TODO Auto-generated method stub
         super.setZIP(ZIP);
     }
@@ -114,7 +114,7 @@ public class user extends person{
      * @return playtime
      */
     public int getPlaytime() {
-        return totalplayT;
+        return Integer.parseInt(totalplayT);
     }
 
 

@@ -7,7 +7,12 @@ public class RunGame{
 	private static final String LOG_FILE = "game.log";
 
 	public static void main(String[]args) throws FileNotFoundException{
-	//read the users file 
+	//variables
+	String username="";
+	String PIN=""; 
+	Boolean check = false;
+	//Load users
+	Utility.load_users();
 
 	/** these are just a variable to the options menu and the scanner */
 	Scanner input = new Scanner(System.in);
@@ -26,7 +31,7 @@ public class RunGame{
 			System.out.print("please enter your last name\n>");
 			String LN = input.nextLine();
 			System.out.print("please enter your username\n>");
-			String username = input.nextLine();
+			username = input.nextLine();
 			System.out.print("please enter a pin for your account\n>" );
 			String pin = input.nextLine();
 			System.out.print("please enter you date of birth\n>");
@@ -40,21 +45,27 @@ public class RunGame{
 			//method to register user
 			Utility.createuser(state, "0", username, FN, "0", pin, LN, "0",city, ZIP, dob);
 			System.out.println("User Created");
-			// Utility.writeUserFile(USER_FILE, newUser);
-
 			break;
+
+
 		case"login":
 			System.out.print("please enter your username:\n>");
-			String userName = input.nextLine();
+			username = input.nextLine();
 			System.out.print("please enter your pin:\n>");
-			pin = input.nextLine();
-			
+			PIN = input.nextLine();
+			check =Utility.userlogin(username,PIN);
 			break;
+		default:
+			System.out.println("Please choose an option");
+		
 	}
 	if(option.equals("exit")){
 		System.exit(0);
 	}
-	}while(!(option.equals("login")||option.equals("new game")));
+
+
+	}while(check);//FIX: you have to create a login
+				//checker for the while
 
 
 
