@@ -11,13 +11,13 @@ import java.util.*;
 public class user extends person{
 
     private String state;
-    private int lastSignIn;
+    private long lastSignIn;
     private static String username;
     private String firstName;
     private String loginTime;
     private int pin;
     private String lastName;
-    public static int totalPlayTime;
+    public static long totalPlayTime;
     private String city;
     private int zip;
     private String dateOfBirth;
@@ -25,9 +25,9 @@ public class user extends person{
 	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) {
         super(firstName, lastName, username);
         this.state = state;
-        this.lastSignIn = Integer.parseInt(lastSignIn);
+        this.lastSignIn = Long.parseLong(lastSignIn);
         this.loginTime = loginTime;
-        this.totalPlayTime = Integer.parseInt(totalPlayTime);
+        user.totalPlayTime = Long.parseLong(totalPlayTime);
         this.pin = Integer.parseInt(pin);
         this.city = city;
         this.zip = Integer.parseInt(zip);
@@ -42,7 +42,7 @@ public class user extends person{
         return username;
     }
     
-    public int getLastSignIn() {
+    public long getLastSignIn() {
         return lastSignIn;
     }
     
@@ -66,7 +66,7 @@ public class user extends person{
         return dateOfBirth;
     }
 
-    public int getTotalPlayTime(){
+    public long getTotalPlayTime(){
         return totalPlayTime;
     }
 
@@ -74,11 +74,11 @@ public class user extends person{
         this.state = state;
     }
     
-    public void setLastSignIn(int lastSignIn) {
+    public void setLastSignIn(long lastSignIn) {
         this.lastSignIn = lastSignIn;
     }
     
-    public void setLoginTime(String loginTime) {
+    public void setLoginTime(long loginTime) {
         this.loginTime = loginTime;
     }
     
@@ -97,13 +97,33 @@ public class user extends person{
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public void setTotalPlayTime(int totalPlayTime){
-        this.totalPlayTime = totalPlayTime;
+    public void setTotalPlayTime(long l){
+        user.totalPlayTime = (int) l;
     }
+    public static void updatePlayTime(user userDummy) {
+         //  current time
+         long startTime = System.currentTimeMillis();
+         //long elapsedTime = currentTime - startTime;
 
+<<<<<<< Updated upstream
+=======
+         // Calculate the elapsed time since the user logged in
+         long elapsedTime = startTime - Long.parseLong(userDummy.getLoginTime());
+
+         // Add the elapsed time to the user's total playtime
+         //userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
+
+         // Update the user's last sign-in time
+        // userDummy.setLastSignIn(elapsedTime);
+        userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
+     }
+>>>>>>> Stashed changes
 
     public Object getPassword() {
         return null;
     }
+
+
+    
 		
 }
