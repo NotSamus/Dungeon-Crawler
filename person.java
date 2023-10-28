@@ -1,65 +1,41 @@
-import java.sql.Date;
+import java.util.*;
+import java.io.*;
 
-public abstract class person{
-	// String state, firstName,lastName, city, ZIP, dob;
-	private String firstName;
-	private String lastName;
-	private String city;
-	private String ZIP;
-	private Date dateOfBirth;
+abstract class person {
+    private String firstName;
+    private String lastName;
+    private String username;
 
-	/**
-	 * this is the method get fisrt name
-	 * @return
-	 */
-	 public String getFirstName() {
-		return firstName;
-	  }
-	  
-	  public void setFirstName(String firstName) {
+
+   person(String firstName, String lastName, String username) {
 		this.firstName = firstName;
-	  }
-	  
-	  public String getLastName() {
-		return lastName;
-	  }
-	  
-	  public void setLastName(String lastName) {
-		this.lastName = lastName;
-	  }
-	  
-	  public String getCity() {
-		return city;
-	  }
-	  
-	  public void setCity(String city) {
-		this.city = city;
-	  }
-	  
-	  public int getZIP() {
-		return Integer.parseInt(ZIP);
-	  }
-	  
-	  public void setZIP(String ZIP) {
-		this.ZIP = ZIP;
-	  }
-	  
-	  public Date getDateOfBirth() {
-		return dateOfBirth;
-	  }
-	  
-	  public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	  }
-	public String toString() {
-		return "Person{" +
-			"firstName='" + firstName + '\'' +
-			", lastName='" + lastName + '\'' +
-			", city='" + city + '\'' +
-			", zipCode=" + ZIP +
-			", dateOfBirth=" + dateOfBirth +
-			'}';
-	  }
+    	this.lastName = lastName;
+    	this.username = username;
+	}
+
+	public String getFirstName() {
+    	return firstName;
+	}
+
+	public String getLastName() {
+    		return lastName;
+	}
+
+	public String getUsername() {
+    	return username;
+	}
+
+	public void setFirstName(String firstName) {
+    	this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+    	this.lastName = lastName;
+	}
+
+	public void setUsername(String username) {
+    	this.username = username;
+	}
 }
 
-
+// person person = new person();

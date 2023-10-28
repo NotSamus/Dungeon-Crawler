@@ -1,20 +1,19 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Date;
 
-public class Utility {
+
+class Utility {
 
     private static int[] current_position = new int[2];//map
 
-/**
- * this method will load the map, and will return a 2 dimensional array
- * it willl load the file and use scanner to gather the info
- * we are going to gather the information in a string to tokenize it
- * and the put it into the array
- * if its -1, we are going to put a |, a 0 will remain 0
- * @return 
- * @throws FileNotFoundException
- */
-public static String[][] load_map()throws FileNotFoundException{
+    public static String[][] load_map()throws FileNotFoundException{
         File filename = new File("Dungeon.csv");
         Scanner file = new Scanner(filename);
         String a[][] = new String[20][24];
@@ -122,14 +121,27 @@ public static String[][] load_map()throws FileNotFoundException{
      * @param a
      * @return the 2 dimension array
      */
-    public static String[][] Random_spawn(String a[][]){
-        int spawns[][]= {{2,12},{15,0,},{15,22}};//random positions
-        int random = (int) (Math.random()*3);
-        current_position[0] = spawns[random][0];
-        current_position[1] = spawns[random][1];
-        if(a[spawns[random][0]][spawns[random][1]].equals("0")){
-            a[spawns[random][0]][spawns[random][1]] = "$ ";
-        } 
+    // public static String[][] Random_spawn(String a[][]){
+    //     int spawns[][]= {{2,12},{15,0,},{15,22}};//random positions
+    //     int random = (int) (Math.random()*3);
+    //     current_position[0] = spawns[random][0];
+    //     current_position[1] = spawns[random][1];
+    //     if(a[spawns[random][0]][spawns[random][1]].equals("0")){
+    //         a[spawns[random][0]][spawns[random][1]] = "$ ";
+    //     } 
+    //     return a;
+    // }
+    public static String[][] spawnUser(String a[][]){
+        for(int i = 0; i < a.length; i++){
+            for(int j = 0; j < a[i].length; j++){
+                if(a[i][j].equals("e")){
+                    current_position[0] = i;
+                    current_position[1] = j;
+                    a[i][j] = "$";
+                    return a;
+                }
+            }
+        }
         return a;
     }
     /**
@@ -138,130 +150,81 @@ public static String[][] load_map()throws FileNotFoundException{
      * @param a
      */
     private static void check_exit(String a[][]){
-        if(a[(current_position[0])][current_position[1]].equals("e")){
+        if(a[(current_position[0])][current_position[1]].equals("0")){
             System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
             
         }
-        
     }
-    /**
-     * the userDummy will create a copy of the user and the time will be used to update the playtime
-     * @param userDummy
-     * @param time
-     */
-    public static void update_playtime(user userDummy,int time){
-        userDummy.updatePlaytime(time);
-    }
-    /**
-     * this will return the play time in minutes, the variables are there
-     * to hold the start of the time and the end of the time in nano time
-     * @param start
-     * @param end
-     * @return returns the time as int and in minutes
-     */
+
     public static int count_playtime(long start, long end){
         return (int)(end-start)/1000000000;
         
     }
+
+    public static HashMap<String, user> user_records = new HashMap<String, user>();
     
-
-    //data structure for the user
-    /**
-     * we decided to use a queue for the data structure
-     */
-    public static QueueLinked users_list = new QueueLinked();
-    /**
-     * This method will create users and add it to the queue
-     * @param state
-     * @param lastsignin
-     * @param username
-     * @param fn
-     * @param loginttime
-     * @param pin
-     * @param LN
-     * @param totalPlayTime
-     * @param city
-     * @param ZIP
-     * @param dob
-     */
-    public static void createuser(String state, String lastsignin, String username, String fn, String loginttime,String pin, String LN, String  totalPlayTime, String city,String ZIP, String dob){
-        user newUser = new user(state, lastsignin, username, fn, loginttime, pin, LN, totalPlayTime, city, ZIP, dob);
-        add_totheQueue(newUser);
+    public static user createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
+        System.out.println("username: " + username);
+        System.out.println("fist name: " + firstName);
+        System.out.println("lastName: " + lastName);
+        System.out.println("state: "+ state);
+          System.out.println("lastSignIn: "+ lastSignIn);
+        System.out.println("logInTime: "+ logInTime);
+        System.out.println("pin: "+ pin);
+        System.out.println("dateOfBirth: "+ dateOfBirth);
+        System.out.println("city: "+ city);
+          System.out.println("zip: "+ zip);
+        System.out.println("totalPlayTime: "+ totalPlayTime);
+       
+        user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
+        
+        user_records.put(username, newUser);
+        
+        return newUser;
 
     }
-    public static void load_users()throws FileNotFoundException{
-        tokentheUser();
+    
+    public static boolean searchuser(String userName) {  
+       return user_records.containsKey(userName);
     }
-<<<<<<< Updated upstream
-    /**
-     * This Method is to create the tokens for the user, it will call the function create user
-     * as a reference, the token is displayed by the next order
-     * state, LastSignIn, Username, FN, LogInTime, PIN, LN, TotalPlaytime, City, ZIP, dob
-     * @throws FileNotFoundException
-     */
-    public static void tokentheUser()throws FileNotFoundException{
-=======
     public static boolean searchpin(int pin){  
-        for (user u : user_records.values()) {
-            if (u.getPin() == pin) {
-                return true;
-            }
-        }
-        return false;
+       return user_records.containsValue(pin);
     }
 
     public static void tokentheUser()throws IOException{
->>>>>>> Stashed changes
         Scanner file = new Scanner(new File("Users.csv"));
+        String header = file.nextLine(); //reading header 
+        
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
-        createuser(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10]);
+
+        try {
+            createuser(/*username=*/a[2],a[3],a[5],a[0],a[1],a[4],a[5],a[10],a[8],a[9],a[7]);      
+                      
+        } catch (IOException ioe) {
+            ioe.getMessage();
+        }
         System.out.flush();
         }
     }
-    /**
-     * This method will add to the queue for new, calling the custom queue
-     * @param newUser
-     */
-    public static void add_totheQueue(user newUser){
-        users_list.enqueue(newUser);
-    } 
-    /**
-     * This method will search user in the whole linked list
-     * @param username
-     * @param userCopy
-     * @return returns the user if found, if not, it will return null
-     */
-    public static user searchuser(String username, QueueLinked userCopy){
-        while(users_list!=null){
-            if(userCopy.peek().getUsername().equals(username))return userCopy.dequeue();
-        }
-        return null;
+
+    static void saveUserToFile(user newuser) throws IOException {
+        FileWriter fileWriter = new FileWriter("Users.csv", true);
+        fileWriter.write(newuser.getUsername() + "," + newuser.getFirstName() + "," + newuser.getLastName() + "," + newuser.getState() + "," + newuser.getLastSignIn() + "," + newuser.getLoginTime() + "," + newuser.getPin() + "," + newuser.getDateOfBirth() + "," + newuser.getCity() + "," + newuser.getZip() + "," + newuser.getTotalPlayTime() + "\n");
+
+        fileWriter.close();
     }
-    public static Boolean userlogin(String username, String PIN){
-        return userlogin(username,PIN,users_list);
-    }
-    /**
-     * Login checker of the user
-     * @param userName
-     * @param PIN
-     * @param userCopy
-     * @return returns true if the username and the PIN are correct or exist
-     */
-    private static Boolean userlogin(String userName, String PIN,QueueLinked userCopy){
-		user dummy = searchuser(userName, userCopy);
-        if(dummy.getUsername().equals(userName) && dummy.getPin().equals(PIN)){
-			return true;
-		}
-		else{
-		    return false;
-		}
-	}
-
-
-
-
-
-
+    // public static void updateUser(String username, String newFirstName, String newLastName, String newState, String newPin, String newCity, String newZIP, String newDateOfBirth){
+    //     user newUser = user_records.get(username);
+    //     if (newUser!=null) {
+    //         newUser.setFirstName(newFirstName);
+    //         newUser.setLastName(newLastName);
+    //         newUser.setState(newState);
+    //         newUser.setPin(0);
+    //         newUser.setCity(newCity);
+    //         newUser.setZip(0);
+    //         newUser.setDateOfBirth(newDateOfBirth);
+    //     }
+    // }
 }

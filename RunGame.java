@@ -1,18 +1,13 @@
-import java.io.FileNotFoundException;
-import java.time.*;
+import java.io.IOException;
 import java.util.Scanner;
+
 public class RunGame{
 
-	private static final String USER_FILE = "users.txt";
-	private static final String LOG_FILE = "game.log";
-
-	public static void main(String[]args) throws FileNotFoundException{
-	//variables
-	String username="";
-	String PIN=""; 
-	Boolean check = false;
-	//Load users
-	Utility.load_users();
+	// private static final String USER_FILE = "User.java";
+	// private static final String LOG_FILE = "game.log";
+	public static String username;
+	public static void main(String[]args) throws IOException{
+	//read the users file 
 
 	/** these are just a variable to the options menu and the scanner */
 	Scanner input = new Scanner(System.in);
@@ -32,7 +27,7 @@ public class RunGame{
 			String LN = input.nextLine();
 			System.out.print("please enter your username\n>");
 			username = input.nextLine();
-			System.out.print("please enter a pin for your account\n>" );
+			System.out.print("please enter a password for your account\n>" );
 			String pin = input.nextLine();
 			System.out.print("please enter you date of birth\n>");
 			String dob = input.nextLine();
@@ -42,42 +37,68 @@ public class RunGame{
 			String city = input.nextLine();
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
-			//method to register user
-			Utility.createuser(state, "0", username, FN, "0", pin, LN, "0",city, ZIP, dob);
-			System.out.println("User Created");
+			// method to register user
+			
+			Utility.createuser(username,  FN,  LN,  state,  "0",  "0",  pin,  dob,  city,  ZIP,  "0");
+			log.loger("Player: " + username + " Register in to the game " );
 			break;
-
-
 		case"login":
-			System.out.print("please enter your username:\n>");
-			username = input.nextLine();
-			System.out.print("please enter your pin:\n>");
-			PIN = input.nextLine();
-			check =Utility.userlogin(username,PIN);
+			
+			Utility.tokentheUser();
+			System.out.print("You didn't log in, please enter your username:\n>");
+			String userName = input.nextLine();
+			System.out.print("please enter your password:\n>");
+			int password = input.nextInt();
+			
+
+			if (Utility.searchuser(userName) == true && Utility.searchpin(password) == true) {
+			
+				System.out.println("Welcome: " + userName);
+
+				long time_start = System.nanoTime();
+				
+				String map[][] = Utility.load_map();
+				map = Utility.spawnUser(map);
+				Utility.printMatrix(map);
+			}else{
+				System.out.println("Incorrect username or password");
+			}
+			log.loger("Player: " + userName + " logged in " );
 			break;
-		default:
-			System.out.println("Please choose an option");
-		
+		case"new game":
+			Utility.tokentheUser();
+			System.out.print("please enter your username to play a new game:\n>");
+			String user = input.nextLine();
+			System.out.print("please enter your password:\n>");
+			int passWord = input.nextInt();
+			
+
+			if (Utility.searchuser(user) == true && Utility.searchpin(passWord) == true) {
+			
+				System.out.println("Welcome: " + user);
+
+				long time_start = System.nanoTime();
+				
+				String map[][] = Utility.load_map();
+				map = Utility.spawnUser(map);
+				Utility.printMatrix(map);
+			}else{
+				System.out.println("Incorrect username or password");
+			}
+			log.loger("Player: " + user + " logged in " );
+			System.out.println("creating new game...");
+			log.loger("Player: " + user + " started a new game " );
+
+			break;
 	}
 	if(option.equals("exit")){
+		log.loger("Player: " + username + " logged out" );
 		System.exit(0);
 	}
-
-
-	}while(check);//FIX: you have to create a login
-				//checker for the while
-
-
-
-
-	long time_start = System.nanoTime();
-	// load map
+	}while(!(option.equals("login")||option.equals("new game")));
 
 	String map[][] = Utility.load_map();
-	map = Utility.Random_spawn(map);
-	Utility.printMatrix(map);
-	System.out.print("\n>");
-
+	
 	String terminalinput = input.nextLine();
 	while(!terminalinput.equals("exit")){
 		switch(terminalinput){
@@ -104,9 +125,6 @@ public class RunGame{
 	}
 	
 	long time_stop = System.nanoTime();
-	// Utility.update_playtime(Utility.getuser(),Utility.count_playtime(time_start, time_stop));	
-
+	
 }
-
-
 }

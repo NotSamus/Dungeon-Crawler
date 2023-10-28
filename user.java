@@ -1,156 +1,126 @@
+
 /**
  * Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
  *
  */
 
-import java.sql.Date;
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 
 public class user extends person{
+
     private String state;
-    private String lastsignin;
-    private String username;
-    private String first_name;
-    private String logintime;
-    private String pin;
-    private String Last_Name;
-    private String totalplayT;
+    private int lastSignIn;
+    private static String username;
+    private String firstName;
+    private String loginTime;
+    private int pin;
+    private String lastName;
+    public static int totalPlayTime;
     private String city;
-    private String ZIP;
-    private String dob;
-    private Date lastLogin;
-	// long logInTime, totalPlayTime;
-	// int PIN; 
-    
-    /**
-     * This is the constructor for the object user
-     * @param state
-     * @param lastsignin
-     * @param username
-     * @param fn
-     * @param logintime
-     * @param pin
-     * @param LN
-     * @param totalplayT
-     * @param city
-     * @param ZIP
-     * @param dob
-     */
+    private int zip;
+    private String dateOfBirth;
 
-	public user(String state, String lastsignin,String username, String fn, String logintime, String pins, String LN, String totalplayT, String city, String ZIP, String dob ){
-		this.state = state;
-        this.lastsignin = lastsignin;
-        this.username = username;
-        this.first_name = fn;
-        this.logintime = logintime;
-        this.pin = pins;
-        this.Last_Name = LN;
-        this.totalplayT =totalplayT;
+	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) {
+        super(firstName, lastName, username);
+        this.state = state;
+        this.lastSignIn = Integer.parseInt(lastSignIn);
+        this.loginTime = loginTime;
+        this.totalPlayTime = Integer.parseInt(totalPlayTime);
+        this.pin = Integer.parseInt(pin);
         this.city = city;
-        this.ZIP = ZIP;
-        this.dob = dob;
-	}
-
-	
-	//getters
-
-    public String getPin(){
-        return pin;
+        this.zip = Integer.parseInt(zip);
+        this.dateOfBirth = dateOfBirth;
     }
-    /**
-     * This Method gathers the username of our user
-     * @return username
-     */
-	public String getUsername() {
+
+
+    public String getState() {
+        return state;
+    }
+    public String getUsername() {
         return username;
     }
-
-    @Override
-    public String getFirstName() {
-        // TODO Auto-generated method stub
-        return super.getFirstName();
-    }
-
-    @Override
-    public String getLastName() {
-        // TODO Auto-generated method stub
-        return super.getLastName();
-    }
-
-    @Override
-    public void setLastName(String lastName) {
-        // TODO Auto-generated method stub
-        super.setLastName(lastName);
-    }
-    @Override
-    public String getCity() {
-        // TODO Auto-generated method stub
-        return super.getCity();
-    }
-
-    @Override
-    public void setCity(String city) {
-        // TODO Auto-generated method stub
-        super.setCity(city);
-    }
-
-    @Override
-    public int getZIP() {
-        // TODO Auto-generated method stub
-        return super.getZIP();
-    }
-    @Override
-    public void setZIP(String ZIP) {
-        // TODO Auto-generated method stub
-        super.setZIP(ZIP);
-    }
-    @Override
-    public Date getDateOfBirth() {
-        // TODO Auto-generated method stub
-        return super.getDateOfBirth();
-    }
-
-    /**
-     * gets the playtime
-     * @return playtime
-     */
-    public int getPlaytime() {
-        return Integer.parseInt(totalplayT);
-    }
-
-
-    /**
-     * gets the date of the last login
-     * @return lastlogin
-     */
-    public Date getLastLogin() {
-        return lastLogin;
-    }
-    /**
-     * this method will update the play time of the user
-     * @param time
-     */
-
-    public void updatePlaytime(int time) {
-        this.totalplayT = totalplayT + time;
-    }
-    /**
-     * this method sets the last login of the user
-     * @param lastLogin
-     */
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    @Override
-    public void setDateOfBirth(Date dateOfBirth) {
-        // TODO Auto-generated method stub
-        super.setDateOfBirth(dateOfBirth);
+    
+    public int getLastSignIn() {
+        return lastSignIn;
     }
     
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+    public String getLoginTime() {
+        return loginTime;
+    }
+    
+    public int getPin() {
+        return pin;
+    }
+    
+    public String getCity() {
+        return city;
+    }
+    
+    public int getZip() {
+        return zip;
+    }
+    
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public int getTotalPlayTime(){
+        return totalPlayTime;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    
+    public void setLastSignIn(int lastSignIn) {
+        this.lastSignIn = lastSignIn;
+    }
+    
+    public void setLoginTime(String loginTime) {
+        this.loginTime = loginTime;
+    }
+    
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
+    
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
+    public void setZip(int zip){
+        this.zip = zip;
+    }
+    // public void setUsername(String username) {
+    //     this.zip = zip;
+    // }
+    
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+    public void setTotalPlayTime(int totalPlayTime){
+        this.totalPlayTime = totalPlayTime;
+    }
+
+    // public static void updatePlayTime(user userDummy) {
+    //     // Get the current time
+    //     long currentTime = System.currentTimeMillis();
+    
+    //     // Calculate the elapsed time since the user logged in
+    //     long elapsedTime = currentTime - userDummy.getLoginTime();
+    
+    //     // Add the elapsed time to the user's total playtime
+    //     userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
+    
+    //     // Update the user's last sign-in time
+    //     userDummy.setLastSignIn(currentTime);
+    // }
+
+
+    public Object getPassword() {
+        return null;
     }
 		
 }
