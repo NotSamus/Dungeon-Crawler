@@ -8,9 +8,17 @@ import java.util.Date;
 
 
 class Utility {
-
+    /**
+     * This is to keep track of the current position
+     */
     public static int[] current_position = new int[2];//map
 
+    /**
+     * This Method is to load the map, it will call the mthod tokenize the first line of the file and
+     * will go through all the file until it does not have another line
+     * @return the 2d array with the map in it
+     * @throws FileNotFoundException
+     */
     public static String[][] load_map()throws FileNotFoundException{
         File filename = new File("Dungeon.csv");
         Scanner file = new Scanner(filename);
@@ -23,26 +31,23 @@ class Utility {
                     a[i][j] = token[j];
                 }else{
                     a[i][j] = "|";
-                }
-                
-            }   
-                      
+                } 
+            }          
         }
         file.close();
         return a;
     }
     /**
-     * this is the tokenizer 
-     * @param a
-     * @return return an array with the tokenized string
+     * This will tokenize the line from the csv
+     * @param a the data separated by ,
+     * @return an array containing the data separated by ,
      */
     public static String[] tokenizer(String a){
         return a.split(",");
     }
     /**
-     * this method is set to print the matrix, since this is not an obj
-     * we are not going to override the toString() method
-     * @param a
+     * This is a method to print the map
+     * @param a the map in a 2d array
      */
     public static void printMatrix(String a[][]){
         for (int i = 0; i < a.length; i++) {
@@ -67,7 +72,6 @@ class Utility {
             a[(current_position[0])+1][current_position[1]] = "$";
             current_position[0] = current_position[0]+1;
             current_position[1] = current_position[1];
-            check_exit(a);
         }
         return a;
     }
@@ -84,37 +88,44 @@ class Utility {
             a[(current_position[0])-1][current_position[1]] = "$";
             current_position[0] = current_position[0]-1;
             current_position[1] = current_position[1];
-            check_exit(a);
         }
         
         return a;
     }
 
-
+    /**
+     * This Method is to move to the right
+     * @param a this is the map 
+     * @return returns the map with the updated position
+     */
     public static String[][] move_right(String a[][]){
         if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]+1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]+1;
-            check_exit(a);
         }
         return a;
     }
-    public static String[][] move_left(String a[][])throws ArrayIndexOutOfBoundsException{
+    /**
+     * This method is to move to the left 
+     * @param a the map 
+     * @return the array with the map with the updated position
+     */
+    public static String[][] move_left(String a[][]){
         if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]-1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]-1;
-            check_exit(a);
-        
         }
-    
-
         return a;
     }
-   
+    /**
+     * This Method will spawn the user at the specified location
+     * @param a 2d array containing the map
+     * @return the array with the $ in place
+     */
     public static String[][] spawnUser(String a[][]){
         //starting position
         current_position[0] = 19;
@@ -122,17 +133,7 @@ class Utility {
         a[(current_position[0])][current_position[1]] = "$";
         return a;
     }
-    /**
-     * this method is to check if we are on the exit, instead of adding 
-     * the lines of code to each movement, we created a separate method
-     * @param a
-     */
-    private static void check_exit(String a[][])throws ArrayIndexOutOfBoundsException{
-        if(current_position[1]<0 || current_position[1]> a[0].length){
-            
-            
-        }
-    }
+    
 
     public static int count_playtime(long start, long end){
         return (int)(end-start)/1000000000;
@@ -140,13 +141,28 @@ class Utility {
     }
 
     public static HashMap<String, user> user_records = new HashMap<String, user>();
-    
+    /**
+     * This method creates the user
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param state
+     * @param lastSignIn
+     * @param logInTime
+     * @param pin
+     * @param dateOfBirth
+     * @param city
+     * @param zip
+     * @param totalPlayTime
+     * @return
+     * @throws IOException
+     */
     public static user createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
         System.out.println("username: " + username);
         System.out.println("fist name: " + firstName);
         System.out.println("lastName: " + lastName);
         System.out.println("state: "+ state);
-          System.out.println("lastSignIn: "+ lastSignIn);
+        System.out.println("lastSignIn: "+ lastSignIn);
         System.out.println("logInTime: "+ logInTime);
         System.out.println("pin: "+ pin);
         System.out.println("dateOfBirth: "+ dateOfBirth);
@@ -161,10 +177,19 @@ class Utility {
         return newUser;
 
     }
-    
+    /**
+     * This will look the user in the hashmap
+     * @param userName
+     * @return return true if found
+     */
     public static boolean searchuser(String userName) {  
        return user_records.containsKey(userName);
     }
+    /**
+     * This will look for the pin of the user in hashmap
+     * @param pin
+     * @return returns true if found
+     */
     public static boolean searchpin(int pin){
         for (user u : user_records.values()) {
             if (u.getPin() == pin) {
@@ -174,7 +199,11 @@ class Utility {
         return false;
     }
 
-
+    /**
+     * this method will token the user and will also create the user
+     * we have a scanner to read from the "Users.csv" we tokenize it and then we just create the user 
+     * @throws IOException
+     */
     public static void tokentheUser()throws IOException{
         Scanner file = new Scanner(new File("Users.csv"));
         String header = file.nextLine(); //reading header 
@@ -182,34 +211,27 @@ class Utility {
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
-
         try {
-            createuser(/*username=*/a[2],a[3],a[5],a[0],a[1],a[4],a[5],a[10],a[8],a[9],a[7]);      
-                      
+            createuser(/*username=*/a[2],a[3],a[5],a[0],a[1],a[4],a[5],a[10],a[8],a[9],a[7]);       
         } catch (IOException ioe) {
             ioe.getMessage();
         }
         System.out.flush();
         }
     }
-
+    /**
+     * This Method is here to append the user created into the file "Users.csv"
+     * @param newuser that is the user
+     * @throws IOException exception in place to read the file
+     */
     static void saveUserToFile(user newuser) throws IOException {
+        try{
         FileWriter fileWriter = new FileWriter("Users.csv", true);
         fileWriter.write(newuser.getUsername() + "," + newuser.getFirstName() + "," + newuser.getLastName() + "," + newuser.getState() + "," + newuser.getLastSignIn() + "," + newuser.getLoginTime() + "," + newuser.getPin() + "," + newuser.getDateOfBirth() + "," + newuser.getCity() + "," + newuser.getZip() + "," + newuser.getTotalPlayTime() + "\n");
 
-        fileWriter.close();
+        fileWriter.close();}catch (IOException e){
+            System.out.println("The File Does not exist :C ");
+        }
     }
     
-    // public static void updateUser(String username, String newFirstName, String newLastName, String newState, String newPin, String newCity, String newZIP, String newDateOfBirth){
-    //     user newUser = user_records.get(username);
-    //     if (newUser!=null) {
-    //         newUser.setFirstName(newFirstName);
-    //         newUser.setLastName(newLastName);
-    //         newUser.setState(newState);
-    //         newUser.setPin(0);
-    //         newUser.setCity(newCity);
-    //         newUser.setZip(0);
-    //         newUser.setDateOfBirth(newDateOfBirth);
-    //     }
-    // }
 }

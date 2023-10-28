@@ -106,23 +106,23 @@ public class RunGame{
 		switch(terminalinput){
 			case "w":
 				map = Utility.move_up(map);
-				log.loger(userName + " Moved UP, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[0]);
+				log.loger(userName + " Moved UP, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"a":
 				map = Utility.move_left(map);
-				log.loger(userName + " Moved Left, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[0]);
+				log.loger(userName + " Moved Left, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"s":
 				map = Utility.move_down(map);
-				log.loger(userName + " Moved Down, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[0]);
+				log.loger(userName + " Moved Down, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 
 			case"d":
 				map = Utility.move_right(map);
-				log.loger(userName + " Moved Right, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[0]);
+				log.loger(userName + " Moved Right, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 		}

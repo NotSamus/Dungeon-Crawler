@@ -93,30 +93,13 @@ public class user extends person{
     public void setZip(int zip){
         this.zip = zip;
     }
-    // public void setUsername(String username) {
-    //     this.zip = zip;
-    // }
-    
+   
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
     public void setTotalPlayTime(int totalPlayTime){
         this.totalPlayTime = totalPlayTime;
     }
-
-    // public static void updatePlayTime(user userDummy) {
-    //     // Get the current time
-    //     long currentTime = System.currentTimeMillis();
-    
-    //     // Calculate the elapsed time since the user logged in
-    //     long elapsedTime = currentTime - userDummy.getLoginTime();
-    
-    //     // Add the elapsed time to the user's total playtime
-    //     userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
-    
-    //     // Update the user's last sign-in time
-    //     userDummy.setLastSignIn(currentTime);
-    // }
 
 
     public Object getPassword() {
