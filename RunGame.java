@@ -1,12 +1,19 @@
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.Scanner;
+
+import javax.swing.text.Utilities;
 public class RunGame{
 
-	private static final String USER_FILE = "users.txt";
+	private static final String USER_FILE = "User.java";
 	private static final String LOG_FILE = "game.log";
 
-	public static void main(String[]args) throws FileNotFoundException{
+	public static void main(String[]args) throws IOException{
 	//read the users file 
 
 	/** these are just a variable to the options menu and the scanner */
@@ -28,7 +35,7 @@ public class RunGame{
 			System.out.print("please enter your username\n>");
 			String username = input.nextLine();
 			System.out.print("please enter a password for your account\n>" );
-			String pass = input.nextLine();
+			String pin = input.nextLine();
 			System.out.print("please enter you date of birth\n>");
 			String dob = input.nextLine();
 			System.out.print("please enter the state\n>");
@@ -37,22 +44,49 @@ public class RunGame{
 			String city = input.nextLine();
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
-			//method to register user
-			Utility.createuser(username, pass, dob, state, city, ZIP);
-			// Utility.writeUserFile(USER_FILE, newUser);
-
+			// method to register user
+			// Utility utility = new Utility();
+			// log log = new log();
+			// try {
+    		// BufferedReader br = new BufferedReader(new FileReader("Users.csv"));
+    		// String line;
+    		// while ((line = br.readLine()) != null) {
+        	// String[] data = line.split(",");
+			// user user = new user(username, FN, LN, state, 0, 0, pin, dob, city, ZIP, 0);
+        	// utility.createUser(user);
+    		// }
+    		// br.close();
+			// } catch (IOException e) {
+    		// 	log.log("Failed to read the Users file");
+			// }
+			// Utility.updateUser(FN);
+			// Utility.createuser(username, username, dob, state, 0, 0, pin, state, city, ZIP, 0);
+			Utility.addNewUser(FN, LN,  username,  state,  "0",  "0",  pin,  city,  ZIP,  "0",  "0");
+			//Utility.createuser(state, "0", username, FN, "0", pin, LN, "0",city, ZIP, dob);
 			break;
 		case"login":
 			System.out.print("please enter your username:\n>");
 			String userName = input.nextLine();
 			System.out.print("please enter your password:\n>");
 			String password = input.nextLine();
-
-			// User user = Utility.readUserFile(USER_FILE);
-        	// if (user == null || !user.getPassword().equals(password)) {
-            // System.out.println("Invalid username or password");
+			
+			Utility.invokeList();
+		
+			// user user = Utility.findUserInFile(userName);
+        	// if (user.getUsername() == userName) {
+            // 	System.out.println("Invalid username or password");
         	// }
-        	// User currentUser = user;
+        	// // user currentUser = user;
+			// System.out.println("welcome: " + user.getUsername());
+
+			// dungeon.searchuser(userName,null);
+			// if(dungeon.userlogin(userName, password) == true){
+			// 	Utility.loadMap();
+			// }else{
+			// 	System.out.println("Incorect username or password.");
+			// }
+
+
 
 			break;
 		case"new game":
@@ -63,48 +97,6 @@ public class RunGame{
 		System.exit(0);
 	}
 	}while(!(option.equals("login")||option.equals("new game")));
-
-
-
-
-	long time_start = System.nanoTime();
-
-	// load map
-
-	String map[][] = Utility.load_map();
-	map = Utility.Random_spawn(map);
-	Utility.printMatrix(map);
-	System.out.print("\n>");
-
-	String terminalinput = input.nextLine();
-	while(!terminalinput.equals("exit")){
-		switch(terminalinput){
-			case "w":
-				map = Utility.move_up(map);
-				Utility.printMatrix(map);
-				break;
-			case"a":
-				map = Utility.move_left(map);
-				Utility.printMatrix(map);
-				break;
-			case"s":
-				map = Utility.move_down(map);
-				Utility.printMatrix(map);
-				break;
-
-			case"d":
-				map = Utility.move_right(map);
-				Utility.printMatrix(map);
-				break;
-		}
-		System.out.print("\n>");
-		terminalinput = input.nextLine();
-	}
 	
-	long time_stop = System.nanoTime();
-	Utility.update_playtime(Utility.getuser(FN),Utility.count_playtime(time_start, time_stop));	
-
 }
-
-
 }

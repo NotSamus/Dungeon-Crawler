@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Calendar;
 public class log{
     
-public static void loger(String x) throws IOException{ 
+public static void log(String x) throws IOException{ 
     File file = new File("log.txt");
     FileWriter fileWriter = new FileWriter(file);
     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
