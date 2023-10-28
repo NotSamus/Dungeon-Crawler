@@ -22,7 +22,7 @@ public class user extends person{
     private int zip;
     private String dateOfBirth;
 
-	public user(String firstName, String lastName, String username, String state, String lastSignIn, String loginTime, String pin, String city, String zip, String dateOfBirth, String totalPlayTime) {
+	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) {
         super(firstName, lastName, username);
         this.state = state;
         this.lastSignIn = Integer.parseInt(lastSignIn);

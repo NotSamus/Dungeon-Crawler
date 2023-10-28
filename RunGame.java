@@ -1,18 +1,11 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.*;
 import java.util.Scanner;
 
-import javax.swing.text.Utilities;
 public class RunGame{
 
-	private static final String USER_FILE = "User.java";
-	private static final String LOG_FILE = "game.log";
-
+	// private static final String USER_FILE = "User.java";
+	// private static final String LOG_FILE = "game.log";
+	public static String username;
 	public static void main(String[]args) throws IOException{
 	//read the users file 
 
@@ -33,7 +26,7 @@ public class RunGame{
 			System.out.print("please enter your last name\n>");
 			String LN = input.nextLine();
 			System.out.print("please enter your username\n>");
-			String username = input.nextLine();
+			username = input.nextLine();
 			System.out.print("please enter a password for your account\n>" );
 			String pin = input.nextLine();
 			System.out.print("please enter you date of birth\n>");
@@ -45,58 +38,93 @@ public class RunGame{
 			System.out.print("please enter the zip code\n>");
 			String ZIP = input.nextLine();
 			// method to register user
-			// Utility utility = new Utility();
-			// log log = new log();
-			// try {
-    		// BufferedReader br = new BufferedReader(new FileReader("Users.csv"));
-    		// String line;
-    		// while ((line = br.readLine()) != null) {
-        	// String[] data = line.split(",");
-			// user user = new user(username, FN, LN, state, 0, 0, pin, dob, city, ZIP, 0);
-        	// utility.createUser(user);
-    		// }
-    		// br.close();
-			// } catch (IOException e) {
-    		// 	log.log("Failed to read the Users file");
-			// }
-			// Utility.updateUser(FN);
-			// Utility.createuser(username, username, dob, state, 0, 0, pin, state, city, ZIP, 0);
-			Utility.addNewUser(FN, LN,  username,  state,  "0",  "0",  pin,  city,  ZIP,  "0",  "0");
-			//Utility.createuser(state, "0", username, FN, "0", pin, LN, "0",city, ZIP, dob);
+			
+			Utility.createuser(username,  FN,  LN,  state,  "0",  "0",  pin,  dob,  city,  ZIP,  "0");
+			log.loger("Player: " + username + " Register in to the game " );
 			break;
 		case"login":
-			System.out.print("please enter your username:\n>");
+			
+			Utility.tokentheUser();
+			System.out.print("You didn't log in, please enter your username:\n>");
 			String userName = input.nextLine();
 			System.out.print("please enter your password:\n>");
-			String password = input.nextLine();
+			int password = input.nextInt();
 			
-			Utility.invokeList();
-		
-			// user user = Utility.findUserInFile(userName);
-        	// if (user.getUsername() == userName) {
-            // 	System.out.println("Invalid username or password");
-        	// }
-        	// // user currentUser = user;
-			// System.out.println("welcome: " + user.getUsername());
 
-			// dungeon.searchuser(userName,null);
-			// if(dungeon.userlogin(userName, password) == true){
-			// 	Utility.loadMap();
-			// }else{
-			// 	System.out.println("Incorect username or password.");
-			// }
+			if (Utility.searchuser(userName) == true && Utility.searchpin(password) == true) {
+			
+				System.out.println("Welcome: " + userName);
 
-
-
+				long time_start = System.nanoTime();
+				
+				String map[][] = Utility.load_map();
+				map = Utility.spawnUser(map);
+				Utility.printMatrix(map);
+			}else{
+				System.out.println("Incorrect username or password");
+			}
+			log.loger("Player: " + userName + " logged in " );
 			break;
 		case"new game":
+			Utility.tokentheUser();
+			System.out.print("please enter your username to play a new game:\n>");
+			String user = input.nextLine();
+			System.out.print("please enter your password:\n>");
+			int passWord = input.nextInt();
+			
+
+			if (Utility.searchuser(user) == true && Utility.searchpin(passWord) == true) {
+			
+				System.out.println("Welcome: " + user);
+
+				long time_start = System.nanoTime();
+				
+				String map[][] = Utility.load_map();
+				map = Utility.spawnUser(map);
+				Utility.printMatrix(map);
+			}else{
+				System.out.println("Incorrect username or password");
+			}
+			log.loger("Player: " + user + " logged in " );
 			System.out.println("creating new game...");
+			log.loger("Player: " + user + " started a new game " );
+
 			break;
 	}
 	if(option.equals("exit")){
+		log.loger("Player: " + username + " logged out" );
 		System.exit(0);
 	}
 	}while(!(option.equals("login")||option.equals("new game")));
+
+	String map[][] = Utility.load_map();
+	
+	String terminalinput = input.nextLine();
+	while(!terminalinput.equals("exit")){
+		switch(terminalinput){
+			case "w":
+				map = Utility.move_up(map);
+				Utility.printMatrix(map);
+				break;
+			case"a":
+				map = Utility.move_left(map);
+				Utility.printMatrix(map);
+				break;
+			case"s":
+				map = Utility.move_down(map);
+				Utility.printMatrix(map);
+				break;
+
+			case"d":
+				map = Utility.move_right(map);
+				Utility.printMatrix(map);
+				break;
+		}
+		System.out.print("\n>");
+		terminalinput = input.nextLine();
+	}
+	
+	long time_stop = System.nanoTime();
 	
 }
 }

@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Date;
 
 
 class Utility {
@@ -12,7 +14,7 @@ class Utility {
     private static int[] current_position = new int[2];//map
 
     public static String[][] load_map()throws FileNotFoundException{
-        File filename = new File("csv");
+        File filename = new File("Dungeon.csv");
         Scanner file = new Scanner(filename);
         String a[][] = new String[20][24];
         for(int i=0;i<=19;i++) {
@@ -119,14 +121,27 @@ class Utility {
      * @param a
      * @return the 2 dimension array
      */
-    public static String[][] Random_spawn(String a[][]){
-        int spawns[][]= {{2,12},{15,0,},{15,22}};//random positions
-        int random = (int) (Math.random()*3);
-        current_position[0] = spawns[random][0];
-        current_position[1] = spawns[random][1];
-        if(a[spawns[random][0]][spawns[random][1]].equals("0")){
-            a[spawns[random][0]][spawns[random][1]] = "$ ";
-        } 
+    // public static String[][] Random_spawn(String a[][]){
+    //     int spawns[][]= {{2,12},{15,0,},{15,22}};//random positions
+    //     int random = (int) (Math.random()*3);
+    //     current_position[0] = spawns[random][0];
+    //     current_position[1] = spawns[random][1];
+    //     if(a[spawns[random][0]][spawns[random][1]].equals("0")){
+    //         a[spawns[random][0]][spawns[random][1]] = "$ ";
+    //     } 
+    //     return a;
+    // }
+    public static String[][] spawnUser(String a[][]){
+        for(int i = 0; i < a.length; i++){
+            for(int j = 0; j < a[i].length; j++){
+                if(a[i][j].equals("e")){
+                    current_position[0] = i;
+                    current_position[1] = j;
+                    a[i][j] = "$";
+                    return a;
+                }
+            }
+        }
         return a;
     }
     /**
@@ -135,136 +150,81 @@ class Utility {
      * @param a
      */
     private static void check_exit(String a[][]){
-        if(a[(current_position[0])][current_position[1]].equals("e")){
+        if(a[(current_position[0])][current_position[1]].equals("0")){
             System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
             
         }
     }
-
-    // public static void update_playtime(user userDummy,int time){
-    //     userDummy.updatePlaytime(time);
-    // }
 
     public static int count_playtime(long start, long end){
         return (int)(end-start)/1000000000;
         
     }
 
-    public static ArrayList<user> user_list = new ArrayList<>();
+    public static HashMap<String, user> user_records = new HashMap<String, user>();
     
-    public static void createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
-        user user = new user(firstName, lastName, username, state, lastSignIn, logInTime, pin, city, zip, dateOfBirth, totalPlayTime);
-        tokentheUser();
-        user_list.add(user);
-        iterateList(user_list);
+    public static user createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
+        System.out.println("username: " + username);
+        System.out.println("fist name: " + firstName);
+        System.out.println("lastName: " + lastName);
+        System.out.println("state: "+ state);
+          System.out.println("lastSignIn: "+ lastSignIn);
+        System.out.println("logInTime: "+ logInTime);
+        System.out.println("pin: "+ pin);
+        System.out.println("dateOfBirth: "+ dateOfBirth);
+        System.out.println("city: "+ city);
+          System.out.println("zip: "+ zip);
+        System.out.println("totalPlayTime: "+ totalPlayTime);
+       
+        user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
+        
+        user_records.put(username, newUser);
+        
+        return newUser;
 
     }
     
+    public static boolean searchuser(String userName) {  
+       return user_records.containsKey(userName);
+    }
+    public static boolean searchpin(int pin){  
+       return user_records.containsValue(pin);
+    }
+
     public static void tokentheUser()throws IOException{
         Scanner file = new Scanner(new File("Users.csv"));
+        String header = file.nextLine(); //reading header 
         
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
-        createuser(a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10]);
+
+        try {
+            createuser(/*username=*/a[2],a[3],a[5],a[0],a[1],a[4],a[5],a[10],a[8],a[9],a[7]);      
+                      
+        } catch (IOException ioe) {
+            ioe.getMessage();
+        }
+        System.out.flush();
         }
     }
-    
-    public static void iterateList(ArrayList<user> sumlist){
 
-        for (user user : sumlist) {
-            System.out.println(user);
-        }
-        // list = sumlist;
-        // for(i = 0; i < list.length; i++){
-        //     System.out.print(list.get(i) + " ");
-        // }
-    }
-
-    public static void invokeList() throws IOException{
-        tokentheUser();
-        iterateList(user_list);
-    }
-
-    // static void findUserInFile(String username) throws IOException {
-    //     // Open the user file for reading
-    //     FileReader fileReader = new FileReader("Users.csv");
-    public static user searchuser(String username, ArrayList<user> userCopy){
-        for (user u : user_list) {
-            if (u.getUsername().equals(username)) {
-                return u;
-            }
-        }
-        return null;
-    }
-    //     // Create a scanner to read the file
-    //     Scanner scanner = new Scanner(fileReader);
-
-    //     // Read each line of the file and check if the username matches
-    //     while (scanner.hasNextLine()) {
-    //         String line = scanner.nextLine();
-
-    //         // Split the line into an array of strings
-    //         String[] userData = line.split(",");
-    //         System.out.println(userData[0]);
-    //         //If the username matches, create a new User object from the string array
-    //         if (userData[0].equals(username)) {
-    //             user user = new user(userData[1], userData[2], userData[0], userData[3], userData[4], userData[5], userData[6], userData[10], userData[8], userData[9], userData[7]);
-
-    //             System.out.println(userData[0]);
-    //         }
-
-    //     }
-
-        // Close the scanner
-        // scanner.close();
-
-        // Return null if the user is not found
-        // return null;
-    //}
-
-    static void saveUserToFile(user user) throws IOException {
+    static void saveUserToFile(user newuser) throws IOException {
         FileWriter fileWriter = new FileWriter("Users.csv", true);
-        fileWriter.write(user.getUsername() + "," + user.getFirstName() + "," + user.getLastName() + "," + user.getState() + "," + user.getLastSignIn() + "," + user.getLoginTime() + "," + user.getPin() + "," + user.getDateOfBirth() + "," + user.getCity() + "," + user.getZip() + "," + user.getTotalPlayTime() + "\n");
+        fileWriter.write(newuser.getUsername() + "," + newuser.getFirstName() + "," + newuser.getLastName() + "," + newuser.getState() + "," + newuser.getLastSignIn() + "," + newuser.getLoginTime() + "," + newuser.getPin() + "," + newuser.getDateOfBirth() + "," + newuser.getCity() + "," + newuser.getZip() + "," + newuser.getTotalPlayTime() + "\n");
 
         fileWriter.close();
     }
-
-    // public void readUserFile() throws FileNotFoundException {
-    //     FileReader fileReader = new FileReader("Users.csv");
-
-    //     // Create a scanner to read the file
-    //     Scanner scanner = new Scanner(fileReader);
-
-    //     // Read each line of the file and create a User object for each line
-    //     while (scanner.hasNextLine()) {
-    //         String line = scanner.nextLine();
-
-    //         // Split the line into an array of strings
-    //         String[] userData = line.split(",");
-
-    //         // Create a new User object from the string array
-    //         //user user = new user(userData[1], userData[2], userData[0], userData[3], Long.parseLong(userData[4]), Long.parseLong(userData[5]), userData[6], userData[10], userData[8], userData[9], Long.parseLong(userData[7]));
-
+    // public static void updateUser(String username, String newFirstName, String newLastName, String newState, String newPin, String newCity, String newZIP, String newDateOfBirth){
+    //     user newUser = user_records.get(username);
+    //     if (newUser!=null) {
+    //         newUser.setFirstName(newFirstName);
+    //         newUser.setLastName(newLastName);
+    //         newUser.setState(newState);
+    //         newUser.setPin(0);
+    //         newUser.setCity(newCity);
+    //         newUser.setZip(0);
+    //         newUser.setDateOfBirth(newDateOfBirth);
     //     }
-
-
-    //     scanner.close();
     // }
-
-    // public static void updateUser(String username) throws IOException {
-    //     // Find the user in the user file
-    //     user user = findUserInFile(username);
-
-    //     // Update the user's data
-    //     // ...
-
-    //     // Save the user object to the user file
-    //     saveUserToFile(user);
-    // }
-
-    public static void addNewUser(String firstName, String lastName, String username, String state, String lastSignIn, String loginTime, String pin, String city, String zip, String dateOfBirth, String totalPlayTime) throws IOException {
-        user newUser = new user( firstName,  lastName,  username,  state,  lastSignIn,  loginTime,  pin,  city,  zip,  dateOfBirth,  totalPlayTime);
-        saveUserToFile(newUser);
-    }
 }
