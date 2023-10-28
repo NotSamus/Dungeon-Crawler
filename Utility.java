@@ -192,6 +192,7 @@ public static String[][] load_map()throws FileNotFoundException{
     public static void load_users()throws FileNotFoundException{
         tokentheUser();
     }
+<<<<<<< Updated upstream
     /**
      * This Method is to create the tokens for the user, it will call the function create user
      * as a reference, the token is displayed by the next order
@@ -199,6 +200,18 @@ public static String[][] load_map()throws FileNotFoundException{
      * @throws FileNotFoundException
      */
     public static void tokentheUser()throws FileNotFoundException{
+=======
+    public static boolean searchpin(int pin){  
+        for (user u : user_records.values()) {
+            if (u.getPin() == pin) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void tokentheUser()throws IOException{
+>>>>>>> Stashed changes
         Scanner file = new Scanner(new File("Users.csv"));
         while(file.hasNextLine()){
         String holder = file.nextLine();
