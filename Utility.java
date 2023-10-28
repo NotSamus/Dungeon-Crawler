@@ -1,17 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
 
 
 class Utility {
 
-    private static int[] current_position = new int[2];//map
+    public static int[] current_position = new int[2];//map
 
     public static String[][] load_map()throws FileNotFoundException{
         File filename = new File("Dungeon.csv");
@@ -103,45 +101,25 @@ class Utility {
         }
         return a;
     }
-    public static String[][] move_left(String a[][]){
+    public static String[][] move_left(String a[][])throws ArrayIndexOutOfBoundsException{
         if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]-1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]-1;
             check_exit(a);
-        }
         
+        }
+    
+
         return a;
     }
-    /**
-     * to make it a little more fun, we implemented a method
-     * for a random spawn, at the moment there is just 3 positions to spawn
-     * but we can add more in the future
-     * @param a
-     * @return the 2 dimension array
-     */
-    // public static String[][] Random_spawn(String a[][]){
-    //     int spawns[][]= {{2,12},{15,0,},{15,22}};//random positions
-    //     int random = (int) (Math.random()*3);
-    //     current_position[0] = spawns[random][0];
-    //     current_position[1] = spawns[random][1];
-    //     if(a[spawns[random][0]][spawns[random][1]].equals("0")){
-    //         a[spawns[random][0]][spawns[random][1]] = "$ ";
-    //     } 
-    //     return a;
-    // }
+   
     public static String[][] spawnUser(String a[][]){
-        for(int i = 0; i < a.length; i++){
-            for(int j = 0; j < a[i].length; j++){
-                if(a[i][j].equals("e")){
-                    current_position[0] = i;
-                    current_position[1] = j;
-                    a[i][j] = "$";
-                    return a;
-                }
-            }
-        }
+        //starting position
+        current_position[0] = 19;
+        current_position[1] = 8;
+        a[(current_position[0])][current_position[1]] = "$";
         return a;
     }
     /**
@@ -149,9 +127,9 @@ class Utility {
      * the lines of code to each movement, we created a separate method
      * @param a
      */
-    private static void check_exit(String a[][]){
-        if(a[(current_position[0])][current_position[1]].equals("0")){
-            System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
+    private static void check_exit(String a[][])throws ArrayIndexOutOfBoundsException{
+        if(current_position[1]<0 || current_position[1]> a[0].length){
+            
             
         }
     }
@@ -187,9 +165,15 @@ class Utility {
     public static boolean searchuser(String userName) {  
        return user_records.containsKey(userName);
     }
-    public static boolean searchpin(int pin){  
-       return user_records.containsValue(pin);
+    public static boolean searchpin(int pin){
+        for (user u : user_records.values()) {
+            if (u.getPin() == pin) {
+                return true;
+            }
+        }
+        return false;
     }
+
 
     public static void tokentheUser()throws IOException{
         Scanner file = new Scanner(new File("Users.csv"));
@@ -215,6 +199,7 @@ class Utility {
 
         fileWriter.close();
     }
+    
     // public static void updateUser(String username, String newFirstName, String newLastName, String newState, String newPin, String newCity, String newZIP, String newDateOfBirth){
     //     user newUser = user_records.get(username);
     //     if (newUser!=null) {
