@@ -29,6 +29,46 @@
     - a player should have the option to use an item in their inventory
     - a player should have the option to discard an item in their inventory.
 - add an item class 
+  - When the player reaches a chest symbol, a random Item should be generated, and give the player the option to add the Item to their inventory or discard them 
+  - Items include :
+    - Sword Upgrade (Boosts player damage)
+    - Heart Upgrade (Gives Player more health points)
+    - Clear Potion (Clears all Player status effects)
+    - Smoke Bomb (increases player chances of escaping a battle)
+    - Coin(s)
+- Add new dungeon Crawler game functionality (create the battle system and the randomization of items in chests)
+  - cells that a player has not been to must be set to not explored, while cells that a player has been to, must be set as explored. (Hint: you can use characters to denote each).
+  - Add a Status effect class
+    - boost attack effect 
+      - lasts a single turn or cleared by the clear potion
+    - Lower Attack Effect
+      - Lasts Two turns or cleared bt the Clear potion
+    - Poisoned Effect
+      - Lasts until only one remaining health point is left or cleared by the clear potion.
+  - Battle System: the battle system for the game is a sequence of alternating turns, such as
+    - Player Turn -> Enemy Turn -> Player turn ->....
+  - This repeats until the end of combat, where either the player runs out of health points, resulting in a game over, or the enemy runs out of health points. Note: if the player exits the game mid battle, the attributes of battle won and lost wont be updated but the time played will. you must implement the following:
+    - Combat Turns:
+      - combat turns will be menu based, allowing for the user to choose between the options
+        - attack
+        - use Item
+        - Escape
+      - Random Battle starts
+      - Status effects that can affect players and enemies (status effects are modifiers that occur every turn change.)
+      - a player can use items in their inventory during battle.
+      - enemies should be automated to-do as minimum an attack to the player, you are free to add more to the actions an enemy can do.
+      - Example of the battle system ui can be:
+
+        EnemyName HP : 10 
+
+        Player HP: 5
+
+        ------
+        Actions
+        attack
+        use items
+        escape
+        ------
 
 
 Team members:
