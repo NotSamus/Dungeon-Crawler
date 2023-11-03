@@ -63,12 +63,48 @@
 
         Player HP: 5
 
-        ------
         Actions
         attack
         use items
         escape
-        ------
+     
+- Handle users with the same first name or same last name (assume that users will have either same first names or same last names but not both )\
+  - Handle looking up users by name and returning the correct user.
+- add a game administrator user.
+  - generate statistics file for specific user.
+    - Choose a user by name/ ID.
+    - All information about the user should be in a statement (Name, Address, Phone Number, ETC.)
+    - Only the game administrator can generate a statistics file.
+    - a statistic file must contain the following:
+      - UserName
+      - last sign in time
+      - Total Play time
+      - numbers of battles won
+      - numbers of battles lost
+      - number of battles lost
+      - Number of times users finished the game
+      - number of items picked up overall from all games playes
+- The user can exit the program by writing exit while in the main menu only. when the uer exits the program
+  - write a new updated users sheets (similar to the original input, except with the new values such as updated playtime, last login)
+  - This new Users csv file may be overwritten each time the code is run but do not overwrite the initial(original) input file.
+  - save the state of the game
+    - write to a CSV file the current contents of the dungeon board to a file '<user>SavedDungeon.csv' if the file already exists, you should overwrite the contents of it.
+    - A '<user>Player.csv' file, that will store the attributes of a player such as health points, inventory contents, and statuts effects of the player.
+    - if a player has completed the game before, you should prompt the user if they would like to start the game over or exit the game.
+- Handle all exceptions appropriately: (your System should not crash or have system breaking bugs)
+  - players and enemies cannot have negative health points.
+  - and inventory cannot hold more Items than its maximum capacity.
+  - Players should not be able to move inside of walls
+  - players should not be able to use items if they are not in their inventory 
+  - all other common exceptions should be handled
+- Write JavaDoc for your system
+- Write a lab report describing your work(template provided)
+  - any assumptions made should be precisely commented on in the source code and described in the lab report
+  - The lab report should contain sample screenshots of the program being run in different circumstances, including successful and failing changes.
+- Complete an individual code review on your code (template provided)
+- schedule a demo with the TA/IA
+  
+  
 
 
 Team members:
