@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Date;
+import java.util.Random;
 
 
 class Utility {
+    public static int i=1;
     /**
      * This is to keep track of the current position
      */
@@ -66,12 +68,21 @@ class Utility {
      * @param a
      * @return the array of 2 dimensions
      */
-    public static String[][] move_down(String a[][]){
+
+    public static Random rand = new Random();
+    public static int spawnProb = 0;
+
+    public static String[][] move_down(String a[][])throws IOException{
         if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])+1][current_position[1]] = "$";
             current_position[0] = current_position[0]+1;
             current_position[1] = current_position[1];
+            spawnProb = rand.nextInt(100);
+            if (spawnProb > 65){
+                vs.ini_fight();
+            }
+
         }
         return a;
     }
@@ -82,12 +93,16 @@ class Utility {
      * @param a
      * @return the array of 2 dimensions
      */
-    public static String[][] move_up(String a[][]){
+    public static String[][] move_up(String a[][])throws IOException{
         if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])-1][current_position[1]] = "$";
             current_position[0] = current_position[0]-1;
             current_position[1] = current_position[1];
+           spawnProb = rand.nextInt(100);
+            if (spawnProb > 65){
+                vs.ini_fight();
+            }
         }
         
         return a;
@@ -98,12 +113,18 @@ class Utility {
      * @param a this is the map 
      * @return returns the map with the updated position
      */
-    public static String[][] move_right(String a[][]){
+    public static String[][] move_right(String a[][])throws IOException{
         if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]+1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]+1;
+
+            spawnProb = rand.nextInt(100);
+            if (spawnProb > 65){
+                vs.ini_fight();
+            }
+
         }
         return a;
     }
@@ -112,12 +133,19 @@ class Utility {
      * @param a the map 
      * @return the array with the map with the updated position
      */
-    public static String[][] move_left(String a[][]){
+    public static String[][] move_left(String a[][])throws IOException{
         if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]-1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]-1;
+
+
+            spawnProb = rand.nextInt(100);
+            if (spawnProb > 65){
+                vs.ini_fight();
+            }
+            /**call the 2nd map to update the position of visited */
         }
         return a;
     }
@@ -231,5 +259,41 @@ class Utility {
             System.out.println("The File Does not exist :C ");
         }
     }
+
+
+
+    /*
+     * Enemies
+     */
+    /**
+     * This method will token que file enemies
+     * @throws IOException
+     */
+    public static void token_Enemies()throws IOException{
+        Scanner file= new Scanner(new File("Enemies.csv"));
+        String header = file.nextLine(); //reading header, just to erase it
+        
+        while(file.hasNextLine()){
+        String holder = file.nextLine();
+        String [] a = holder.split(",");
+        try {
+            create_Enemies(a[0],Integer.parseInt(a[1]) , Integer.parseInt(a[2]));
+        } catch (IOException ioe) {
+            ioe.getMessage();
+        }
+        System.out.flush();
+        }
+    }
+    public static HashMap <Integer, Enemies> Enemies_map = new HashMap<Integer, Enemies>();
+
+     public static void create_Enemies(String name, int health, int damage)throws IOException{
+        Enemies en1 = new Enemies(name, health, damage);
+        Enemies_map.put(i, en1);
+         i++;
+
+    }
+
+
+
     
 }

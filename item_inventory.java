@@ -1,13 +1,29 @@
 
 
-public class item {
-
+public class item_inventory {
+    int sword, heal_potion, clear_potion,smokebomb,coin;
+    public item_inventory(){
+        this.sword =0;
+        this.heal_potion=0;
+        this.clear_potion=0;
+        this.smokebomb=0;
+        this.coin=0;
+    }
     /*
      * TODO: SWORD
      * state from 0 -> 1 to mark that we have a sword and it will last N movements 
      * boost damage by .5 percent, this means 1.5 in total
      */
-
+    public int got_sword(int damage){
+        this.sword=1;
+        //calls the boost damage
+        return status_effect.boostPower(damage);
+    }
+    public int rem_sword(int damage){
+        this.sword=0;
+        //calls the weak
+        return status_effect.weak(damage);
+    }
     /*
      * TODO: Heal potion
      * change the state of the life with a caping limit of 100

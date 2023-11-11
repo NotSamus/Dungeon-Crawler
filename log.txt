@@ -1,0 +1,23 @@
+Player: tmzayas logged in  Sat Nov 11 16:32:32 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:32:35 MST 2023 
+tmzayas Moved Left, This is the current position: 18,7 Sat Nov 11 16:32:36 MST 2023 
+tmzayas Moved Left, This is the current position: 18,6 Sat Nov 11 16:32:36 MST 2023 
+tmzayas Moved Left, This is the current position: 18,5 Sat Nov 11 16:33:08 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:33:51 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:34:07 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:35:00 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:35:14 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:36:20 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:36:31 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:38:58 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:39:00 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:39:48 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:39:49 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:40:37 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:40:43 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 16:42:04 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Sat Nov 11 16:42:05 MST 2023 
+tmzayas Moved Left, This is the current position: 18,7 Sat Nov 11 16:42:05 MST 2023 
+tmzayas Moved Left, This is the current position: 18,6 Sat Nov 11 16:42:06 MST 2023 
+tmzayas Moved Left, This is the current position: 18,5 Sat Nov 11 16:42:06 MST 2023 
+tmzayas Moved Left, This is the current position: 18,4 Sat Nov 11 16:42:10 MST 2023 
