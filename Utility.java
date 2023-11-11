@@ -157,25 +157,10 @@ class Utility {
      * @return
      * @throws IOException
      */
-    public static user createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
-        // System.out.println("username: " + username);
-        // System.out.println("fist name: " + firstName);
-        // System.out.println("lastName: " + lastName);
-        // System.out.println("state: "+ state);
-        // System.out.println("lastSignIn: "+ lastSignIn);
-        // System.out.println("logInTime: "+ logInTime);
-        // System.out.println("pin: "+ pin);
-        // System.out.println("dateOfBirth: "+ dateOfBirth);
-        // System.out.println("city: "+ city);
-        //   System.out.println("zip: "+ zip);
-        // System.out.println("totalPlayTime: "+ totalPlayTime);
-       
+    public static void createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
         user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
         
         user_records.put(username, newUser);
-        
-        return newUser;
-
     }
     /**
      * This will look the user in the hashmap
@@ -198,6 +183,19 @@ class Utility {
         }
         return false;
     }
+
+    /*
+    * create a method that will return a hashmap updated 
+    * map1 = has the old users that were given to us
+    * map2 = the map of the new users 
+    * map3 = the register users 
+    * add map1+map2 = map 1 =+map3
+    */
+
+
+
+
+
 
     /**
      * this method will token the user and will also create the user
