@@ -5,7 +5,6 @@
  */
 
 import java.io.*;
-import java.nio.file.*;
 import java.util.*;
 
 public class user extends person{
@@ -79,7 +78,7 @@ public class user extends person{
     }
     
     public void setLoginTime(long loginTime) {
-        this.loginTime = loginTime;
+        this.loginTime = ""+loginTime;
     }
     
     public void setPin(int pin) {
@@ -100,24 +99,20 @@ public class user extends person{
     public void setTotalPlayTime(long l){
         user.totalPlayTime = (int) l;
     }
-    public static void updatePlayTime(user userDummy) {
-         //  current time
-         long startTime = System.currentTimeMillis();
-         //long elapsedTime = currentTime - startTime;
+    // public static void updatePlayTime(user userDummy) {
+    //      //  current time
+    //      long startTime = System.currentTimeMillis();
+    //      //long elapsedTime = currentTime - startTime;
 
-<<<<<<< Updated upstream
-=======
-         // Calculate the elapsed time since the user logged in
-         long elapsedTime = startTime - Long.parseLong(userDummy.getLoginTime());
+    //      // Calculate the elapsed time since the user logged in
+    //      long elapsedTime = startTime - Long.parseLong(userDummy.getLoginTime());
+    //      // Add the elapsed time to the user's total playtime
+    //      //userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
 
-         // Add the elapsed time to the user's total playtime
-         //userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
-
-         // Update the user's last sign-in time
-        // userDummy.setLastSignIn(elapsedTime);
-        userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
-     }
->>>>>>> Stashed changes
+    //      // Update the user's last sign-in time
+    //     // userDummy.setLastSignIn(elapsedTime);
+    //     userDummy.setTotalPlayTime(userDummy.getTotalPlayTime() + elapsedTime);
+    //  }
 
     public Object getPassword() {
         return null;

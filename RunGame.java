@@ -135,6 +135,6 @@ public class RunGame{
     }
 	
 	long time_stop = System.nanoTime();
-	
+	input.close();
 }
 }
