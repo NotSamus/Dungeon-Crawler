@@ -47,7 +47,7 @@ public class RunGame{
 		case"login":
 					
 					Utility.tokentheUser();
-					System.out.print("You didn't log in, please enter your username:\n>");
+					System.out.print("please enter your username:\n>");
 					userName = input.nextLine();
 					System.out.print("please enter your password:\n>");
 					int password = input.nextInt();

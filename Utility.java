@@ -158,17 +158,17 @@ class Utility {
      * @throws IOException
      */
     public static user createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
-        System.out.println("username: " + username);
-        System.out.println("fist name: " + firstName);
-        System.out.println("lastName: " + lastName);
-        System.out.println("state: "+ state);
-        System.out.println("lastSignIn: "+ lastSignIn);
-        System.out.println("logInTime: "+ logInTime);
-        System.out.println("pin: "+ pin);
-        System.out.println("dateOfBirth: "+ dateOfBirth);
-        System.out.println("city: "+ city);
-          System.out.println("zip: "+ zip);
-        System.out.println("totalPlayTime: "+ totalPlayTime);
+        // System.out.println("username: " + username);
+        // System.out.println("fist name: " + firstName);
+        // System.out.println("lastName: " + lastName);
+        // System.out.println("state: "+ state);
+        // System.out.println("lastSignIn: "+ lastSignIn);
+        // System.out.println("logInTime: "+ logInTime);
+        // System.out.println("pin: "+ pin);
+        // System.out.println("dateOfBirth: "+ dateOfBirth);
+        // System.out.println("city: "+ city);
+        //   System.out.println("zip: "+ zip);
+        // System.out.println("totalPlayTime: "+ totalPlayTime);
        
         user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
         
