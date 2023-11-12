@@ -46,26 +46,34 @@ public static void token_Enemies()throws IOException{
     }
     
     private static void ini_fight (String username)throws IOException{
-        //hardcode player variable for now
-        //needs to be conected to player class
+         //user stats
         player player = Utility.user_records.get(username).getPlayer();
         int Phealth = player.get_health() ;
-        int Pdamage = (int) player.get_damage();
+        double Pdamage = player.get_damage();
         int Ppotions = player.get_heal_potion();
         int PpotionHeal = 30;
         
-
-
-
-        //objects
+        //inputs and randoms
         token_Enemies();
         Scanner in = new Scanner(System.in);
         Random rand = new Random();
 
+        //enemy stats
         int enemyNum = rand.nextInt(6);
         String Ename = Enemies_map.get(enemyNum).getName();
         int Edamage = Enemies_map.get(enemyNum).getDamage();
         int Ehealth = Enemies_map.get(enemyNum).getHealth();
+        
+        //items stats
+        item_inventory items = new item_inventory();
+        int Isword = items.get_sword();
+        int Iheal_potion = items.get_heal_potion();
+        int Iclear_potion = items.get_clear_potion();
+        int Ismokebomb = items.get_clear_potion();
+        int Icoin = items.get_coins();
+
+
+
         
        
         boolean fighting  = true;
@@ -85,7 +93,7 @@ public static void token_Enemies()throws IOException{
 
                 String input = in.nextLine();
                 if (input.equals("1")){
-                    int damageDealt = Pdamage;
+                    double damageDealt = Pdamage;
                     int damageTaken = Edamage;
 
                     Ehealth -= damageDealt;
@@ -100,15 +108,38 @@ public static void token_Enemies()throws IOException{
                     }
                 }
                 else if (input.equals("2")){
-                    if (Ppotions > 0){
-                        Phealth += PpotionHeal;
-                        Ppotions--;
-                        System.out.println("\t> You drink a health potion, healing yourself for " + PpotionHeal + "."
-                        + "\n\t> You now have " + Phealth + " HP."
-                        + "\n\t> You have " + Ppotions + " health potions left.\n");
+                    // if (Ppotions > 0){
+                    //     Phealth += PpotionHeal;
+                    //     Ppotions--;
+                    //     System.out.println("\t> You drink a health potion, healing yourself for " + PpotionHeal + "."
+                    //     + "\n\t> You now have " + Phealth + " HP."
+                    //     + "\n\t> You have " + Ppotions + " health potions left.\n");
+                    // }
+                    if (Iheal_potion> 0 | Iclear_potion>0 | Ismokebomb>0 |Isword>0){
+                        System.out.println("\t your items are: ");
+                        System.out.println("\t1. Swords: " + Isword);
+                        System.out.println("\t2. Heal potions: " + Iheal_potion);
+                        System.out.println("\t3. Clear potions: " + Iclear_potion);
+                        System.out.println("\t4. Smoke bombs: " + Ismokebomb);
+                        System.out.println("\t7. Back");
+
+                        String input2 = in.nextLine();
+                        if(input2.equals("1")){
+                            player.set_damage(Pdamage * 1.5);
+                            System.out.println("\t> You have used a sword, your damage is now " + player.get_damage()+" !!!");
+                        }else if (input2.equals("2")){
+                            player.set_health(Phealth + PpotionHeal);
+                            System.out.println("\t> You drink a health potion, healing yourself for " + PpotionHeal + "." + "\n\t> You now have " + player.get_health()+ " HP.");
+                        
+
+                        }else if(input2.equals("3")){
+                            
+                        }
+
+
                     }
                     else{
-                        System.out.println("\t> You have no health potions left! Search chests for the possibility of a health potion!");
+                        System.out.println("\t> items left! Search chests for the possibility of a health potion!");
                     }
                 }
                 else if (input.equals("3")){

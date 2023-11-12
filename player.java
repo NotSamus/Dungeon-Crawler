@@ -8,7 +8,7 @@
         public player(){
             this.Health = 19 ;
             this.score=0;  
-            this.damage = 4;
+            this.damage = 4.0;
             this.heal_potion=3;
 
         }
@@ -22,7 +22,7 @@
         public double get_damage(){
             return damage;
         }
-        public void set_damage(int dam){
+        public void set_damage(double dam){
             this.damage = dam;
         }
         public int get_heal_potion(){
@@ -32,21 +32,6 @@
             this.heal_potion = heal;
         } 
         
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // public void update_score(){
         //     long score_new = //method pulled from the main local_score
@@ -65,11 +50,6 @@
              */
         }
 
-        public void add_sword(){
-            this.damage = player.playerInventory.got_sword(damage);
-        }
-        public void rem_sword(){
-            this.damage = player.playerInventory.got_sword(damage);
-        }
+        
     
 }
