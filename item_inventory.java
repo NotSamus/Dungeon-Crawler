@@ -14,10 +14,11 @@ public class item_inventory {
      * state from 0 -> 1 to mark that we have a sword and it will last N movements 
      * boost damage by .5 percent, this means 1.5 in total
      */
-    public int got_sword(int damage){
+    public Double got_sword(Double  damage){
         this.sword=1;
-        //calls the boost damage
-        return status_effect.boostPower(damage);
+       
+        double boostedDamage = damage * 1.5; // Boost the damage by 50%
+        return (double) status_effect.boostPower(boostedDamage);
     }
     public int rem_sword(int damage){
         this.sword=0;

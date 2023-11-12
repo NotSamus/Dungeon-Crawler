@@ -99,7 +99,8 @@ public class RunGame{
 	input.nextLine();
 	
 	}while(!(option.equals("login")||option.equals("new game")));
-
+	vs.handle_username(userName);
+	
 	
 	try{
 	String terminalinput = input.nextLine();

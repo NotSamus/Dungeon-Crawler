@@ -71,7 +71,9 @@ class Utility {
 
     public static Random rand = new Random();
     public static int spawnProb = 0;
-
+    public static user get_user(String usernames){
+       return user_records.get(usernames);
+    }
     public static String[][] move_down(String a[][])throws IOException{
         if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")){
             a[(current_position[0])][current_position[1]] = "0";
@@ -186,7 +188,8 @@ class Utility {
      * @throws IOException
      */
     public static void createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
-        user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
+        player p1 = new player();
+        user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime,p1);
         
         user_records.put(username, newUser);
     }
@@ -259,41 +262,5 @@ class Utility {
             System.out.println("The File Does not exist :C ");
         }
     }
-
-
-
-    /*
-     * Enemies
-     */
-    /**
-     * This method will token que file enemies
-     * @throws IOException
-     */
-    public static void token_Enemies()throws IOException{
-        Scanner file= new Scanner(new File("Enemies.csv"));
-        String header = file.nextLine(); //reading header, just to erase it
-        
-        while(file.hasNextLine()){
-        String holder = file.nextLine();
-        String [] a = holder.split(",");
-        try {
-            create_Enemies(a[0],Integer.parseInt(a[1]) , Integer.parseInt(a[2]));
-        } catch (IOException ioe) {
-            ioe.getMessage();
-        }
-        System.out.flush();
-        }
-    }
-    public static HashMap <Integer, Enemies> Enemies_map = new HashMap<Integer, Enemies>();
-
-     public static void create_Enemies(String name, int health, int damage)throws IOException{
-        Enemies en1 = new Enemies(name, health, damage);
-        Enemies_map.put(i, en1);
-         i++;
-
-    }
-
-
-
     
 }
