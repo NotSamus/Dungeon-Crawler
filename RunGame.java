@@ -78,7 +78,7 @@ public class RunGame{
 					System.out.println("Would you like to create a satistic file yes or No?");
 					String answer = input.next();
 					if (answer.toLowerCase().equals("yes")) {
-						GameAdmin newUser = new GameAdmin(userName,  FN,  LN,  state,  "0",  "0",  "1234",  dob,  city,  "7866",  "0");
+						GameAdmin newUser = new GameAdmin(userName,  FN,  LN,  state,  "0",  "0",  "1234",  dob,  city,  "7866",  "0",);
 						System.out.println("Please enter the username for which you would like to generated a file for: ");
 						String infoUser = input.next();
 						newUser.createStatisticsFile(infoUser);
@@ -140,7 +140,8 @@ public class RunGame{
 	input.nextLine();
 	
 	}while(!(option.equals("login")||option.equals("new game")));
-
+	vs.handle_username(userName);
+	
 	
 	try{
 	String terminalinput = input.nextLine();

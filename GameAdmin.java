@@ -6,8 +6,8 @@ public class GameAdmin extends user{
 
     HashMap<String, user> user_records = Utility.getInstance().getUser_records();
 
-    public GameAdmin(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) {
-        super(username, firstName, lastName, state, lastSignIn, logInTime, pin, dateOfBirth, city, zip, totalPlayTime);
+    public GameAdmin(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime,player mPlayer) {
+        super(username, firstName, lastName, state, lastSignIn, logInTime, pin, dateOfBirth, city, zip, totalPlayTime,myplayer);
     }
 
     public void createStatisticsFile(String username) throws IOException{

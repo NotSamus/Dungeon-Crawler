@@ -4,7 +4,7 @@
  *
  */
 public class user extends person{
-
+    static player myplayer = new player();
     private String state;
     private String lastSignIn;
     private String username;
@@ -21,7 +21,7 @@ public class user extends person{
     private int gamesFinished;
     private int itemsPrickedUp;
 
-	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) {
+	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime, player myplaye1) {
         super(firstName, lastName);
         this.username = username;
         this.state = state;
@@ -36,6 +36,11 @@ public class user extends person{
         this.battlesWon = 0;
         this.gamesFinished = 0;
         this.itemsPrickedUp = 0;
+        this.myplayer = myplaye1;
+    }
+
+    public player getPlayer(){
+        return myplayer;
     }
 
     public String getState() {

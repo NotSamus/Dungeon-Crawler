@@ -1,26 +1,53 @@
-    public class player extends item_inventory{
+    public class player extends vs{
         int Health;
-        int numLives;
         long score;
-        int damage;
+        double damage;
+        int heal_potion;
         public static item_inventory playerInventory = new item_inventory();
 
         public player(){
-            this.Health=100;
-            this.numLives=3;
+            this.Health = 19 ;
             this.score=0;  
-            this.damage = 50;
+            this.damage = 4;
+            this.heal_potion=3;
+
         }
-        public int get_damage(){
+        public void set_health(int health){
+           this.Health = health;
+           
+        }
+        public int get_health(){
+            return Health;
+        }
+        public double get_damage(){
             return damage;
         }
         public void set_damage(int dam){
             this.damage = dam;
         }
-        public void decNumLives(){
-            numLives--;
-            gameOVer(numLives);
+        public int get_heal_potion(){
+            return heal_potion;
         }
+        public void set_heal_potion(int heal){
+            this.heal_potion = heal;
+        } 
+        
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // public void update_score(){
         //     long score_new = //method pulled from the main local_score
         //     this.update_score(score_new);
