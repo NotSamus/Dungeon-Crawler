@@ -9,7 +9,10 @@ public class status_effect {
     public static double boostPower(double boostedDamage){
         return boostedDamage+25;
     }
-    public static int weak(int power){
+    public static int lower_attack_effect(int power){
         return power-25;
     }
+    // public static int poison_effect(){
+
+    // }
 }
