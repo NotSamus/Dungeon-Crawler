@@ -9,11 +9,22 @@ import java.util.Random;
 
 
 class Utility {
+    private static Utility instance;
     public static int i=1;
     /**
      * This is to keep track of the current position
      */
     public static int[] current_position = new int[2];//map
+    public static Utility getInstance() {
+        if (instance == null) {
+            instance = new Utility(); 
+        }
+        return instance;
+    }
+
+    public HashMap getUser_records(){
+        return user_records;
+    }
 
     /**
      * This Method is to load the map, it will call the mthod tokenize the first line of the file and
@@ -185,10 +196,16 @@ class Utility {
      * @return
      * @throws IOException
      */
-    public static void createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
-        user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
-        
+    public void createuser(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) throws IOException{
+        // System.out.println("before" + username);
+        user newUser = new user(username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime);
+        // System.out.println(newUser.getUsername());
+        // Utility.user_records.forEach((userName, player)-> {
+        //     System.out.println(player.getUsername());
+        // });
+        // System.err.println(newUser.getUsername());
         user_records.put(username, newUser);
+        // System.err.println(newUser.getUsername());
     }
     /**
      * This will look the user in the hashmap
@@ -203,13 +220,14 @@ class Utility {
      * @param pin
      * @return returns true if found
      */
-    public static boolean searchpin(int pin){
-        for (user u : user_records.values()) {
-            if (u.getPin() == pin) {
-                return true;
-            }
-        }
-        return false;
+    public static boolean searchpin(String player,int pin){
+        return user_records.get(player).getPin() == pin;
+        // for (user u : user_records.values()) {
+        //     if (u.getPin() == pin) {
+        //         return true;
+        //     }
+        // }
+        // return false;
     }
 
     /*
@@ -230,7 +248,7 @@ class Utility {
      * we have a scanner to read from the "Users.csv" we tokenize it and then we just create the user 
      * @throws IOException
      */
-    public static void tokentheUser()throws IOException{
+    public void tokentheUser()throws IOException{
         Scanner file = new Scanner(new File("Users.csv"));
         String header = file.nextLine(); //reading header 
         
@@ -238,6 +256,9 @@ class Utility {
         String holder = file.nextLine();
         String [] a = holder.split(",");
         try {
+            // for(i = 0; i < a.length; i++){
+            //     System.out.println(a[i]);
+            // }
             createuser(/*username=*/a[2],a[3],a[5],a[0],a[1],a[4],a[5],a[10],a[8],a[9],a[7]);       
         } catch (IOException ioe) {
             ioe.getMessage();
@@ -292,8 +313,7 @@ class Utility {
          i++;
 
     }
-
-
-
-    
 }
+/**
+ * InnerUtility
+ */
