@@ -2,15 +2,31 @@ import java.io.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
-public class GameAdmin extends user{
+public class GameAdmin{
+    // private String name;
+    private String username;
+    // private String password;
 
     HashMap<String, user> user_records = Utility.getInstance().getUser_records();
 
-    public GameAdmin(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime,player mPlayer) {
-        super(username, firstName, lastName, state, lastSignIn, logInTime, pin, dateOfBirth, city, zip, totalPlayTime,myplayer);
+    // public GameAdmin(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime,player mPlayer) {
+    //     super(username, firstName, lastName, state, lastSignIn, logInTime, pin, dateOfBirth, city, zip, totalPlayTime,myplayer);
+    // }
+    public GameAdmin(String username){
+        // this.name = name;
+        this.username = username;
+        // this.password = password;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+    public void setUsername(String username){
+        this.username = username;
     }
 
     public void createStatisticsFile(String username) throws IOException{
+        // System.out.println("U: "+username);
         if (isAdmin()) {
             if (!user_records.containsKey(username)) {
                 throw new IllegalArgumentException("User not found");
@@ -30,6 +46,7 @@ public class GameAdmin extends user{
             try(FileWriter writer = new FileWriter(username + "GameStatistics.csv")){
                 writer.write(stats);
                 writer.close();
+                System.out.println("Statistics are generated. Thanks for stopping by!");
             }
             
         }

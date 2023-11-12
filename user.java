@@ -7,6 +7,8 @@ public class user extends person{
     static player myplayer = new player();
     private String state;
     private String lastSignIn;
+    private String firstName;
+    private String lastName;
     private String username;
     private String loginTime;
     private int pin;
@@ -22,7 +24,8 @@ public class user extends person{
     private int itemsPrickedUp;
 
 	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime, player myplaye1) {
-        super(firstName, lastName);
+        this.firstName=firstName;
+        this.lastName = lastName;
         this.username = username;
         this.state = state;
         this.lastSignIn = lastSignIn;

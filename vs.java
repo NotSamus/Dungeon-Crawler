@@ -111,15 +111,7 @@ public static void token_Enemies()throws IOException {
                 }
                 else if (input.equals("2")){
                    
-                    // if (Ppotions > 0){
-                    //     Phealth += PpotionHeal;
-                    //     Ppotions--;
-                    //     System.out.println("\t> You drink a health potion, healing yourself for " + PpotionHeal + "."
-                    //     + "\n\t> You now have " + Phealth + " HP."
-                    //     + "\n\t> You have " + Ppotions + " health potions left.\n");
-                    // }
-                       
-                    if (Iheal_potion > 0 | Iclear_potion>0 | Ismokebomb>0 |Isword>0){
+                    if (Iheal_potion > 0 || Iclear_potion>0 || Ismokebomb>0 ||Isword>0){
                          System.out.println("after the 2");
                          System.out.println("\t your items are: ");
                         System.out.println("\t1. Swords: " + Isword);
@@ -129,13 +121,14 @@ public static void token_Enemies()throws IOException {
                         System.out.println("\t7. Back");
                         System.out.println("\t> What item would you like to use? ");
                         String input2 = in.nextLine();
-                        if(input2.equals("1")){
+                        
+                        if(input2.equals("1") && !(items.get_sword() <=0)){
                             player.set_damage(Pdamage * 1.5);
                             System.out.println("\t> You have used a sword, your damage is now " + player.get_damage()+" !!!");
                             items.set_sword(Isword-1); 
                             Isword = items.get_sword();
 
-                        }else if (input2.equals("2")){
+                        }else if (input2.equals("2") && !(items.get_heal_potion()<=0)){
                             player.set_health(Phealth + PpotionHeal);
                             System.out.println("\t> You drink a health potion, healing yourself for " + PpotionHeal + "." + "\n\t> You now have " + player.get_health()+ " HP.");
                             items.set_heal_potion(Iheal_potion-1);
@@ -143,12 +136,12 @@ public static void token_Enemies()throws IOException {
                             Iheal_potion = items.get_heal_potion();
                            
 
-                        }else if(input2.equals("3")){
+                        }else if(input2.equals("3")&& !(items.get_clear_potion()<=0)){
                             items.set_clear_potion(Iclear_potion-1);
                             Iclear_potion = items.get_clear_potion();
                            //clear efects    
                            
-                        }else if (input2.equals("4")){
+                        }else if (input2.equals("4")&& !(items.get_smokebomb()<=0)){
                             items.set_smokebomb(Ismokebomb-1);
                             int random_run = rand.nextInt(100);
                             runLuck = player.player_effect.get_luck() + 40;

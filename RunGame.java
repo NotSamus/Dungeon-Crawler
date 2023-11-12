@@ -70,19 +70,15 @@ public class RunGame{
 			if (userName.toLowerCase().equals("admin")) {
 				if (Utility.searchuser(userName) == true && Utility.searchpin(userName, password)) {
 					System.out.println("Welcome back: " + userName);
-					// long time_start = System.nanoTime();
-					// map = Utility.spawnUser(map);
-					// Utility.printMatrix(map);
 					log.loger("Player: " + userName + " logged in " );
 					System.out.println("Would you like to create a satistic file yes or No?");
 					String answer = input.next();
 					if (answer.toLowerCase().equals("yes")) {
-						GameAdmin newUser = new GameAdmin(userName,  FN,  LN,  state,  "0",  "0",  "1234",  dob,  city,  "7866",  "0", null);
 						System.out.println("Please enter the username for which you would like to generated a file for: ");
 						String infoUser = input.next();
-						newUser.createStatisticsFile(infoUser);
+						GameAdmin admin = new GameAdmin(infoUser);
+						admin.createStatisticsFile(infoUser);
 						// GameAdmin.saveUserToFile(newUser);
-						System.out.println("Statistics are generated. Thanks for stopping by!");
 						System.exit(0);
 					}else{
 						System.out.println("Thanks for stopping by\n");
