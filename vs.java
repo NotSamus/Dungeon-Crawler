@@ -50,7 +50,7 @@ public static void token_Enemies()throws IOException{
         //needs to be conected to player class
         player player = Utility.user_records.get(username).getPlayer();
         int Phealth = player.get_health() ;
-        int Pdamage = player.get_damage();
+        int Pdamage = (int) player.get_damage();
         int Ppotions = player.get_heal_potion();
         int PpotionHeal = 30;
         

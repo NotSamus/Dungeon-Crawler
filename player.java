@@ -1,7 +1,7 @@
     public class player extends vs{
         int Health;
         long score;
-        int damage;
+        double damage;
         int heal_potion;
         public static item_inventory playerInventory = new item_inventory();
 
@@ -19,7 +19,7 @@
         public int get_health(){
             return Health;
         }
-        public int get_damage(){
+        public double get_damage(){
             return damage;
         }
         public void set_damage(int dam){
@@ -31,6 +31,7 @@
         public void set_heal_potion(int heal){
             this.heal_potion = heal;
         } 
+        
        
 
 

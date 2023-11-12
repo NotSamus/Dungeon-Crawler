@@ -3,40 +3,46 @@
  * Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
  *
  */
-
-import java.io.*;
-import java.util.*;
-
 public class user extends person{
-    player myplayer = new player();
+    static player myplayer = new player();
     private String state;
-    private long lastSignIn;
-    private static String username;
-    private String firstName;
+    private String lastSignIn;
+    private String username;
     private String loginTime;
     private int pin;
-    private String lastName;
-    public static long totalPlayTime;
+    public static String totalPlayTime;
     private String city;
     private int zip;
     private String dateOfBirth;
+    private String phoneNumber;
+	private String address;
+    private int battlesWon;
+    private int battlesLost;
+    private int gamesFinished;
+    private int itemsPrickedUp;
 
 	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime, player myplaye1) {
-        super(firstName, lastName, username);
+        super(firstName, lastName);
+        this.username = username;
         this.state = state;
-        this.lastSignIn = Long.parseLong(lastSignIn);
+        this.lastSignIn = lastSignIn;
         this.loginTime = loginTime;
-        user.totalPlayTime = Long.parseLong(totalPlayTime);
+        user.totalPlayTime = totalPlayTime;
         this.pin = Integer.parseInt(pin);
         this.city = city;
         this.zip = Integer.parseInt(zip);
         this.dateOfBirth = dateOfBirth;
+        this.battlesLost = 0;
+        this.battlesWon = 0;
+        this.gamesFinished = 0;
+        this.itemsPrickedUp = 0;
         this.myplayer = myplaye1;
     }
 
     public player getPlayer(){
         return myplayer;
     }
+
     public String getState() {
         return state;
     }
@@ -44,7 +50,7 @@ public class user extends person{
         return username;
     }
     
-    public long getLastSignIn() {
+    public String getLastSignIn() {
         return lastSignIn;
     }
     
@@ -68,7 +74,7 @@ public class user extends person{
         return dateOfBirth;
     }
 
-    public long getTotalPlayTime(){
+    public String getTotalPlayTime(){
         return totalPlayTime;
     }
 
@@ -76,11 +82,11 @@ public class user extends person{
         this.state = state;
     }
     
-    public void setLastSignIn(long lastSignIn) {
+    public void setLastSignIn(String lastSignIn) {
         this.lastSignIn = lastSignIn;
     }
     
-    public void setLoginTime(long loginTime) {
+    public void setLoginTime(String loginTime) {
         this.loginTime = ""+loginTime;
     }
     
@@ -99,8 +105,56 @@ public class user extends person{
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-    public void setTotalPlayTime(long l){
-        user.totalPlayTime = (int) l;
+    public void setTotalPlayTime(String l){
+        user.totalPlayTime = l;
+    }
+
+    public  String getPhoneNumber() {
+    	return phoneNumber;
+	}
+
+	public String getAddress() {
+    	return address;
+	}
+
+    public int getBattlesWon(){
+        return battlesWon;
+    }
+
+    public int getBattlesLost(){
+        return battlesLost;
+    }
+
+    public int getGamesFinished(){
+        return gamesFinished;
+    }
+
+    public int getItemsPickedUp(){
+        return itemsPrickedUp;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+    	this.phoneNumber = phoneNumber;
+	}
+
+	public void setAddress(String address) {
+    	this.address = address;
+	}
+
+    public void addBattlesWon(){
+        battlesWon++;
+    }
+
+    public void addBattlesLost(){
+        battlesLost++;
+    }
+
+    public void addGamesFinished(){
+        gamesFinished++;
+    }
+
+    public void addItemsPickedUp(){
+        itemsPrickedUp++;
     }
     // public static void updatePlayTime(user userDummy) {
     //      //  current time
@@ -120,8 +174,4 @@ public class user extends person{
     public Object getPassword() {
         return null;
     }
-
-
-    
-		
 }

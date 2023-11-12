@@ -3,16 +3,19 @@
 abstract class person {
     private String firstName;
     private String lastName;
-    private String username;
+    // private String username;
 
 
-   person(String firstName, String lastName, String username) {
+   person(String firstName, String lastName) {
 		this.firstName = firstName;
     	this.lastName = lastName;
-    	this.username = username;
+    	// this.username = username;
 	}
 
-	public String getFirstName() {
+	public person() {
+}
+
+    public String getFirstName() {
     	return firstName;
 	}
 
@@ -20,9 +23,9 @@ abstract class person {
     		return lastName;
 	}
 
-	public String getUsername() {
-    	return username;
-	}
+	// public String getUsername() {
+    // 	return username;
+	// }
 
 	public void setFirstName(String firstName) {
     	this.firstName = firstName;
@@ -32,9 +35,9 @@ abstract class person {
     	this.lastName = lastName;
 	}
 
-	public void setUsername(String username) {
-    	this.username = username;
-	}
+	// public void setUsername(String username) {
+    // 	this.username = username;
+	// }
 }
 
 // person person = new person();

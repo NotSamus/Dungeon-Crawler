@@ -10,7 +10,7 @@ public class Item {
         this.effectValue = effectValue;
     }
 
-    public void use(Player player) {
+    public void use(player player) {
         switch (name) {
             case "Sword Upgrade":
                 player.increaseDamage(effectValue);
