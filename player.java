@@ -4,7 +4,7 @@
         double damage;
         int heal_potion;
         public static item_inventory playerInventory = new item_inventory();
-
+        public static status_effect player_effect = new status_effect();
         public player(){
             this.Health = 19 ;
             this.score=0;  
@@ -32,7 +32,9 @@
             this.heal_potion = heal;
         } 
         
-
+        public item_inventory gItem_inventory(){
+            return playerInventory;
+        }
         // public void update_score(){
         //     long score_new = //method pulled from the main local_score
         //     this.update_score(score_new);

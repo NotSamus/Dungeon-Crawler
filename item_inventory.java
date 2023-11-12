@@ -4,10 +4,10 @@ public class item_inventory {
     int sword, heal_potion, clear_potion,smokebomb,coins;
     
     public item_inventory(){
-        this.sword =0;
-        this.heal_potion=0;
-        this.clear_potion=0;
-        this.smokebomb=0;
+        this.sword =2;
+        this.heal_potion=1;
+        this.clear_potion=1;
+        this.smokebomb=1;
         this.coins=0;
     }
     /*

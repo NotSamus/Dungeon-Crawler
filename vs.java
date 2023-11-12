@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+
 /**
  * This is the combat system
  */
@@ -11,7 +12,7 @@ public class vs {
       public static String username_holder ;
       public static int i=0;
       public static int vida;    
-public static void token_Enemies()throws IOException{
+public static void token_Enemies()throws IOException {
         Scanner file= new Scanner(new File("Enemies.csv"));
         String header = file.nextLine(); //reading header, just to erase it
       
@@ -52,6 +53,7 @@ public static void token_Enemies()throws IOException{
         double Pdamage = player.get_damage();
         int Ppotions = player.get_heal_potion();
         int PpotionHeal = 30;
+        int runLuck = 0;
         
         //inputs and randoms
         token_Enemies();
@@ -65,7 +67,7 @@ public static void token_Enemies()throws IOException{
         int Ehealth = Enemies_map.get(enemyNum).getHealth();
         
         //items stats
-        item_inventory items = new item_inventory();
+        item_inventory items = player.gItem_inventory();
         int Isword = items.get_sword();
         int Iheal_potion = items.get_heal_potion();
         int Iclear_potion = items.get_clear_potion();
@@ -82,13 +84,13 @@ public static void token_Enemies()throws IOException{
         while (fighting){
             System.out.println("----------------------------------------------------");
             System.out.println("\t# " + Ename + " has appeared! #\n");
-
+            
             while (Ehealth > 0){
                 System.out.print("\t Your healt is " + Phealth + "\n");
                 System.out.println("\t" + Ename + "'s healt is " + Ehealth);
                 System.out.println("\n\tWhat would you like to do?");
                 System.out.println("\t1. Attack");
-                System.out.println("\t2. Drink health potion");
+                System.out.println("\t2. Use item from inventory");
                 System.out.println("\t3. Run!");
 
                 String input = in.nextLine();
@@ -108,6 +110,7 @@ public static void token_Enemies()throws IOException{
                     }
                 }
                 else if (input.equals("2")){
+                   
                     // if (Ppotions > 0){
                     //     Phealth += PpotionHeal;
                     //     Ppotions--;
@@ -115,40 +118,65 @@ public static void token_Enemies()throws IOException{
                     //     + "\n\t> You now have " + Phealth + " HP."
                     //     + "\n\t> You have " + Ppotions + " health potions left.\n");
                     // }
-                    if (Iheal_potion> 0 | Iclear_potion>0 | Ismokebomb>0 |Isword>0){
-                        System.out.println("\t your items are: ");
+                       
+                    if (Iheal_potion > 0 | Iclear_potion>0 | Ismokebomb>0 |Isword>0){
+                         System.out.println("after the 2");
+                         System.out.println("\t your items are: ");
                         System.out.println("\t1. Swords: " + Isword);
                         System.out.println("\t2. Heal potions: " + Iheal_potion);
                         System.out.println("\t3. Clear potions: " + Iclear_potion);
                         System.out.println("\t4. Smoke bombs: " + Ismokebomb);
                         System.out.println("\t7. Back");
-
+                        System.out.println("\t> What item would you like to use? ");
                         String input2 = in.nextLine();
                         if(input2.equals("1")){
                             player.set_damage(Pdamage * 1.5);
                             System.out.println("\t> You have used a sword, your damage is now " + player.get_damage()+" !!!");
+                            items.set_sword(Isword-1); 
+                            Isword = items.get_sword();
+
                         }else if (input2.equals("2")){
                             player.set_health(Phealth + PpotionHeal);
                             System.out.println("\t> You drink a health potion, healing yourself for " + PpotionHeal + "." + "\n\t> You now have " + player.get_health()+ " HP.");
-                        
+                            items.set_heal_potion(Iheal_potion-1);
+                            Phealth = player.get_health();
+                            Iheal_potion = items.get_heal_potion();
+                           
 
                         }else if(input2.equals("3")){
-                            
+                            items.set_clear_potion(Iclear_potion-1);
+                            Iclear_potion = items.get_clear_potion();
+                           //clear efects    
+                           
+                        }else if (input2.equals("4")){
+                            items.set_smokebomb(Ismokebomb-1);
+                            int random_run = rand.nextInt(100);
+                            runLuck = player.player_effect.get_luck() + 40;
+                            player.player_effect.set_luck(runLuck);
+                            System.out.println("\t> You have used a smoke bomb, your luck is now " + player.player_effect.get_luck()+" !!!");
+                            Ismokebomb = items.get_smokebomb();
+                        }
+                        else{
+                            System.out.println("\t> you don't have any items left! Search chests for the possibility of a health potion!");
                         }
 
-
-                    }
-                    else{
-                        System.out.println("\t> items left! Search chests for the possibility of a health potion!");
                     }
                 }
                 else if (input.equals("3")){
-                    System.out.println("\tYou run away from the " + Ename + "!");
-                    //continue FIGHT;
-                    /*
-                     * Aqui tambien hay que cargar el mapa de nuevo en la posicion donde se quedo y seguir avanzando.
-                     */
-                    break;
+                    if ( runLuck > 70){
+                        System.out.println("\tYou run away from the " + Ename + "!");
+                        break;
+                    }                    
+                    else{
+                        System.out.println("\tYou failed to run away from the " + Ename + "!");
+                        int damageTaken = Edamage;
+                        Phealth -= damageTaken;
+                        System.out.println("\t> You recieve " + damageTaken + " in retaliation!");
+                        if (Phealth < 1){
+                            System.out.println("\t> You have taken too much damage, you are too weak to go on!");
+                            break;
+                        }
+                    }
                 }
                 else{
                     System.out.println("\tInvalid command!");
@@ -156,7 +184,11 @@ public static void token_Enemies()throws IOException{
             }
             if (Phealth < 1){
                 System.out.println("You limp out of the dungeon, weak from battle.");
-                break;
+                System.out.println(" \t ####### GAME OVER ####### \n");
+                //CALL THE LOG WITH THE DEAD USER
+                log log = new log();
+                log.loger(Ename + " killed " + username_holder + " in battle");
+                System.exit(0);
             }
             System.out.println("----------------------------------------------------");
             System.out.println(" # " + Ename + " was defeated! # ");
