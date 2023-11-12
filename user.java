@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class user extends person{
-
+    player myplayer = new player();
     private String state;
     private long lastSignIn;
     private static String username;
@@ -21,7 +21,7 @@ public class user extends person{
     private int zip;
     private String dateOfBirth;
 
-	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime) {
+	public user(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime, player myplaye1) {
         super(firstName, lastName, username);
         this.state = state;
         this.lastSignIn = Long.parseLong(lastSignIn);
@@ -31,9 +31,12 @@ public class user extends person{
         this.city = city;
         this.zip = Integer.parseInt(zip);
         this.dateOfBirth = dateOfBirth;
+        this.myplayer = myplaye1;
     }
 
-
+    public player getPlayer(){
+        return myplayer;
+    }
     public String getState() {
         return state;
     }

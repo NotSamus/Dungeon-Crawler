@@ -8,12 +8,13 @@ import java.util.Scanner;
  * This is the combat system
  */
 public class vs {
-public static int i=0;
-    
+      public static String username_holder ;
+      public static int i=0;
+      public static int vida;    
 public static void token_Enemies()throws IOException{
         Scanner file= new Scanner(new File("Enemies.csv"));
         String header = file.nextLine(); //reading header, just to erase it
-        
+      
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
@@ -37,18 +38,22 @@ public static void token_Enemies()throws IOException{
 
    }
 
-
-
+    public static void handle_username(String userm){
+        username_holder=userm;
+    }
+    public static void ini_fight()throws IOException{
+        ini_fight(username_holder);
+    }
     
-    public static void ini_fight ()throws IOException{
+    private static void ini_fight (String username)throws IOException{
         //hardcode player variable for now
         //needs to be conected to player class
-
-        int Phealth = 100;
-        int Pdamage = 50;
-        int Ppotions = 3;
+        player player = Utility.user_records.get(username).getPlayer();
+        int Phealth = player.get_health() ;
+        int Pdamage = player.get_damage();
+        int Ppotions = player.get_heal_potion();
         int PpotionHeal = 30;
-    
+        
 
 
 
@@ -124,11 +129,12 @@ public static void token_Enemies()throws IOException{
             }
             System.out.println("----------------------------------------------------");
             System.out.println(" # " + Ename + " was defeated! # ");
-            System.out.println(" # You have " + Phealth + " HP left. #");
+            player.set_health(Phealth);
+            System.out.println(" # You have " + player.Health + " HP left. #");
 
-
+            vida = player.Health;
             System.out.println("----------------------------------------------------");
-            System.out.println("What would you like to do now?");
+            
             System.out.println("Press 1 to continue the adventure!");
             String input = in.nextLine();
 
@@ -145,10 +151,10 @@ public static void token_Enemies()throws IOException{
                 break;
             }
             
-
+            
 
         }
 
-
+        
     }
 }
