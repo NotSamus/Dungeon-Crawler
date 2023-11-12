@@ -21,3 +21,10 @@ tmzayas Moved Left, This is the current position: 18,7 Sat Nov 11 16:42:05 MST 2
 tmzayas Moved Left, This is the current position: 18,6 Sat Nov 11 16:42:06 MST 2023 
 tmzayas Moved Left, This is the current position: 18,5 Sat Nov 11 16:42:06 MST 2023 
 tmzayas Moved Left, This is the current position: 18,4 Sat Nov 11 16:42:10 MST 2023 
+Player: tmzayas logged in  Sat Nov 11 19:29:44 MST 2023 
+Player: tmzayas started a new game  Sat Nov 11 19:29:44 MST 2023 
+null Moved UP, This is the current position: 18,8 Sat Nov 11 19:29:52 MST 2023 
+null Moved Left, This is the current position: 18,7 Sat Nov 11 19:29:56 MST 2023 
+null Moved Left, This is the current position: 18,6 Sat Nov 11 19:30:10 MST 2023 
+null Moved UP, This is the current position: 18,6 Sat Nov 11 19:30:17 MST 2023 
+null Moved UP, This is the current position: 18,6 Sat Nov 11 19:30:18 MST 2023 
