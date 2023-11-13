@@ -514,36 +514,3 @@ tmzayas Moved Left, This is the current position: 18,7 Sun Nov 12 16:15:25 MST 2
 tmzayas Moved Left, This is the current position: 18,6 Sun Nov 12 16:15:26 MST 2023 
 DarkKing killed tmzayas in battle Sun Nov 12 16:15:59 MST 2023 
 Player: admin logged in  Sun Nov 12 16:21:30 MST 2023 
-Player: admin logged in  Sun Nov 12 18:53:27 MST 2023 
-Player: admin logged in  Sun Nov 12 19:01:00 MST 2023 
-Player: jhulmak logged in  Sun Nov 12 19:46:34 MST 2023 
-Player: eoarellano logged in  Sun Nov 12 19:51:38 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:01:16 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:07:49 MST 2023 
-Player: null logged out Sun Nov 12 20:08:33 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:12:29 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:15:47 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:18:58 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:21:37 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:22:14 MST 2023 
-Player: tmzayas logged out Sun Nov 12 20:22:17 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:22:24 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:27:26 MST 2023 
-Player: tmzayas logged out Sun Nov 12 20:27:28 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:27:36 MST 2023 
-tmzayas Moved UP, This is the current position: 18,8 Sun Nov 12 20:27:38 MST 2023 
-tmzayas Moved UP, This is the current position: 18,8 Sun Nov 12 20:27:39 MST 2023 
-tmzayas Moved UP, This is the current position: 18,8 Sun Nov 12 20:27:40 MST 2023 
-tmzayas Moved Left, This is the current position: 18,7 Sun Nov 12 20:27:41 MST 2023 
-DarkKing killed tmzayas in battle Sun Nov 12 20:27:51 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 20:37:12 MST 2023 
-tmzayas Moved UP, This is the current position: 18,8 Sun Nov 12 20:37:21 MST 2023 
-Player: tmzayas logged out Sun Nov 12 20:37:23 MST 2023 
-Player: tmzayas logged in  Sun Nov 12 21:27:40 MST 2023 
-tmzayas Moved UP, This is the current position: 18,8 Sun Nov 12 21:27:43 MST 2023 
-tmzayas Moved Left, This is the current position: 18,7 Sun Nov 12 21:27:49 MST 2023 
-tmzayas Moved Left, This is the current position: 18,6 Sun Nov 12 21:27:51 MST 2023 
-tmzayas Moved Left, This is the current position: 18,5 Sun Nov 12 21:27:52 MST 2023 
-tmzayas Moved Left, This is the current position: 18,4 Sun Nov 12 21:28:07 MST 2023 
-tmzayas Moved Left, This is the current position: 18,3 Sun Nov 12 21:28:24 MST 2023 
-Player: tmzayas logged out Sun Nov 12 21:28:29 MST 2023 

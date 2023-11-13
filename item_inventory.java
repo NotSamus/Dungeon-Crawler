@@ -4,10 +4,10 @@ public class item_inventory {
     int sword, heal_potion, clear_potion,smokebomb,coins;
     
     public item_inventory(){
-        this.sword =2;
-        this.heal_potion=1;
-        this.clear_potion=1;
-        this.smokebomb=1;
+        this.sword =0;
+        this.heal_potion=0;
+        this.clear_potion=0;
+        this.smokebomb=0;
         this.coins=0;
     }
     /*
@@ -16,7 +16,7 @@ public class item_inventory {
      * boost damage by .5 percent, this means 1.5 in total
      */
     public void set_sword(int sword1){
-         this.sword= sword1;
+         this.sword = sword1;
     }
     
     public int get_sword(){
