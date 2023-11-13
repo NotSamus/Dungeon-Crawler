@@ -47,7 +47,7 @@ public class gameState {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         if (input.equals("start")) {
-            map = Utility.spawnUser(map);
+            // map = Utility.spawnUser(map);
 				Utility.printMatrix(map);
 				log.loger("Player: " + username + " logged in " );
         } else if (input.equals("exit")) {
