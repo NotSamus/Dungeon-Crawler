@@ -93,7 +93,6 @@ public class RunGame{
 				Utility.printMatrix(map);
 				log.loger("Player: " + userName + " logged in " );
 				gameState.saveUsersSheet(userName);
-				gameState.savePlayer(new player(), userName);
 			}
 			else{
 				System.out.print("Incorrect username or password\n\n");
@@ -131,7 +130,7 @@ public class RunGame{
 	}
 	if(option.equals("exit")){
 		log.loger("Player: " + userName + " logged out" );
-		gameState.promptUser(userName);
+		System.exit(0);
 	}
 	//fixed the code
 	input.nextLine();
@@ -148,18 +147,21 @@ public class RunGame{
 			case "w":
 				map = Utility.move_up(map);
 				util.updateAndSaveMap(userName, Utility.current_position);
+				gameState.savePlayer(new player(), userName);
 				log.loger(userName + " Moved UP, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"a":
 				map = Utility.move_left(map);
 				util.updateAndSaveMap(userName, Utility.current_position);
+				gameState.savePlayer(new player(), userName);
 				log.loger(userName + " Moved Left, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"s":
 				map = Utility.move_down(map);
 				util.updateAndSaveMap(userName, Utility.current_position);
+				gameState.savePlayer(new player(), userName);
 				log.loger(userName + " Moved Down, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
@@ -167,13 +169,14 @@ public class RunGame{
 			case"d":
 				map = Utility.move_right(map);
 				util.updateAndSaveMap(userName, Utility.current_position);
+				gameState.savePlayer(new player(), userName);
 				log.loger(userName + " Moved Right, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 
 			case "exit":
                 log.loger("Player: " + userName + " logged out");
-                gameState.promptUser(userName);
+				System.exit(0);
                 break;
 		}
 		System.out.print("\n>");
@@ -183,7 +186,6 @@ public class RunGame{
 }catch(ArrayIndexOutOfBoundsException e){
         System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
 		log.loger(userName + " Found the exit!!!!");
-        
     }
 	
 	long time_stop = System.nanoTime();
