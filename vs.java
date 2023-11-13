@@ -81,7 +81,7 @@ public static void token_Enemies()throws IOException {
         int Isword = items.get_sword();
         int Iheal_potion = items.get_heal_potion();
         int Iclear_potion = items.get_clear_potion();
-        int Ismokebomb = items.get_clear_potion();
+        int Ismokebomb = items.get_smokebomb();
         int Icoin = items.get_coins();
 
         boolean fighting  = true;
