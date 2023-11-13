@@ -52,8 +52,8 @@ public static void token_Enemies()throws IOException {
         inv = a;
     }
     private static void ini_fight (String username)throws IOException{
-        chest chest = new chest();
-        chest.newChest(true);
+        // chest chest = new chest();
+        // chest.newChest(true);
 
          //user stats
         player player = Utility.user_records.get(username).getPlayer();

@@ -8,7 +8,7 @@
         public player(){
             this.Health = 100 ;
             this.score=0;  
-            this.damage = 4.0;
+            this.damage = 7.0;
             this.heal_potion=3;
 
         }
@@ -20,7 +20,7 @@
             return Health;
         }
         public double get_damage(){
-            return damage;
+            return this.damage;
         }
         public void set_damage(double dam){
             this.damage = dam;
