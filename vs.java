@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class vs {
       public static String username_holder ;
       public static int i=0;
-      public static int vida;    
+      public static int vida;  
+      public static gameUtilities Utility = new utilities();  
 public static void token_Enemies()throws IOException {
         Scanner file= new Scanner(new File("Enemies.csv"));
         String header = file.nextLine(); //reading header, just to erase it
@@ -56,7 +57,7 @@ public static void token_Enemies()throws IOException {
         // chest.newChest(true);
 
          //user stats
-        player player = Utility.user_records.get(username).getPlayer();
+        player player = Utility.getUser_records().get(username).getPlayer();
         int Phealth = player.get_health() ;
         double Pdamage = player.get_damage();
         int Ppotions = player.get_heal_potion();
