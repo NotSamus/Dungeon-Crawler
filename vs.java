@@ -45,8 +45,17 @@ public static void token_Enemies()throws IOException {
     public static void ini_fight()throws IOException{
         ini_fight(username_holder);
     }
+
+    // public static item_inventory inv = new item_inventory();
+
+    // public static void set_inv(item_inventory i){
+    //     inv = i;
+    // }
     
     private static void ini_fight (String username)throws IOException{
+        // chest chest = new chest();
+        // chest.newChest(true);
+
          //user stats
         player player = Utility.user_records.get(username).getPlayer();
         int Phealth = player.get_health() ;
@@ -54,7 +63,7 @@ public static void token_Enemies()throws IOException {
         int Ppotions = player.get_heal_potion();
         int PpotionHeal = 30;
         int runLuck = 0;
-        
+        int has_poison = player.player_effect.poison;
         //inputs and randoms
         token_Enemies();
         Scanner in = new Scanner(System.in);
@@ -68,18 +77,15 @@ public static void token_Enemies()throws IOException {
         
         //items stats
         item_inventory items = player.gItem_inventory();
+        // set_inv(items);
+        // items = inv;
         int Isword = items.get_sword();
         int Iheal_potion = items.get_heal_potion();
         int Iclear_potion = items.get_clear_potion();
         int Ismokebomb = items.get_clear_potion();
         int Icoin = items.get_coins();
 
-
-
-        
-       
         boolean fighting  = true;
-
         FIGHT:
         while (fighting){
             System.out.println("----------------------------------------------------");
@@ -94,10 +100,20 @@ public static void token_Enemies()throws IOException {
                 System.out.println("\t3. Run!");
 
                 String input = in.nextLine();
+                //ENEMY
                 if (input.equals("1")){
                     double damageDealt = Pdamage;
                     int damageTaken = Edamage;
-
+                    if(Ename.equals("Snake")){
+                        int random_poison = rand.nextInt(100);
+                        has_poison = player.player_effect.poison_effect();
+                    }
+                    if(has_poison==1){
+                        System.out.println("#####################################################");
+                        System.out.println("\t> You are poisoned, you recieve 15 damage!");
+                        System.out.println("#####################################################");
+                        Phealth -= 15; 
+                    }
                     Ehealth -= damageDealt;
                     Phealth -= damageTaken;
                     System.out.println("#####################################################");

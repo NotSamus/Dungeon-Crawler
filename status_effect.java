@@ -8,18 +8,21 @@ public class status_effect {
      */
     public status_effect(){
         this.poison=0;
-        this.luck=25;
+        this.luck=25; //this is base luck
         this.boostPower=0.0;
     }
+    
     public double boostPower(double boostedDamage){
         return boostedDamage+25;
     }
     public int lower_attack_effect(int power){
         return power-25;
     }
-    // public static int poison_effect(){
-
-    // }
+    //the poison will last 3 trns
+    public static int poison_effect(){
+        this.poison=1;
+        return poison;
+    }
 
     public int get_luck(){
         return luck;
