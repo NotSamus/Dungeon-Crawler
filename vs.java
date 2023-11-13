@@ -46,15 +46,14 @@ public static void token_Enemies()throws IOException {
         ini_fight(username_holder);
     }
 
-    // public static item_inventory inv = new item_inventory();
+    public static item_inventory inv = new item_inventory();
 
-    // public static void set_inv(item_inventory i){
-    //     inv = i;
-    // }
-    
+    public static void get_inv(item_inventory a){
+        inv = a;
+    }
     private static void ini_fight (String username)throws IOException{
-        // chest chest = new chest();
-        // chest.newChest(true);
+        chest chest = new chest();
+        chest.newChest(true);
 
          //user stats
         player player = Utility.user_records.get(username).getPlayer();
@@ -77,8 +76,8 @@ public static void token_Enemies()throws IOException {
         
         //items stats
         item_inventory items = player.gItem_inventory();
-        // set_inv(items);
-        // items = inv;
+        items = inv;
+        
         int Isword = items.get_sword();
         int Iheal_potion = items.get_heal_potion();
         int Iclear_potion = items.get_clear_potion();
@@ -104,10 +103,10 @@ public static void token_Enemies()throws IOException {
                 if (input.equals("1")){
                     double damageDealt = Pdamage;
                     int damageTaken = Edamage;
-                    if(Ename.equals("Snake")){
-                        int random_poison = rand.nextInt(100);
-                        has_poison = player.player_effect.poison_effect();
-                    }
+                    // if(Ename.equals("Snake")){
+                    //     int random_poison = rand.nextInt(100);
+                    //     has_poison = player.player_effect.poison_effect();
+                    // }
                     if(has_poison==1){
                         System.out.println("#####################################################");
                         System.out.println("\t> You are poisoned, you recieve 15 damage!");
@@ -165,11 +164,12 @@ public static void token_Enemies()throws IOException {
                             System.out.println("\t> You have used a smoke bomb, your luck is now " + player.player_effect.get_luck()+" !!!");
                             Ismokebomb = items.get_smokebomb();
                         }
-                        else{
-                            System.out.println("\t> you don't have any items left! Search chests for the possibility of a health potion!");
-                        }
+                        
+                   
 
-                    }
+                    } else{
+                            System.out.println("\t> you don't have any items left! Search chests for the possibility of a health potion!\n");
+                       }
                 }
                 else if (input.equals("3")){
                     if ( runLuck > 70){

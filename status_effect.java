@@ -19,10 +19,10 @@ public class status_effect {
         return power-25;
     }
     //the poison will last 3 trns
-    public static int poison_effect(){
-        this.poison=1;
-        return poison;
-    }
+    // public static int poison_effect(){
+    //     this.poison=1;
+    //     return poison;
+    // }
 
     public int get_luck(){
         return luck;
