@@ -6,7 +6,7 @@
         public static item_inventory playerInventory = new item_inventory();
         public static status_effect player_effect = new status_effect();
         public player(){
-            this.Health = 19 ;
+            this.Health = 100 ;
             this.score=0;  
             this.damage = 4.0;
             this.heal_potion=3;
@@ -32,7 +32,7 @@
             this.heal_potion = heal;
         } 
         
-        public item_inventory gItem_inventory(){
+        public static item_inventory gItem_inventory(){
             return playerInventory;
         }
         // public void update_score(){

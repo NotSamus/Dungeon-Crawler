@@ -1,7 +1,7 @@
 Name,health,damage
-VenomPlant,1,2
-Goblin,3,1
-Snake,4,2
-CorruptedKnight,10,3
-DarkMagician,15,4
-DarkKing,20,5
+VenomPlant,10,10
+Goblin,30,8
+Snake,40,10
+CorruptedKnight,15,10
+DarkMagician,20,20
+DarkKing,25,25

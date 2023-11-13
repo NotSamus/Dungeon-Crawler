@@ -159,6 +159,13 @@ public class user extends person{
     public void addItemsPickedUp(){
         itemsPrickedUp++;
     }
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+
     // public static void updatePlayTime(user userDummy) {
     //      //  current time
     //      long startTime = System.currentTimeMillis();
