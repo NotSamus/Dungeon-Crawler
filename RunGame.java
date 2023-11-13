@@ -94,7 +94,6 @@ public class RunGame{
 				Utility.printMatrix(map);
 				log.loger("Player: " + userName + " logged in " );
 				gameState.saveUsersSheet(userName);
-				gameState.savePlayer(new player(), userName);
 			}
 			else{
 				System.out.print("Incorrect username or password\n\n");
@@ -154,12 +153,14 @@ public class RunGame{
 				break;
 			case"a":
 				map = Utility.move_left(map);
+
 				Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved Left, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"s":
 				map = Utility.move_down(map);
+
 				Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved Down, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
@@ -167,14 +168,14 @@ public class RunGame{
 
 			case"d":
 				map = Utility.move_right(map);
-				Utility.updateAndSaveMap(userName, utilities.current_position);
+        Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved Right, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 
 			case "exit":
                 log.loger("Player: " + userName + " logged out");
-                gameState.promptUser(userName);
+				System.exit(0);
                 break;
 		}
 		System.out.print("\n>");
@@ -184,7 +185,6 @@ public class RunGame{
 }catch(ArrayIndexOutOfBoundsException e){
         System.out.println("CONGRATULATIONS YOU FOUND THE EXIT!!!!!!!");
 		log.loger(userName + " Found the exit!!!!");
-        
     }
 	
 	long time_stop = System.nanoTime();
