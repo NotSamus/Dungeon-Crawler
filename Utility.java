@@ -86,11 +86,15 @@ class Utility {
        return user_records.get(usernames);
     }
     public static String[][] move_down(String a[][])throws IOException{
-        if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")){
+        if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")||a[(current_position[0])+1][current_position[1]].equals("c")){
+            if(a[(current_position[0]+1)][current_position[1]].equals("c")){
+                chest.newChest(true);
+            }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])+1][current_position[1]] = "$";
             current_position[0] = current_position[0]+1;
             current_position[1] = current_position[1];
+            
             spawnProb = rand.nextInt(100);
             if (spawnProb > 65){
                 vs.ini_fight();
@@ -107,11 +111,18 @@ class Utility {
      * @return the array of 2 dimensions
      */
     public static String[][] move_up(String a[][])throws IOException{
-        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")){
+        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")||a[(current_position[0])-1][current_position[1]].equals("c")){
+            
+            if(a[(current_position[0]-1)][current_position[1]].equals("c")){
+                chest.newChest(true);
+            }
+            
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])-1][current_position[1]] = "$";
             current_position[0] = current_position[0]-1;
             current_position[1] = current_position[1];
+            
+            
            spawnProb = rand.nextInt(100);
             if (spawnProb > 65){
                 vs.ini_fight();
@@ -127,12 +138,15 @@ class Utility {
      * @return returns the map with the updated position
      */
     public static String[][] move_right(String a[][])throws IOException{
-        if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")){
+        if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")||a[(current_position[0])][current_position[1]+1].equals("c")){
+            if(a[(current_position[0])][current_position[1]+1].equals("c")){
+                chest.newChest(true);
+            }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]+1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]+1;
-
+            
             spawnProb = rand.nextInt(100);
             if (spawnProb > 65){
                 vs.ini_fight();
@@ -147,12 +161,15 @@ class Utility {
      * @return the array with the map with the updated position
      */
     public static String[][] move_left(String a[][])throws IOException{
-        if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")){
+        if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")||a[(current_position[0])][current_position[1]-1].equals("c")){
+            if(a[(current_position[0]-1)][current_position[1]-1].equals("c")){
+                chest.newChest(true);
+            }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]-1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]-1;
-
+            
 
             spawnProb = rand.nextInt(100);
             if (spawnProb > 65){
