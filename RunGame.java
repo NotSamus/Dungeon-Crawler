@@ -16,12 +16,13 @@ public class RunGame{
 	public static String state;
 	public static String city;
 	public static String ZIP;
+	public static gameUtilities Utility = new utilities();
 	public static void main(String[]args) throws IOException, FileNotFoundException, ArrayIndexOutOfBoundsException, InputMismatchException{
 		
-	String map[][] = Utility.load_map(); 
+	String map[][] = Utility.loadMap(); 
 
 	Scanner input = new Scanner(System.in);
-	Utility utility = Utility.getInstance();
+	Utility.getInstance();
 	String option;
 	/*
 	 * Menu
@@ -57,18 +58,18 @@ public class RunGame{
 			System.out.println("please enter your address\n>");
 			addy = input.nextLine();
 			// method to register user
-			utility.createuser(userName,  FN,  LN,  state,  "0",  "0",  pin,  dob,  city,  ZIP,  "0");
+			Utility.createUser(userName,  FN,  LN,  state,  "0",  "0",  pin,  dob,  city,  ZIP,  "0");
 			log.loger("Player: " + userName + " Register in to the game " );
 			break;
 		case"login":
-			utility.tokentheUser();
+			Utility.tokenTheUser();
 			System.out.print("please enter your username:\n>");
 			userName = input.nextLine();
 			try{
 			System.out.print("please enter your PIN:\n>");
 			int password = input.nextInt();
 			if (userName.toLowerCase().equals("admin")) {
-				if (Utility.searchuser(userName) == true && Utility.searchpin(userName, password)) {
+				if (Utility.searchUser(userName) == true && Utility.searchPin(userName, password)) {
 					System.out.println("Welcome back: " + userName);
 					log.loger("Player: " + userName + " logged in " );
 					System.out.println("Would you like to create a satistic file yes or No?");
@@ -86,7 +87,7 @@ public class RunGame{
 					}
 				}
 			}
-			else if (Utility.searchuser(userName) == true && Utility.searchpin(userName, password)) {
+			else if (Utility.searchUser(userName) == true && Utility.searchPin(userName, password)) {
 				System.out.println("Welcome: " + userName);
 				long time_start = System.nanoTime();
 				map = Utility.spawnUser(map);
@@ -104,7 +105,7 @@ public class RunGame{
 			break;
 		case"new game":
 			
-			utility.tokentheUser();
+			Utility.tokenTheUser();
 			System.out.print("please enter your username to play a new game:\n>");
 			String user = input.nextLine();
 			System.out.print("please enter your password:\n>");
@@ -112,7 +113,7 @@ public class RunGame{
 			int passWord = input.nextInt();
 			
 			
-			if (Utility.searchuser(user) == true && Utility.searchpin(userName, passWord)) {
+			if (Utility.searchUser(user) == true && Utility.searchPin(userName, passWord)) {
 				System.out.println("Welcome: " + user);
 				long time_start = System.nanoTime();
 				map = Utility.spawnUser(map);
@@ -141,36 +142,34 @@ public class RunGame{
 	
 	try{
 	String terminalinput = input.nextLine();
-	Utility util = Utility.getInstance();
+	Utility.getInstance();
 	while(!terminalinput.equals("EndGame")){
 		switch(terminalinput){
 			case "w":
 				map = Utility.move_up(map);
-				util.updateAndSaveMap(userName, Utility.current_position);
-				gameState.savePlayer(new player(), userName);
-				log.loger(userName + " Moved UP, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
+				Utility.updateAndSaveMap(userName, utilities.current_position);
+				log.loger(userName + " Moved UP, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"a":
 				map = Utility.move_left(map);
-				util.updateAndSaveMap(userName, Utility.current_position);
-				gameState.savePlayer(new player(), userName);
-				log.loger(userName + " Moved Left, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
+
+				Utility.updateAndSaveMap(userName, utilities.current_position);
+				log.loger(userName + " Moved Left, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"s":
 				map = Utility.move_down(map);
-				util.updateAndSaveMap(userName, Utility.current_position);
-				gameState.savePlayer(new player(), userName);
-				log.loger(userName + " Moved Down, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
+
+				Utility.updateAndSaveMap(userName, utilities.current_position);
+				log.loger(userName + " Moved Down, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 
 			case"d":
 				map = Utility.move_right(map);
-				util.updateAndSaveMap(userName, Utility.current_position);
-				gameState.savePlayer(new player(), userName);
-				log.loger(userName + " Moved Right, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
+        Utility.updateAndSaveMap(userName, utilities.current_position);
+				log.loger(userName + " Moved Right, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 
