@@ -50,6 +50,32 @@ class Utility {
         file.close();
         return a;
     }
+
+    public static String[][] updateAndSaveMap(String username, int[] userPosition) throws IOException {
+        String[][] map = load_map();
+
+        map[userPosition[0]][userPosition[1]] = "$";
+
+        // Save the updated map to the same file
+        saveMap(map, username+"-Dungeon.csv");
+
+        return map;
+    }
+    public static void saveMap(String[][] map, String filename) throws IOException {
+        FileWriter fileWriter = new FileWriter(filename);
+
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                fileWriter.write(map[i][j]);
+                if (j < map[i].length - 1) {
+                    fileWriter.write(",");
+                }
+            }
+            fileWriter.write("\n");
+        }
+
+        fileWriter.close();
+    }
     /**
      * This will tokenize the line from the csv
      * @param a the data separated by ,
@@ -288,8 +314,8 @@ class Utility {
      */
     static void saveUserToFile(user newuser) throws IOException {
         try{
-        FileWriter fileWriter = new FileWriter("Users.csv", true);
-        fileWriter.write(newuser.getUsername() + "," + newuser.getFirstName() + "," + newuser.getLastName() + "," + newuser.getState() + "," + newuser.getLastSignIn() + "," + newuser.getLoginTime() + "," + newuser.getPin() + "," + newuser.getDateOfBirth() + "," + newuser.getCity() + "," + newuser.getZip() + "," + newuser.getTotalPlayTime() + "\n");
+        FileWriter fileWriter = new FileWriter("User.csv", true);
+        fileWriter.write(newuser.getUsername() + "," + newuser.getLastSignIn() + "," + newuser.getLoginTime() + "," + newuser.getPin() + "," + newuser.getDateOfBirth() + "," + newuser.getCity() + "," + newuser.getZip() + "," + newuser.getTotalPlayTime() + "\n");
 
         fileWriter.close();}catch (IOException e){
             System.out.println("The File Does not exist :C ");

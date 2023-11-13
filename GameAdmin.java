@@ -4,10 +4,10 @@ import java.text.SimpleDateFormat;
 
 public class GameAdmin{
     // private String name;
-    private String username;
+    private static String username;
     // private String password;
 
-    HashMap<String, user> user_records = Utility.getInstance().getUser_records();
+    static HashMap<String, user> user_records = Utility.getInstance().getUser_records();
 
     // public GameAdmin(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime,player mPlayer) {
     //     super(username, firstName, lastName, state, lastSignIn, logInTime, pin, dateOfBirth, city, zip, totalPlayTime,myplayer);
@@ -66,10 +66,12 @@ public class GameAdmin{
         return true;
     }
 
-    static void saveUserToFile(user newuser) throws IOException {
+    static void saveUserToFile(String newuser) throws IOException {
+
+        user savUser = user_records.get(username);
         try{
-        FileWriter fileWriter = new FileWriter("users2.csv", true);
-        fileWriter.write("\n" + newuser.getUsername() + "," + newuser.getLastSignIn() + "," + newuser.getTotalPlayTime() + "," + newuser.getPhoneNumber() + "," + newuser.getBattlesWon() + "," + newuser.getBattlesLost() + "," + newuser.getGamesFinished() + "," + newuser.getItemsPickedUp() +"\n");
+        FileWriter fileWriter = new FileWriter(newuser + "-SavedDungeon.csv", true);
+        fileWriter.write("\n" + savUser.getUsername() + "," + savUser.getLastSignIn() + "," + savUser.getTotalPlayTime() + "," + savUser.getPhoneNumber() + "," + savUser.getBattlesWon() + "," + savUser.getBattlesLost() + "," + savUser.getGamesFinished() + "," + savUser.getItemsPickedUp() +"\n");
 
         fileWriter.close();}catch (IOException e){
             System.out.println("The File Does not exist :C ");

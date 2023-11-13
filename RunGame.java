@@ -78,7 +78,7 @@ public class RunGame{
 						String infoUser = input.next();
 						GameAdmin admin = new GameAdmin(infoUser);
 						admin.createStatisticsFile(infoUser);
-						// GameAdmin.saveUserToFile(newUser);
+						//admin.saveUserToFile(infoUser);
 						System.exit(0);
 					}else{
 						System.out.println("Thanks for stopping by\n");
@@ -92,6 +92,8 @@ public class RunGame{
 				map = Utility.spawnUser(map);
 				Utility.printMatrix(map);
 				log.loger("Player: " + userName + " logged in " );
+				gameState.saveUsersSheet(userName);
+				gameState.savePlayer(new player(), userName);
 			}
 			else{
 				System.out.print("Incorrect username or password\n\n");
@@ -129,7 +131,7 @@ public class RunGame{
 	}
 	if(option.equals("exit")){
 		log.loger("Player: " + userName + " logged out" );
-		System.exit(0);
+		gameState.promptUser(userName);
 	}
 	//fixed the code
 	input.nextLine();
@@ -140,31 +142,42 @@ public class RunGame{
 	
 	try{
 	String terminalinput = input.nextLine();
-	while(!terminalinput.equals("exit")){
+	Utility util = Utility.getInstance();
+	while(!terminalinput.equals("EndGame")){
 		switch(terminalinput){
 			case "w":
 				map = Utility.move_up(map);
+				util.updateAndSaveMap(userName, Utility.current_position);
 				log.loger(userName + " Moved UP, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"a":
 				map = Utility.move_left(map);
+				util.updateAndSaveMap(userName, Utility.current_position);
 				log.loger(userName + " Moved Left, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"s":
 				map = Utility.move_down(map);
+				util.updateAndSaveMap(userName, Utility.current_position);
 				log.loger(userName + " Moved Down, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 
 			case"d":
 				map = Utility.move_right(map);
+				util.updateAndSaveMap(userName, Utility.current_position);
 				log.loger(userName + " Moved Right, This is the current position: " + Utility.current_position[0]+","+Utility.current_position[1]);
 				Utility.printMatrix(map);
 				break;
+
+			case "exit":
+                log.loger("Player: " + userName + " logged out");
+                gameState.promptUser(userName);
+                break;
 		}
 		System.out.print("\n>");
+
 		terminalinput = input.nextLine();
 	}
 }catch(ArrayIndexOutOfBoundsException e){
