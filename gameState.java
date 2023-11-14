@@ -67,7 +67,7 @@ public class gameState {
      * @throws IOException If there is an error saving the player to a file.
      */
     public static void savePlayer(player player, String username) throws IOException {
-        player layer = Utility.user_records.get(username).getPlayer();
+        player layer = Utility.getUser_records().get(username).getPlayer();
         FileWriter writer = new FileWriter(username + "Player.csv",true);
         writer.write("HealthPoints,damage,heal_potion\n");
         writer.write(layer.get_health() + "," + layer.get_damage() +  "," + layer.get_heal_potion() + "\n");
