@@ -7,14 +7,30 @@ import java.util.HashMap;
 import java.util.Date;
 import java.util.Random;
 
-
+/**
+ * This class provides utility method implentations for our interface. The actual game utilities being implemented.
+ * 
+ * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
+ */
 class utilities implements gameUtilities {
-    private static utilities instance;
-    public static int i=1;
+
     /**
-     * This is to keep track of the current position
+     * The singleton instance of the utilities class.
+     */
+    private static utilities instance;
+
+    public static int i=1;
+
+    /**
+     * An array of two integers representing the current position of the player on the map.
      */
     public static int[] current_position = new int[2];//map
+
+    /**
+     * Gets the singleton instance of the utilities class.
+     * 
+     * @return The singleton instance of the utilities class.
+     */
     public utilities getInstance() {
         if (instance == null) {
             instance = new utilities(); 
@@ -22,10 +38,19 @@ class utilities implements gameUtilities {
         return instance;
     }
 
+    /**
+     * Gets a HashMap of user records, indexed by username.
+     * 
+     * @return A HashMap of user records, indexed by username.
+     */
     public HashMap<String, user> getUser_records(){
         return user_records;
     }
-
+    /**
+     * Gets the current position of the player on the map.
+     * 
+     * @return The current position of the player on the map, as an array of two integers.
+     */
     public int[] getCurrentPosition(){
         return current_position;
     }
@@ -54,6 +79,12 @@ class utilities implements gameUtilities {
         file.close();
         return a;
     }
+
+    /**
+     * Loads the game map from a CSV file. Used specifically for loading a saved map.
+     * @return A 2D array of strings representing the game map.
+     * @throws FileNotFoundException If the map file cannot be found.
+     */
     public String[][] loadingMap()throws FileNotFoundException{
         File filename = new File("Dungeon.csv");
         Scanner file = new Scanner(filename);
@@ -72,6 +103,7 @@ class utilities implements gameUtilities {
         file.close();
         return a;
     }
+
     /**
      * This will tokenize the line from the csv
      * @param a the data separated by ,
@@ -80,6 +112,7 @@ class utilities implements gameUtilities {
     public static String[] tokenizer(String a){
         return a.split(",");
     }
+
     /**
      * This is a method to print the map
      * @param a the map in a 2d array
@@ -92,7 +125,14 @@ class utilities implements gameUtilities {
             System.out.println();
         }
     }
-
+    /**
+     * Updates the game map with the user's new position and saves it to a file.
+     * 
+     * @param username The username of the user.
+     * @param userPosition The new position of the user on the game map.
+     * @throws IOException If there is an error saving the updated game map to a file.
+     * @return The updated game map.
+     */
     public String[][] updateAndSaveMap(String username, int[] userPosition) throws IOException {
                 String[][] map = loadingMap();
         
@@ -103,7 +143,15 @@ class utilities implements gameUtilities {
         
                 return map;
             }
-
+    
+    
+    /**
+     * Saves the game map to a file.
+     * 
+     * @param map The 2D array of strings representing the game map.
+     * @param filename The name of the file to save the game map to.
+     * @throws IOException If there is an error saving the game map to a file.
+     */
     public void saveMap(String[][] map, String filename) throws IOException {
          FileWriter fileWriter = new FileWriter(filename);
 
@@ -121,6 +169,27 @@ class utilities implements gameUtilities {
     }
 
     //MOVEMENT OF THE PLAYER
+
+    /**
+     * A random number generator.
+     */
+    public static Random rand = new Random();
+
+    /**
+     * The probability of spawning a monster.
+     */
+    public static int spawnProb = 0;
+
+    /**
+     * Gets a user object by username.
+     * 
+     * @param usernames The username of the user to get.
+     * @return The user object, or null if the user does not exist.
+     */
+    public static user get_user(String usernames){
+       return user_records.get(usernames);
+    }
+
     /**
      * this method is to move down, it will check
      * it the token that is below the position is a 0
@@ -128,12 +197,6 @@ class utilities implements gameUtilities {
      * @param a
      * @return the array of 2 dimensions
      */
-
-    public static Random rand = new Random();
-    public static int spawnProb = 0;
-    public static user get_user(String usernames){
-       return user_records.get(usernames);
-    }
     public String[][] move_down(String a[][])throws IOException{
         if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")||a[(current_position[0])+1][(current_position[1])].equals("c")){
             if(a[(current_position[0]+1)][(current_position[1])].equals("c")){
@@ -151,6 +214,7 @@ class utilities implements gameUtilities {
         }
         return a;
     }
+
     /**
      * this method is to move up, it will check 
      * if the token that is above is a 0
@@ -281,23 +345,10 @@ class utilities implements gameUtilities {
      */
     public boolean searchPin(String player,int pin){
         return user_records.get(player).getPin() == pin;
-        // for (user u : user_records.values()) {
-        //     if (u.getPin() == pin) {
-        //         return true;
-        //     }
-        // }
-        // return false;
+    
     }
 
-    /*
-    * create a method that will return a hashmap updated 
-    * map1 = has the old users that were given to us
-    * map2 = the map of the new users 
-    * map3 = the register users 
-    * add map1+map2 = map 1 =+map3
-    */
-
-
+    
 
 
 

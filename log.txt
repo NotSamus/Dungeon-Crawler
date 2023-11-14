@@ -99,3 +99,20 @@ imborjon Moved Left, This is the current position: 18,3 Mon Nov 13 00:29:04 MST 
 imborjon Moved UP, This is the current position: 17,3 Mon Nov 13 00:29:05 MST 2023 
 imborjon Moved UP, This is the current position: 16,3 Mon Nov 13 00:29:05 MST 2023 
 DarkKing killed imborjon in battle Mon Nov 13 00:29:09 MST 2023 
+Player: null logged out Mon Nov 13 14:18:06 MST 2023 
+Player: wd Register in to the game  Mon Nov 13 14:21:13 MST 2023 
+Player: wd logged in  Mon Nov 13 14:21:32 MST 2023 
+Player: daakers logged in  Mon Nov 13 14:22:34 MST 2023 
+daakers Moved UP, This is the current position: 18,8 Mon Nov 13 14:23:06 MST 2023 
+daakers Moved Right, This is the current position: 18,9 Mon Nov 13 14:23:10 MST 2023 
+daakers Moved UP, This is the current position: 17,9 Mon Nov 13 14:23:15 MST 2023 
+daakers Moved Down, This is the current position: 18,9 Mon Nov 13 14:23:22 MST 2023 
+daakers Moved Left, This is the current position: 18,8 Mon Nov 13 14:23:23 MST 2023 
+daakers Moved Left, This is the current position: 18,7 Mon Nov 13 14:23:42 MST 2023 
+daakers Moved Left, This is the current position: 18,6 Mon Nov 13 14:23:49 MST 2023 
+daakers Moved Left, This is the current position: 18,5 Mon Nov 13 14:23:50 MST 2023 
+daakers Moved Left, This is the current position: 18,4 Mon Nov 13 14:23:51 MST 2023 
+daakers Moved Left, This is the current position: 18,3 Mon Nov 13 14:23:51 MST 2023 
+daakers Moved UP, This is the current position: 17,3 Mon Nov 13 14:23:53 MST 2023 
+daakers Moved UP, This is the current position: 16,3 Mon Nov 13 14:23:59 MST 2023 
+Snake killed daakers in battle Mon Nov 13 14:24:09 MST 2023 

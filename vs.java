@@ -6,13 +6,19 @@ import java.util.Scanner;
 
 
 /**
- * This is the combat system
+ * This is the combat system. It allows players to engage in battles with enemies
+ * 
+ * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
  */
 public class vs {
       public static String username_holder ;
       public static int i=0;
       public static int vida;  
-      public static gameUtilities Utility = new utilities();  
+      public static gameUtilities Utility = new utilities(); 
+/**
+ * This throws an exception if an enemy is not found or created in the csv file
+ * @throws IOException if an error occurs while creating enemy
+ */
 public static void token_Enemies()throws IOException {
         Scanner file= new Scanner(new File("Enemies.csv"));
         String header = file.nextLine(); //reading header, just to erase it
@@ -30,9 +36,18 @@ public static void token_Enemies()throws IOException {
         }
     }
 
-
+    /**
+     * HashMap to store enemies
+     */
     public static HashMap <Integer, Enemies> Enemies_map = new HashMap<Integer, Enemies>();
 
+    /**
+     * Creates an enemy with specified name, health, and damage.
+     * @param name the name of the enemy
+     * @param health The health points of the enemy
+     * @param damage The damage dealt by the enemy
+     * @throws IOException if an error occurs while creating enemy
+     */
     public static void create_Enemies(String name, int health, int damage)throws IOException{
        Enemies en1 = new Enemies(name, health, damage);
        Enemies_map.put(i, en1);
@@ -40,18 +55,40 @@ public static void token_Enemies()throws IOException {
 
    }
 
+    /**
+     *  Sets the current username
+     * @param userm the name to be set
+     */
     public static void handle_username(String userm){
         username_holder=userm;
     }
+
+    /**
+     * Initializes a fight using the current username
+     * @throws IOException if an error occurs when initializing the fight
+     */
     public static void ini_fight()throws IOException{
         ini_fight(username_holder);
     }
 
+    /**
+     *  Item inventory for the player
+     */
     public static item_inventory inv = new item_inventory();
 
+    /**
+     * Sets the player's inventory with the provided item inventory
+     * @param a is the item to be set 
+     */
     public static void get_inv(item_inventory a){
         inv = a;
     }
+
+    /**
+     *  Initates a fight with the user
+     * @param username The username of the player
+     * @throws IOException if an error occurs durring the ffight initialization.
+     */
     private static void ini_fight (String username)throws IOException{
         // chest chest = new chest();
         // chest.newChest(true);
