@@ -1,8 +1,17 @@
 
-
+/**
+ * This class represents the item inventory and gives an item count.
+ * Items: sword, heal potion, clear potion, smokebomb, coin
+ * all ints set to 0, since we have no items until we open a chest.
+ * 
+ * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
+ */
 public class item_inventory {
     int sword, heal_potion, clear_potion,smokebomb,coins;
     
+    /**
+     * Constructs a new item inventory with all item counts set to zero.
+     */
     public item_inventory(){
         this.sword =0;
         this.heal_potion=0;
@@ -10,65 +19,95 @@ public class item_inventory {
         this.smokebomb=0;
         this.coins=0;
     }
-    /*
-     * TODO: SWORD
-     * state from 0 -> 1 to mark that we have a sword and it will last N movements 
-     * boost damage by .5 percent, this means 1.5 in total
+
+    /**
+     * Sets the number of swords in the player's inventory.
+     * 
+     * @param sword The new number of swords in the player's inventory.
      */
     public void set_sword(int sword1){
          this.sword = sword1;
     }
     
+    /**
+     * Gets the number of swords in the player's inventory.
+     * 
+     * @return The number of swords in the player's inventory.
+     */
     public int get_sword(){
         return sword;
     }
-    /*
-     * TODO: Heal potion
-     * change the state of the life with a caping limit of 100
-     *  if updated_life_of_user > 100?  life_of_user=100;
+
+    /**
+     * Sets the number of healing potions in the player's inventory.
+     * 
+     * @param heal_potion The new number of healing potions in the player's inventory.
      */
     public void set_heal_potion(int heal_potion1){
         this.heal_potion =heal_potion1;
     }
+
+    /**
+     * Gets the number of healing potions in the player's inventory.
+     * 
+     * @return The number of healing potions in the player's inventory.
+     */
     public int get_heal_potion(){
         return heal_potion;
     }
-     /*
-      * TODO: clear potion
-      * clears all the states from a user poison, etc
-      * set all the states to 0
-      */
+    
+    /**
+     * Sets the number of clearing potions in the player's inventory.
+     * 
+     * @param clear_potion1 The new number of clearing potions in the player's inventory.
+     */
      public void set_clear_potion(int clear_potion1){
         this.clear_potion= clear_potion1;
     }
     
+    /**
+     * Gets the number of clearing potions in the player's inventory.
+     * 
+     * @return The number of clearing potions in the player's inventory.
+     */
     public int get_clear_potion(){
             return clear_potion;
             
     }
         
         
-      /* 
-       * TODO: SMOKE BOMB
-       * implement luck
-       * this will give you 25 points of luck when you use it, it will last 3 seconds
-       * the way it works is when you click run, it will generate a random number then it will ad 25 points to that 
-       * and see if you can run.
-       */
+    /**
+     * Sets the number of smoke bombs in the player's inventory.
+     * 
+     * @param smokebomb1 The new number of smoke bombs in the player's inventory.
+     */
     public void set_smokebomb(int smokebomb1){
         this.smokebomb= smokebomb1;
     }
+
+    /**
+     * Gets the number of smoke bombs in the player's inventory.
+     * 
+     * @return The number of smoke bombs in the player's inventory.
+     */
     public int get_smokebomb(){
         return smokebomb;
     }
     
-       /*
-        * TODO: COIN
-        * this is the currency of the game
-        */
+    /**
+     * Sets the number of coins in the player's inventory.
+     * 
+     * @param coins1 The new number of coins in the player's inventory.
+     */
     public void set_coin(int coins1){
         this.coins= coins1;
     }
+
+    /**
+     * Gets the number of coins in the player's inventory.
+     * 
+     * @return The number of coins in the player's inventory.
+     */
     public int get_coins(){
         return coins;
     }

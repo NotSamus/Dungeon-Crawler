@@ -2,29 +2,58 @@ import java.io.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
+/**
+ * This class that represents a game administrator.
+ * Game admin attributes: 
+ * String username
+ * 
+ * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
+ */
 public class GameAdmin{
-    // private String name;
+    /**
+     * Game admin username.
+     */
     private static String username;
-    // private String password;
-
+    /**
+     * A utility class for interacting with the game.
+     */
+    public static gameUtilities Utility = new utilities();
+    
+    /**
+     * A HashMap of user records, indexed by username.
+     */
     static HashMap<String, user> user_records = Utility.getInstance().getUser_records();
 
-    // public GameAdmin(String username, String firstName, String lastName, String state, String lastSignIn, String logInTime, String pin, String dateOfBirth, String city, String zip, String totalPlayTime,player mPlayer) {
-    //     super(username, firstName, lastName, state, lastSignIn, logInTime, pin, dateOfBirth, city, zip, totalPlayTime,myplayer);
-    // }
+    /**
+     * Constructs a new game administrator object with the given username.
+     * @param username Game admin username.
+     */
     public GameAdmin(String username){
-        // this.name = name;
         this.username = username;
-        // this.password = password;
     }
 
+    /**
+     * Gets admin username.
+     * @return Admin username.
+     */
     public String getUsername(){
         return username;
     }
+
+    /**
+     * Sets admin username.
+     * @param username Game admin username.
+     */
     public void setUsername(String username){
         this.username = username;
     }
 
+    /**
+     * Creates a statistics file for the given user.
+     * 
+     * @param username The user that we are creating statistics file for.
+     * @throws IOException If there is an error creating the statistics file.
+     */
     public void createStatisticsFile(String username) throws IOException{
         // System.out.println("U: "+username);
         if (isAdmin()) {
@@ -55,17 +84,32 @@ public class GameAdmin{
         }
     }
 
-
+    /**
+     * Gets the current time.
+     * 
+     * @return The current time.
+     */
     private String getCurrentTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
     }
-
+    
+    /**
+     * Checks if the current user is an administrator.
+     * 
+     * @return true if the current user is an administrator, false otherwise.
+     */
     private static boolean isAdmin(){
         String GameAdministrator = "Admin";
         return true;
     }
 
+    /**
+     * Saves the given user to a file.
+     * 
+     * @param newuser Username of the user to save.
+     * @throws IOException If there is an error saving the user to a file.
+     */
     static void saveUserToFile(String newuser) throws IOException {
 
         user savUser = user_records.get(username);

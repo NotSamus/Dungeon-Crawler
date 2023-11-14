@@ -4,19 +4,68 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
+/**
+ * Main that runs game.
+ * 
+ * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
+ */
 public class RunGame{
+
+	/**
+	 * Stores the users's first username
+	 */
 	public static String userName;
+
+	/**
+	 * Stores the user's number
+	 */
 	public static String num;
+
+	/**
+	 *  Stores the users first name
+	 */
 	public static String FN;
+	/**
+	 * Stores the users last name
+	 */
 	public static String LN;
+	/**
+	 * Stores the users address
+	 */
 	public static String addy;
+	/**
+	 * Stores the user password
+	 */
 	public static String pin;
+	/**
+	 * Stores the users date of birth
+	 */
 	public static String dob;
+	/**
+	 * Stores the users home State
+	 */
 	public static String state;
+	/**
+	 * Stores the users home city
+	 */
 	public static String city;
+	/**
+	 * Stores the users zip code
+	 */
 	public static String ZIP;
+	/**
+	 * Indicates that the game utilities is used throughout the application.
+	 */
 	public static gameUtilities Utility = new utilities();
+	/**
+	 * The main method that runs the game.
+	 * 
+	 * @throws IOException Indicates that an i/o exception has occurred
+	 * @throws FileNotFoundException Indicates that an attempt to open a file specifying a pathname has failed
+	 * @throws ArrayIndexOutOfBoundsException Indicate that an array has been accessed with an illegal index
+	 * @throws InputMismatchException Thrown when a user inputs the wrong data type
+	 * 
+	 */
 	public static void main(String[]args) throws IOException, FileNotFoundException, ArrayIndexOutOfBoundsException, InputMismatchException{
 		
 	String map[][] = Utility.loadMap(); 
