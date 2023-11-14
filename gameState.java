@@ -67,9 +67,10 @@ public class gameState {
      * @throws IOException If there is an error saving the player to a file.
      */
     public static void savePlayer(player player, String username) throws IOException {
+        player layer = Utility.user_records.get(username).getPlayer();
         FileWriter writer = new FileWriter(username + "Player.csv",true);
         writer.write("HealthPoints,damage,heal_potion\n");
-        writer.write(player.get_health() + "," + player.get_damage() +  "," + player.get_heal_potion() + "\n");
+        writer.write(layer.get_health() + "," + layer.get_damage() +  "," + layer.get_heal_potion() + "\n");
         writer.close();
     }
 
@@ -82,14 +83,15 @@ public class gameState {
     public static void promptUser(String username) throws IOException {
         String map[][] = Utility.loadMap();
         
-        System.out.println("Would you like to start the game over or exit the game? (start/exit)");
+        System.out.println("Would you like to resume the or exit the game? (resume/exit)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        if (input.equals("start")) {
+        if (input.equals("resume")) {
             // map = Utility.spawnUser(map);
 				Utility.printMatrix(map);
 				log.loger("Player: " + username + " logged in " );
         } else if (input.equals("exit")) {
+            savePlayer(new player(), username);
             System.exit(0);
         } else {
             System.out.println("Invalid input. Please try again.");
