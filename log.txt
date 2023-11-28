@@ -1,1 +1,24 @@
-
+ 
+Player: tmzayas logged in  Tue Nov 21 16:19:53 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Tue Nov 21 16:19:55 MST 2023 
+tmzayas Moved Right, This is the current position: 18,9 Tue Nov 21 16:19:56 MST 2023 
+DarkKing killed tmzayas in battle Tue Nov 21 16:20:04 MST 2023 
+Player: tmzayas logged in  Wed Nov 22 12:50:53 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Wed Nov 22 12:53:37 MST 2023 
+tmzayas Moved Right, This is the current position: 18,9 Wed Nov 22 12:53:40 MST 2023 
+tmzayas Moved UP, This is the current position: 17,9 Wed Nov 22 12:54:05 MST 2023 
+tmzayas Moved Down, This is the current position: 18,9 Wed Nov 22 12:54:18 MST 2023 
+tmzayas Moved Left, This is the current position: 18,8 Wed Nov 22 12:54:19 MST 2023 
+tmzayas Moved Left, This is the current position: 18,7 Wed Nov 22 12:54:24 MST 2023 
+Snake killed tmzayas in battle Wed Nov 22 12:54:29 MST 2023 
+Player: tmzayas logged in  Tue Nov 28 02:46:03 MST 2023 
+tmzayas Moved UP, This is the current position: 18,8 Tue Nov 28 02:46:04 MST 2023 
+tmzayas Moved Right, This is the current position: 18,9 Tue Nov 28 02:46:05 MST 2023 
+tmzayas Moved UP, This is the current position: 17,9 Tue Nov 28 02:46:07 MST 2023 
+tmzayas Moved Down, This is the current position: 18,9 Tue Nov 28 02:46:08 MST 2023 
+tmzayas Moved Left, This is the current position: 18,8 Tue Nov 28 02:46:09 MST 2023 
+tmzayas Moved Left, This is the current position: 18,7 Tue Nov 28 02:46:09 MST 2023 
+tmzayas Moved Left, This is the current position: 18,6 Tue Nov 28 02:46:10 MST 2023 
+tmzayas Moved Left, This is the current position: 18,5 Tue Nov 28 02:46:10 MST 2023 
+tmzayas Moved Left, This is the current position: 18,4 Tue Nov 28 02:46:16 MST 2023 
+CorruptedKnight killed tmzayas in battle Tue Nov 28 02:46:22 MST 2023 

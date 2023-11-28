@@ -90,8 +90,6 @@ public static void token_Enemies()throws IOException {
      * @throws IOException if an error occurs durring the ffight initialization.
      */
     private static void ini_fight (String username)throws IOException{
-        // chest chest = new chest();
-        // chest.newChest(true);
 
          //user stats
         player player = Utility.getUser_records().get(username).getPlayer();

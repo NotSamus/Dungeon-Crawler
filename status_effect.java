@@ -6,6 +6,12 @@ public class status_effect {
      * This class is for the states of the player, will be implemented with the player
      * this is for the battle system
      */
+    public void set_luck(int luck){
+        this.luck=luck;
+    }
+    public int get_luck(){
+        return luck;
+    }
     /**
      * This will take as a parameter a double containing the Boosted damage of the player
      * the damage of the player is over 100
