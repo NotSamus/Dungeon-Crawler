@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
  */
 public class vs {
-      public static String username_holder ;
+      public static String username_holder;
       public static int i=0;
       public static int vida;  
       public static gameUtilities Utility = new utilities(); 
@@ -239,7 +239,10 @@ public static void token_Enemies()throws IOException {
             System.out.println(" # " + Ename + " was defeated! # ");
             player.set_health(Phealth);
             System.out.println(" # You have " + player.Health + " HP left. #");
-
+            int holder = rand.nextInt(9);
+            player.set_coins(holder);
+            System.out.print(" # you have found " + holder+ " coins # ");
+            System.out.println(" # your total coins are " + player.get_coins()+" # ");
             vida = player.Health;
             System.out.println("----------------------------------------------------");
             

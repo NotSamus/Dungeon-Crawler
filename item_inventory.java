@@ -100,7 +100,7 @@ public class item_inventory {
      * @param coins1 The new number of coins in the player's inventory.
      */
     public void set_coin(int coins1){
-        this.coins= coins1;
+        this.coins= coins + coins1;
     }
 
     /**

@@ -74,6 +74,13 @@
         private void update_score(long score_new){
             this.score = score+score_new;
         }
+
+        public void set_coins(int a){
+            playerInventory.set_coin(a);
+        }
+        public int get_coins(){
+            return playerInventory.get_coins();
+        }
         /**
          * will check if it is a game over
          * @param numLives
