@@ -187,6 +187,7 @@ public class RunGame{
 	
 	}while(!(option.equals("login")||option.equals("new game")));
 	vs.handle_username(userName);
+	merchant.handle_username(userName);
 	
 	
 	try{
@@ -239,4 +240,5 @@ public class RunGame{
 	long time_stop = System.nanoTime();
 	input.close();
 }
+
 }
