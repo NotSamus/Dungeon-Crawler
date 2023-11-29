@@ -111,9 +111,6 @@ public class item_inventory {
     public int get_coins(){
         return coins;
     }
-
-    public void add(String selection) {
-    }
     
     
 }

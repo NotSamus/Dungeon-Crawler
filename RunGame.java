@@ -195,20 +195,20 @@ public class RunGame{
 	while(!terminalinput.equals("EndGame")){
 		switch(terminalinput){
 			case "w":
-				map = Utility.move_up(map, userName);
+				map = Utility.move_up(map);
 				Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved UP, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"a":
-				map = Utility.move_left(map, userName);
+				map = Utility.move_left(map);
 
 				Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved Left, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);
 				break;
 			case"s":
-				map = Utility.move_down(map, userName);
+				map = Utility.move_down(map);
 
 				Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved Down, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
@@ -216,7 +216,7 @@ public class RunGame{
 				break;
 
 			case"d":
-				map = Utility.move_right(map, userName);
+				map = Utility.move_right(map);
         Utility.updateAndSaveMap(userName, utilities.current_position);
 				log.loger(userName + " Moved Right, This is the current position: " + utilities.current_position[0]+","+utilities.current_position[1]);
 				Utility.printMatrix(map);

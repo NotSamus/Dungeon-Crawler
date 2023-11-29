@@ -14,8 +14,6 @@ import java.util.Random;
  */
 class utilities implements gameUtilities {
 
-    // player gamPlayer = player.getInstance();
-
     /**
      * The singleton instance of the utilities class.
      */
@@ -199,7 +197,7 @@ class utilities implements gameUtilities {
      * @param a
      * @return the array of 2 dimensions
      */
-    public String[][] move_down(String a[][], String username)throws IOException{
+    public String[][] move_down(String a[][])throws IOException{
         if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")||a[(current_position[0])+1][(current_position[1])].equals("c")){
             if(a[(current_position[0]+1)][(current_position[1])].equals("c")){
                 chest.newChest(true);
@@ -224,13 +222,10 @@ class utilities implements gameUtilities {
      * @param a
      * @return the array of 2 dimensions
      */
-    public String[][] move_up(String a[][] , String username)throws IOException{
-        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")||a[(current_position[0]-1)][(current_position[1])].equals("c")||a[(current_position[0]-1)][(current_position[1])].equals("#")){
+    public String[][] move_up(String a[][])throws IOException{
+        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")||a[(current_position[0]-1)][(current_position[1])].equals("c")){
             if(a[(current_position[0]-1)][(current_position[1])].equals("c")){
                 chest.newChest(true);
-            }
-            if(a[(current_position[0]-1)][(current_position[1])].equals("#")){
-                merchant.interact(user_records.get(username).getPlayer());
             }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])-1][current_position[1]] = "$";
@@ -250,7 +245,7 @@ class utilities implements gameUtilities {
      * @param a this is the map 
      * @return returns the map with the updated position
      */
-    public String[][] move_right(String a[][], String username)throws IOException{
+    public String[][] move_right(String a[][])throws IOException{
         if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")||a[(current_position[0])][(current_position[1])+1].equals("c")){
             if(a[(current_position[0])][(current_position[1])+1].equals("c")){
                 chest.newChest(true);
@@ -273,7 +268,7 @@ class utilities implements gameUtilities {
      * @param a the map 
      * @return the array with the map with the updated position
      */
-    public String[][] move_left(String a[][], String username)throws IOException{
+    public String[][] move_left(String a[][])throws IOException{
         if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")||a[(current_position[0])][current_position[1]-1].equals("c")){
             if(a[(current_position[0])][(current_position[1])-1].equals("c")){
                 chest.newChest(true);

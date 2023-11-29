@@ -31,7 +31,7 @@ public interface gameUtilities {
      * @throws IOException If there is an error saving the updated game map.
      * @return The updated game map.
      */
-    public String [][] move_up(String [][] gameMap, String username) throws IOException;
+    public String [][] move_up(String [][] gameMap) throws IOException;
 
     /**
      * Moves the player down one tile/room on the game map.
@@ -40,7 +40,7 @@ public interface gameUtilities {
      * @throws IOException If there is an error saving the updated game map.
      * @return The updated game map.
      */
-    public String [][] move_down(String [][] gameMap, String username) throws IOException;
+    public String [][] move_down(String [][] gameMap) throws IOException;
 
     /**
      * Moves the player left one tile/room on the game map.
@@ -49,7 +49,7 @@ public interface gameUtilities {
      * @throws IOException If there is an error saving the updated game map.
      * @return The updated game map.
      */
-    public String [][] move_left(String [][] gameMap, String username) throws IOException;
+    public String [][] move_left(String [][] gameMap) throws IOException;
 
     /**
      * Moves the player right one tile/room on the game map.
@@ -58,7 +58,7 @@ public interface gameUtilities {
      * @throws IOException If there is an error saving the updated game map.
      * @return The updated game map.
      */
-    public String [][] move_right(String [][] gameMap, String username) throws IOException;
+    public String [][] move_right(String [][] gameMap) throws IOException;
 
     /**
      * Spawns the user at the start of the game map.
