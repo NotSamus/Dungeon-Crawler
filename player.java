@@ -9,12 +9,21 @@
         /**
          * This is the constructor for the player object
          */
+        // private static player instance;
+
         public player(){
             this.Health = 100 ;
             this.score=0;  
             this.damage = 7.0;
             this.heal_potion=3;
         }
+
+        // public static player getInstance() {
+        //     if (instance == null) {
+        //         instance = new player(); 
+        //     }
+        //     return instance;
+        // }
         /**
          * This method will set the health of the player, this is to update the health when we get hit
          * it will take health as a parameter, to update.
