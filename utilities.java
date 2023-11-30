@@ -13,12 +13,12 @@ import java.util.Random;
  * @author Team 7 : Alejandro Rodriguez, Donritchie Ewane, Isaac Borjon, Jesus Lopez
  */
 class utilities implements gameUtilities {
-
+    public static HashMap<String, user> user_records = new HashMap<String, user>();
     /**
      * The singleton instance of the utilities class.
      */
     private static utilities instance;
-
+  
     public static int i=1;
 
     /**
@@ -187,6 +187,7 @@ class utilities implements gameUtilities {
      * @return The user object, or null if the user does not exist.
      */
     public static user get_user(String usernames){
+        
        return user_records.get(usernames);
     }
 
@@ -198,23 +199,38 @@ class utilities implements gameUtilities {
      * @return the array of 2 dimensions
      */
     public String[][] move_down(String a[][])throws IOException{
-        if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")||a[(current_position[0])+1][(current_position[1])].equals("c")){
+        if(a[(current_position[0])+1][current_position[1]].equals("0")||a[(current_position[0])+1][current_position[1]].equals("e")||a[(current_position[0])+1][(current_position[1])].equals("c")||a[(current_position[0])+1][(current_position[1])].equals("@")||a[(current_position[0])+1][(current_position[1])].equals("#")){
             if(a[(current_position[0]+1)][(current_position[1])].equals("c")){
                 chest.newChest(true);
+            }
+             if(a[(current_position[0])+1][(current_position[1])].equals("#")){
+                merchant.handle_username(vs.username_holder);
+            }
+            if(a[(current_position[0]+1)][(current_position[1])].equals("@")){
+                printexit();
             }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])+1][current_position[1]] = "$";
             current_position[0] = current_position[0]+1;
             current_position[1] = current_position[1];
             spawnProb = rand.nextInt(100);
-            if (spawnProb > 65){
+            if (spawnProb > 75){
                 vs.ini_fight();
             }
+            
 
         }
         return a;
     }
-
+    /**
+     * This one prints the exit and puts it on the log 
+     * @throws IOException
+     */
+    public static void printexit()throws IOException{
+        System.out.print(" ### CONGRATULATIONS YOU FOUND THE EXIT ### ");
+        log.loger(vs.username_holder + " Found the exit!!!!");
+        System.exit(0);
+    }
     /**
      * this method is to move up, it will check 
      * if the token that is above is a 0
@@ -223,18 +239,25 @@ class utilities implements gameUtilities {
      * @return the array of 2 dimensions
      */
     public String[][] move_up(String a[][])throws IOException{
-        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")||a[(current_position[0]-1)][(current_position[1])].equals("c")){
+        if(a[(current_position[0])-1][current_position[1]].equals("0")||a[(current_position[0])-1][current_position[1]].equals("e")||a[(current_position[0]-1)][(current_position[1])].equals("c")||a[(current_position[0]-1)][(current_position[1])].equals("@")||a[(current_position[0]-1)][(current_position[1])].equals("#")){
             if(a[(current_position[0]-1)][(current_position[1])].equals("c")){
                 chest.newChest(true);
+            }
+            if(a[(current_position[0]-1)][(current_position[1])].equals("#")){
+                merchant.handle_username(vs.username_holder);
+            }
+            if(a[(current_position[0]-1)][(current_position[1])].equals("@")){
+                printexit();
             }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])-1][current_position[1]] = "$";
             current_position[0] = current_position[0]-1;
             current_position[1] = current_position[1];
            spawnProb = rand.nextInt(100);
-            if (spawnProb > 65){
+            if (spawnProb > 75){
                 vs.ini_fight();
             }
+            
         }
         
         return a;
@@ -246,9 +269,16 @@ class utilities implements gameUtilities {
      * @return returns the map with the updated position
      */
     public String[][] move_right(String a[][])throws IOException{
-        if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")||a[(current_position[0])][(current_position[1])+1].equals("c")){
+        if(a[(current_position[0])][current_position[1]+1].equals("0")||a[(current_position[0])][current_position[1]+1].equals("e")||a[(current_position[0])][(current_position[1])+1].equals("c")||a[(current_position[0])][(current_position[1])+1].equals("@")||a[(current_position[0])][(current_position[1])+1].equals("#")){
             if(a[(current_position[0])][(current_position[1])+1].equals("c")){
                 chest.newChest(true);
+            }
+            if(a[(current_position[0])][(current_position[1])+1].equals("#")){
+                merchant.handle_username(vs.username_holder);
+            }
+            
+            if(a[(current_position[0])][(current_position[1]+1)].equals("@")){
+                printexit();
             }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]+1] = "$";
@@ -256,9 +286,10 @@ class utilities implements gameUtilities {
             current_position[1] = current_position[1]+1;
 
             spawnProb = rand.nextInt(100);
-            if (spawnProb > 65){
+            if (spawnProb > 75){
                 vs.ini_fight();
             }
+            
 
         }
         return a;
@@ -269,20 +300,27 @@ class utilities implements gameUtilities {
      * @return the array with the map with the updated position
      */
     public String[][] move_left(String a[][])throws IOException{
-        if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")||a[(current_position[0])][current_position[1]-1].equals("c")){
+        if(a[(current_position[0])][current_position[1]-1].equals("0")||a[(current_position[0])][current_position[1]-1].equals("e")||a[(current_position[0])][current_position[1]-1].equals("c")||a[(current_position[0])][current_position[1]-1].equals("@")||a[(current_position[0])][current_position[1]-1].equals("#")){
             if(a[(current_position[0])][(current_position[1])-1].equals("c")){
                 chest.newChest(true);
+            }
+             if(a[(current_position[0])][(current_position[1])-1].equals("#")){
+                merchant.handle_username(vs.username_holder);
+            }
+            if(a[(current_position[0])][(current_position[1]-1)].equals("@")){
+                printexit();
             }
             a[(current_position[0])][current_position[1]] = "0";
             a[(current_position[0])][current_position[1]-1] = "$";
             current_position[0] = current_position[0];
             current_position[1] = current_position[1]-1;
-
+            
 
             spawnProb = rand.nextInt(100);
-            if (spawnProb > 65){
+            if (spawnProb > 75){
                 vs.ini_fight();
             }
+            
             /**call the 2nd map to update the position of visited */
         }
         return a;
@@ -306,7 +344,7 @@ class utilities implements gameUtilities {
         
     }
 
-    public static HashMap<String, user> user_records = new HashMap<String, user>();
+    
     /**
      * This method creates the user
      * @param username
@@ -328,7 +366,6 @@ class utilities implements gameUtilities {
         user newUser = new user( username,  firstName,  lastName,  state,  lastSignIn,  logInTime,  pin,  dateOfBirth,  city,  zip,  totalPlayTime,p1);
         
         user_records.put(username, newUser);
-        // System.err.println(newUser.getUsername());
     }
     /**
      * This will look the user in the hashmap
@@ -347,12 +384,6 @@ class utilities implements gameUtilities {
         return user_records.get(player).getPin() == pin;
     
     }
-
-    
-
-
-
-
     /**
      * this method will token the user and will also create the user
      * we have a scanner to read from the "Users.csv" we tokenize it and then we just create the user 
@@ -365,10 +396,7 @@ class utilities implements gameUtilities {
         while(file.hasNextLine()){
         String holder = file.nextLine();
         String [] a = holder.split(",");
-        try {
-            // for(i = 0; i < a.length; i++){
-            //     System.out.println(a[i]);
-            // }
+        try {  
             createUser(/*username=*/a[2],a[3],a[5],a[0],a[1],a[4],a[5],a[10],a[8],a[9],a[7]);       
         } catch (IOException ioe) {
             ioe.getMessage();

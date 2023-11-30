@@ -121,19 +121,38 @@ public class RunGame{
 				if (Utility.searchUser(userName) == true && Utility.searchPin(userName, password)) {
 					System.out.println("Welcome back: " + userName);
 					log.loger("Player: " + userName + " logged in " );
-					System.out.println("Would you like to create a satistic file yes or No?");
-					String answer = input.next();
-					if (answer.toLowerCase().equals("yes")) {
+					String questionAdmin;
+					do{
+					System.out.println("What do you want to do? \n 1. Create a Statistics file File \n 2. Create a new map\n 3. exit  \n please input a number: ");
+					questionAdmin = input.next();
+					
+					switch (questionAdmin) {
+						case "1":
 						System.out.println("Please enter the username for which you would like to generated a file for: ");
 						String infoUser = input.next();
-						GameAdmin admin = new GameAdmin(infoUser);
-						admin.createStatisticsFile(infoUser);
-						//admin.saveUserToFile(infoUser);
-						System.exit(0);
-					}else{
-						System.out.println("Thanks for stopping by\n");
-						System.exit(0);
+						GameAdmin.createStatisticsFile(infoUser);
+						questionAdmin="3";
+							break;
+						case "2":
+							System.out.print("Please enter a number for your map:\n>");
+							String a = input.next();
+							System.out.println("Please the size of the map:\n note: the size should be more than 10\n");
+							String size = input.next();
+							GameAdmin.RandomMapGenerators(Integer.parseInt(a),Integer.parseInt(size) );
+							System.out.print("\nThe map is generated\n");
+							questionAdmin="3";
+							break;
+						case "3":break;
+						default:
+							System.out.println("Please enter a valid answer");
+							break;
+						
 					}
+				}while(!(questionAdmin.equals("3")));
+				System.out.println("Thanks for stopping by\n");
+				System.exit(0);
+
+					
 				}
 			}
 			else if (Utility.searchUser(userName) == true && Utility.searchPin(userName, password)) {
@@ -187,13 +206,12 @@ public class RunGame{
 	
 	}while(!(option.equals("login")||option.equals("new game")));
 	vs.handle_username(userName);
-	merchant.handle_username(userName);
-	
 	
 	try{
 	String terminalinput = input.nextLine();
 	Utility.getInstance();
 	while(!terminalinput.equals("EndGame")){
+		System.out.println("use w,a,s or d to move");
 		switch(terminalinput){
 			case "w":
 				map = Utility.move_up(map);
