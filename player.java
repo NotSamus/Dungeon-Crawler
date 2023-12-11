@@ -58,14 +58,14 @@
          * @return heal potion
          */
         public int get_heal_potion(){
-            return heal_potion;
+            return playerInventory.get_heal_potion();
         }
         /**
          * update the heal potion of the player
          * @param heal
          */
         public void set_heal_potion(int heal){
-            this.heal_potion = heal;
+            playerInventory.set_heal_potion(heal);
         } 
         /**
          * will update the score of the player
@@ -90,6 +90,34 @@
                 System.out.println("Game Over");
             }
             
+        }
+        /**
+         * This method will set the sword in the specific player inventory
+         * @param i
+         */
+        public void setSwordU(int i){
+            playerInventory.set_sword(i);
+        }
+        /**
+         * This method will get the sword from the specific player inventory
+         * @return
+         */
+        public int getSwordU(){
+            return playerInventory.get_sword();
+        }   
+        /**
+         * This method will set the smokebomb from the specific player inventory
+         * @param i
+         */
+        public void set_smokeBU(int i){
+            playerInventory.set_smokebomb(i);
+        }
+        /**
+         * This method is to get the smokebomb upgrade from the specific player inventory
+         * @return
+         */
+        public int get_smokebombU(){
+            return playerInventory.get_smokebomb();
         }
 
 }

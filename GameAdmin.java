@@ -22,39 +22,14 @@ public class GameAdmin{
     /**
      * A HashMap of user records, indexed by username.
      */
-    static HashMap<String, user> user_records = Utility.getInstance().getUser_records();
-
-    /**
-     * Constructs a new game administrator object with the given username.
-     * @param username Game admin username.
-     */
-    public GameAdmin(String username){
-        this.username = username;
-    }
-
-    /**
-     * Gets admin username.
-     * @return Admin username.
-     */
-    public String getUsername(){
-        return username;
-    }
-
-    /**
-     * Sets admin username.
-     * @param username Game admin username.
-     */
-    public void setUsername(String username){
-        this.username = username;
-    }
-
-    /**
+    public static HashMap<String, user> user_records = Utility.getUser_records();
+    /** 
      * Creates a statistics file for the given user.
      * 
      * @param username The user that we are creating statistics file for.
      * @throws IOException If there is an error creating the statistics file.
      */
-    public void createStatisticsFile(String username) throws IOException{
+    public static void createStatisticsFile(String username) throws IOException{
         // System.out.println("U: "+username);
         if (isAdmin()) {
             if (!user_records.containsKey(username)) {
@@ -110,15 +85,24 @@ public class GameAdmin{
      * @param newuser Username of the user to save.
      * @throws IOException If there is an error saving the user to a file.
      */
-    static void saveUserToFile(String newuser) throws IOException {
+    public static void saveUserToFile(String newuser) throws IOException {
 
         user savUser = user_records.get(username);
         try{
-        FileWriter fileWriter = new FileWriter(newuser + "-SavedDungeon.csv", true);
+        FileWriter fileWriter = new FileWriter(newuser + "-SavedDungeon.csv");
         fileWriter.write("\n" + savUser.getUsername() + "," + savUser.getLastSignIn() + "," + savUser.getTotalPlayTime() + "," + savUser.getPhoneNumber() + "," + savUser.getBattlesWon() + "," + savUser.getBattlesLost() + "," + savUser.getGamesFinished() + "," + savUser.getItemsPickedUp() +"\n");
 
         fileWriter.close();}catch (IOException e){
             System.out.println("The File Does not exist :C ");
         }
+    }
+    /**
+     * This method will generate a random map
+     * @param a this is the number for the map
+     * @param size this is the size of the map
+     * @throws IOException
+     */
+    public static void RandomMapGenerators(int a, int size)throws IOException{
+        RandomMapGenerator.createNewMap(a, size);
     }
 }
